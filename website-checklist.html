@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Master Checklist</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=DM+Sans:wght@300;400;500&family=Share+Tech+Mono&display=swap');
+
+  :root {
+    --ice: #5aabcc; --green: #22c55e; --amber: #f59e0b; --red: #ef4444;
+    --bg: #080d12; --bg2: #0d1520; --bg3: #111c2a; --bd: rgba(90,171,204,0.1);
+    --t: #fff; --t2: rgba(255,255,255,0.65); --t3: rgba(255,255,255,0.35);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--t);
+    min-height: 100vh;
+    padding: 48px 20px;
+  }
+
+  .wrap { max-width: 960px; margin: 0 auto; }
+
+  /* Header */
+  .header { text-align: center; margin-bottom: 48px; }
+  .header-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(90,171,204,0.08); border: 1px solid rgba(90,171,204,0.2);
+    border-radius: 100px; padding: 6px 18px; margin-bottom: 20px;
+    font-family: 'Share Tech Mono', monospace; font-size: 11px;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--ice);
+  }
+  .header-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); animation: blink 1.4s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  h1 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(28px, 5vw, 52px); font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase;
+    background: linear-gradient(135deg, #fff 0%, var(--ice) 60%, #a8d8ea 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    margin-bottom: 10px;
+  }
+  .subtitle { color: var(--t3); font-size: 14px; font-weight: 300; letter-spacing: 1px; }
+
+  /* Global progress */
+  .global-progress { background: var(--bg2); border: 1px solid var(--bd); border-radius: 16px; padding: 24px 28px; margin-bottom: 40px; }
+  .gp-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .gp-label { font-family: 'Rajdhani', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--ice); }
+  .gp-count { font-family: 'Share Tech Mono', monospace; font-size: 13px; color: var(--t3); }
+  .gp-bar { height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; }
+  .gp-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--ice), var(--green)); transition: width 0.4s ease; width: 0%; }
+
+  /* Quick nav */
+  .quick-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+  .qn-btn {
+    background: var(--bg2); border: 1px solid var(--bd); border-radius: 8px;
+    padding: 7px 14px; font-size: 12px; font-family: 'Share Tech Mono', monospace;
+    color: var(--t3); cursor: pointer; transition: all 0.2s; text-decoration: none;
+    letter-spacing: 0.5px;
+  }
+  .qn-btn:hover { border-color: var(--ice); color: var(--ice); }
+
+  /* Section */
+  .section { background: var(--bg2); border: 1px solid var(--bd); border-radius: 16px; margin-bottom: 20px; overflow: hidden; }
+  .section-header {
+    display: flex; align-items: center; gap: 14px;
+    padding: 20px 24px; cursor: pointer; user-select: none;
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(90,171,204,0.04); }
+  .sec-icon { font-size: 20px; flex-shrink: 0; }
+  .sec-info { flex: 1; }
+  .sec-title { font-family: 'Rajdhani', sans-serif; font-size: 17px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--t); }
+  .sec-desc { font-size: 12px; color: var(--t3); margin-top: 2px; font-weight: 300; }
+  .sec-stats { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+  .sec-progress-text { font-family: 'Share Tech Mono', monospace; font-size: 12px; color: var(--t3); }
+  .sec-mini-bar { width: 80px; height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+  .sec-mini-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--ice), var(--green)); transition: width 0.3s; width: 0%; }
+  .sec-toggle { color: var(--t3); font-size: 12px; transition: transform 0.3s; }
+  .section.open .sec-toggle { transform: rotate(180deg); }
+  .section-body { display: none; padding: 0 24px 20px; }
+  .section.open .section-body { display: block; }
+
+  /* Category */
+  .category { margin-bottom: 20px; }
+  .cat-title { font-family: 'Share Tech Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--ice); margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid rgba(90,171,204,0.08); }
+
+  /* Item */
+  .item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.03);
+    cursor: pointer; transition: background 0.15s; border-radius: 6px;
+    padding-left: 4px; padding-right: 4px;
+  }
+  .item:last-child { border-bottom: none; }
+  .item:hover { background: rgba(90,171,204,0.04); }
+  .item.done .item-text { color: var(--t3); text-decoration: line-through; }
+  .item.done .item-check { background: var(--green); border-color: var(--green); }
+  .item.done .item-check::after { opacity: 1; }
+  .item-check {
+    width: 18px; height: 18px; border-radius: 4px;
+    border: 1.5px solid rgba(255,255,255,0.15);
+    background: transparent; flex-shrink: 0; margin-top: 1px;
+    transition: all 0.2s; position: relative;
+  }
+  .item-check::after {
+    content: ''; position: absolute; left: 5px; top: 2px;
+    width: 5px; height: 9px; border: 2px solid #fff;
+    border-top: none; border-left: none;
+    transform: rotate(45deg); opacity: 0; transition: opacity 0.15s;
+  }
+  .item-content { flex: 1; }
+  .item-text { font-size: 14px; color: var(--t2); line-height: 1.5; font-weight: 300; }
+  .item-note { font-size: 11px; color: var(--t3); margin-top: 2px; font-weight: 300; font-style: italic; }
+  .badge {
+    font-size: 10px; font-family: 'Share Tech Mono', monospace; padding: 2px 7px;
+    border-radius: 4px; flex-shrink: 0; margin-top: 2px;
+    letter-spacing: 0.5px; font-weight: 600;
+  }
+  .badge.req { background: rgba(239,68,68,0.15); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); }
+  .badge.rec { background: rgba(245,158,11,0.12); color: #f59e0b; border: 1px solid rgba(245,158,11,0.25); }
+  .badge.opt { background: rgba(90,171,204,0.1); color: var(--ice); border: 1px solid rgba(90,171,204,0.2); }
+
+  /* Controls */
+  .controls { display: flex; gap: 10px; margin-bottom: 32px; flex-wrap: wrap; }
+  .btn {
+    background: var(--bg2); border: 1px solid var(--bd); border-radius: 8px;
+    padding: 9px 18px; font-size: 13px; font-family: 'Rajdhani', sans-serif;
+    font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--t2); cursor: pointer; transition: all 0.2s;
+  }
+  .btn:hover { border-color: var(--ice); color: var(--ice); }
+  .btn.danger:hover { border-color: var(--red); color: var(--red); }
+
+  /* Legend */
+  .legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--t3); }
+
+  @media (max-width: 640px) {
+    .sec-mini-bar { display: none; }
+    .sec-stats { gap: 8px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="header-badge"><span class="dot"></span>MASTER TEMPLATE · 2026</div>
+    <h1>Website Checklist</h1>
+    <p class="subtitle">Performance · SEO · Analytics · Security · UX · Accessibility · Legal · Deployment</p>
+  </div>
+
+  <div class="global-progress">
+    <div class="gp-row">
+      <span class="gp-label">Ukupan Progres</span>
+      <span class="gp-count" id="global-count">0 / 0</span>
+    </div>
+    <div class="gp-bar"><div class="gp-fill" id="global-fill"></div></div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><span class="badge req">OBAVEZNO</span> mora biti</div>
+    <div class="legend-item"><span class="badge rec">PREPORUČENO</span> jako korisno</div>
+    <div class="legend-item"><span class="badge opt">OPCIONO</span> bonus / napredno</div>
+  </div>
+
+  <div class="controls">
+    <button class="btn" onclick="expandAll()">Otvori sve</button>
+    <button class="btn" onclick="collapseAll()">Zatvori sve</button>
+    <button class="btn" onclick="saveProgress()">Sačuvaj progres</button>
+    <button class="btn danger" onclick="resetProgress()">Reset</button>
+  </div>
+
+  <div class="quick-nav" id="quick-nav"></div>
+
+  <!-- ═══ 01. PERFORMANCE ═══ -->
+  <div class="section" id="sec-perf">
+    <div class="section-header" onclick="toggleSection('sec-perf')">
+      <span class="sec-icon">⚡</span>
+      <div class="sec-info">
+        <div class="sec-title">01 · Performance & Speed</div>
+        <div class="sec-desc">Lighthouse 90+ · Core Web Vitals u zelenom</div>
+      </div>
+      <div class="sec-stats">
+        <span class="sec-progress-text" id="prog-sec-perf">0/0</span>
+        <div class="sec-mini-bar"><div class="sec-mini-fill" id="fill-sec-perf"></div></div>
+        <span class="sec-toggle">▼</span>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="category">
+        <div class="cat-title">Core Web Vitals</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">LCP (Largest Contentful Paint) &lt; 2.5s</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">INP (Interaction to Next Paint) &lt; 200ms</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">CLS (Cumulative Layout Shift) &lt; 0.1</div><div class="item-note">Elementi se ne pomjeraju nakon učitavanja</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">FCP (First Contentful Paint) &lt; 1.8s</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">TTFB (Time to First Byte) &lt; 800ms</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">TBT (Total Blocking Time) &lt; 200ms</div></div><span class="badge rec">PREPORUČENO</span></div>
+      </div>
+      <div class="category">
+        <div class="cat-title">Optimizacija Slika</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">WebP format za sve slike + PNG fallback za stari iOS</div><div class="item-note">Koristiti &lt;picture&gt; element sa &lt;source type="image/webp"&gt;</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Lazy loading za slike ispod folda (loading="lazy")</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Eksplicitne width i height dimenzije na svim slikama</div><div class="item-note">Sprečava CLS</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Preload za hero / LCP sliku</div><div class="item-note">&lt;link rel="preload" as="image"&gt; u &lt;head&gt;</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Responsive slike sa srcset i sizes atributima</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">SVG za ikone i logoe — bez &lt;style&gt; bloka (iOS Safari)</div><div class="item-note">Inline fill atributi umjesto CSS klasa u SVG fajlovima koji se učitavaju kao &lt;img&gt;</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Favicon: SVG + PNG fallback + apple-touch-icon</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">AVIF format (uz WebP + PNG) za bolju kompresiju</div></div><span class="badge opt">OPCIONO</span></div>
+      </div>
+      <div class="category">
+        <div class="cat-title">CSS & JavaScript</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Critical CSS inline u &lt;head&gt;</div><div class="item-note">Above-the-fold stilovi se učitavaju odmah bez blokiranja</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">JavaScript defer ili async na svim skriptama</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Minifikovan CSS i JS u produkciji</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Gzip ili Brotli kompresija na serveru</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">HTTP/2 ili HTTP/3 aktivan</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Browser caching — Cache-Control headers postavljeni</div><div class="item-note">Slike/fontovi: max-age=2592000, HTML: no-cache</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Google Fonts preconnect u &lt;head&gt;</div><div class="item-note">&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">CDN za statičke resurse (Cloudflare)</div></div><span class="badge rec">PREPORUČENO</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 02. SEO ═══ -->
+  <div class="section" id="sec-seo">
+    <div class="section-header" onclick="toggleSection('sec-seo')">
+      <span class="sec-icon">🔍</span>
+      <div class="sec-info">
+        <div class="sec-title">02 · SEO & Discoverability</div>
+        <div class="sec-desc">Tehnički SEO · Schema.org · Open Graph · Analytics</div>
+      </div>
+      <div class="sec-stats">
+        <span class="sec-progress-text" id="prog-sec-seo">0/0</span>
+        <div class="sec-mini-bar"><div class="sec-mini-fill" id="fill-sec-seo"></div></div>
+        <span class="sec-toggle">▼</span>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="category">
+        <div class="cat-title">Meta & HTML</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Unikatan &lt;title&gt; tag (50–60 karaktera)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Meta description (150–160 karaktera)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">lang atribut na &lt;html&gt; tagu</div><div class="item-note">Npr. lang="bs", lang="de", lang="en"</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Canonical URL na svakoj stranici</div><div class="item-note">&lt;link rel="canonical" href="https://domena.com/"&gt;</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">H1 tag — jedan po stranici sa glavnom ključnom rječju</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Heading hijerarhija H1→H2→H3 bez preskakanja</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Alt tekst na svim slikama (deskriptivan)</div></div><span class="badge req">OBAVEZNO</span></div>
+      </div>
+      <div class="category">
+        <div class="cat-title">Tehnički SEO</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">XML Sitemap kreiran i submitovan u Google Search Console</div><div class="item-note">/sitemap.xml — lista svih URL-ova</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">robots.txt konfigurisan</div><div class="item-note">Disallow: /api/, /admin/ — Allow: /</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">HTTPS aktivan (HTTP → HTTPS 301 redirect)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">www redirect (www → non-www ili obratno, konzistentno)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">404 custom stranica sa navigacijom</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Hreflang tagovi za višejezične sajtove</div></div><span class="badge opt">OPCIONO</span></div>
+      </div>
+      <div class="category">
+        <div class="cat-title">Open Graph & Social</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">og:title, og:description, og:image, og:url tagovi</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">OG slika dimenzija 1200×630px (optimizovana)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Twitter Card tagovi (twitter:card, twitter:image)</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Testiran preview na Facebook i WhatsApp</div></div><span class="badge rec">PREPORUČENO</span></div>
+      </div>
+      <div class="category">
+        <div class="cat-title">Schema.org Strukturirani Podaci</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Organization schema (ime, adresa, kontakt, logo)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">WebSite schema sa SearchAction</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">LocalBusiness schema (za lokalne biznise)</div><div class="item-note">Adresa, radno vrijeme, telefon, geo koordinate</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">FAQ schema (gdje je primjenjivo)</div></div><span class="badge opt">OPCIONO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Validiran kroz Google Rich Results Test</div></div><span class="badge req">OBAVEZNO</span></div>
+      </div>
+      <div class="category">
+        <div class="cat-title">Analytics & Tracking</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Google Analytics 4 instaliran (G-XXXXXXXXXX tag)</div><div class="item-note">Praćenje posjeta, lokacija, uređaja, sesija</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Google Search Console verifikovan i domena dodata</div><div class="item-note">Ključne riječi, klikovi, pozicije, impressions u Google pretrazi</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Sitemap submitovan u Search Console</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">GA4 Event tracking za konverzije (klikovi na CTA, form submit)</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Microsoft Clarity ili Hotjar (heatmaps, snimanje sesija)</div></div><span class="badge opt">OPCIONO</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 03. MONITORING ═══ -->
+  <div class="section" id="sec-mon">
+    <div class="section-header" onclick="toggleSection('sec-mon')">
+      <span class="sec-icon">📊</span>
+      <div class="sec-info">
+        <div class="sec-title">03 · Monitoring & Alerti</div>
+        <div class="sec-desc">Uptime · Greške · Performanse · SSL expiry</div>
+      </div>
+      <div class="sec-stats">
+        <span class="sec-progress-text" id="prog-sec-mon">0/0</span>
+        <div class="sec-mini-bar"><div class="sec-mini-fill" id="fill-sec-mon"></div></div>
+        <span class="sec-toggle">▼</span>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="category">
+        <div class="cat-title">Uptime Monitoring</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">UptimeRobot ili Uptime Kuma postavljeni za svaki sajt</div><div class="item-note">Provjera svakih 5 min, email alert kad sajt padne</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">SSL sertifikat expiry alert (30 dana unaprijed)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Domain expiry alert</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Status page za korisnike (opciono)</div></div><span class="badge opt">OPCIONO</span></div>
+      </div>
+      <div class="category">
+        <div class="cat-title">Error Tracking</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Sentry ili LogRocket za JavaScript greške</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">nginx access/error logovi dostupni na serveru</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Broken link provjera (periodično, npr. Screaming Frog)</div></div><span class="badge rec">PREPORUČENO</span></div>
+      </div>
+      <div class="category">
+        <div class="cat-title">Redovno Održavanje</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Lighthouse audit (mjesečno)</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">SEO audit u Search Console (kvartalno)</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Backup provjera / test restore (mjesečno)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Dependency update (månthly)</div></div><span class="badge rec">PREPORUČENO</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 04. SECURITY ═══ -->
+  <div class="section" id="sec-sec">
+    <div class="section-header" onclick="toggleSection('sec-sec')">
+      <span class="sec-icon">🔒</span>
+      <div class="sec-info">
+        <div class="sec-title">04 · Security & Privacy</div>
+        <div class="sec-desc">SSL · Security Headers · HTTPS · WAF</div>
+      </div>
+      <div class="sec-stats">
+        <span class="sec-progress-text" id="prog-sec-sec">0/0</span>
+        <div class="sec-mini-bar"><div class="sec-mini-fill" id="fill-sec-sec"></div></div>
+        <span class="sec-toggle">▼</span>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="category">
+        <div class="cat-title">SSL & HTTPS</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">SSL/TLS sertifikat instaliran (Let's Encrypt)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">HTTP → HTTPS 301 redirect</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">HSTS header (Strict-Transport-Security)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">SSL Labs score A ili A+</div><div class="item-note">https://www.ssllabs.com/ssltest/</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Certbot auto-renewal aktivan (cron job)</div></div><span class="badge req">OBAVEZNO</span></div>
+      </div>
+      <div class="category">
+        <div class="cat-title">Security Headers</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">X-Content-Type-Options: nosniff</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">X-Frame-Options: DENY ili SAMEORIGIN</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Referrer-Policy: strict-origin-when-cross-origin</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Content-Security-Policy (CSP)</div><div class="item-note">Sprečava XSS napade</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">SecurityHeaders.com score A+</div><div class="item-note">https://securityheaders.com/</div></div><span class="badge rec">PREPORUČENO</span></div>
+      </div>
+      <div class="category">
+        <div class="cat-title">Zaštita & Backup</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Cloudflare ili WAF za DDoS zaštitu</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Rate limiting na API i formama</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Input validacija na server-side za sve forme</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Automatski dnevni backup-i</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Testirana restore procedura</div></div><span class="badge req">OBAVEZNO</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 05. UX / UI ═══ -->
+  <div class="section" id="sec-ux">
+    <div class="section-header" onclick="toggleSection('sec-ux')">
+      <span class="sec-icon">🎨</span>
+      <div class="sec-info">
+        <div class="sec-title">05 · UX / UI Design</div>
+        <div class="sec-desc">Responsive · Navigacija · Tipografija · Forme · Animacije</div>
+      </div>
+      <div class="sec-stats">
+        <span class="sec-progress-text" id="prog-sec-ux">0/0</span>
+        <div class="sec-mini-bar"><div class="sec-mini-fill" id="fill-sec-ux"></div></div>
+        <span class="sec-toggle">▼</span>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="category">
+        <div class="cat-title">Responsive Design</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Mobile-first pristup</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Testiran na: 320px, 375px, 768px, 1024px, 1440px</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Testiran na iOS Safari (iPhone) i Android Chrome</div><div class="item-note">Posebna pažnja: SVG kao &lt;img&gt;, WebP podrška, CSS animacije</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Touch targets minimum 44×44px na mobilnom</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Nema horizontalnog skrolanja</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Font min 16px na mobilnom (bez zoomiranja)</div></div><span class="badge req">OBAVEZNO</span></div>
+      </div>
+      <div class="category">
+        <div class="cat-title">Navigacija</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Logo vodi na home page</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Mobilni hamburger meni funkcionalan i animiran</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Aktivna stranica označena u navigaciji</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Footer sa svim bitnim linkovima i kontaktom</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Smooth scroll za anchor linkove</div></div><span class="badge rec">PREPORUČENO</span></div>
+      </div>
+      <div class="category">
+        <div class="cat-title">Forme</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Jasni labeli na svim input poljima (ne samo placeholder)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Jasne error poruke sa objašnjenjem</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Success state nakon submitovanja</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Autocomplete atributi (email, tel, name)</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">CSRF zaštita na svim formama</div></div><span class="badge req">OBAVEZNO</span></div>
+      </div>
+      <div class="category">
+        <div class="cat-title">Interakcije & Animacije</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Hover states na svim klikabilnim elementima</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Focus states vidljivi (keyboard navigacija)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Animacije poštuju prefers-reduced-motion</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Dark mode podrška (prefers-color-scheme)</div></div><span class="badge opt">OPCIONO</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 06. ACCESSIBILITY ═══ -->
+  <div class="section" id="sec-a11y">
+    <div class="section-header" onclick="toggleSection('sec-a11y')">
+      <span class="sec-icon">♿</span>
+      <div class="sec-info">
+        <div class="sec-title">06 · Accessibility (a11y)</div>
+        <div class="sec-desc">WCAG 2.1 AA · Semantički HTML · ARIA · Keyboard</div>
+      </div>
+      <div class="sec-stats">
+        <span class="sec-progress-text" id="prog-sec-a11y">0/0</span>
+        <div class="sec-mini-bar"><div class="sec-mini-fill" id="fill-sec-a11y"></div></div>
+        <span class="sec-toggle">▼</span>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="category">
+        <div class="cat-title">Semantički HTML</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Koristiti &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;footer&gt;, &lt;section&gt;</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Linkovi imaju deskriptivan tekst (ne "klikni ovdje")</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Dekorativne slike imaju alt=""</div></div><span class="badge req">OBAVEZNO</span></div>
+      </div>
+      <div class="category">
+        <div class="cat-title">ARIA & Kontrast</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">aria-label za ikone bez teksta</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">aria-expanded za toggle elemente (hamburger, accordion)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Kontrast ratio min 4.5:1 za normalan tekst</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Kompletan sajt koristiv samo tastaturom</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Video sa titlovima (captions)</div></div><span class="badge rec">PREPORUČENO</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 07. LEGAL ═══ -->
+  <div class="section" id="sec-legal">
+    <div class="section-header" onclick="toggleSection('sec-legal')">
+      <span class="sec-icon">📜</span>
+      <div class="sec-info">
+        <div class="sec-title">07 · Legal & Compliance</div>
+        <div class="sec-desc">GDPR · Cookie Consent · Privacy Policy · Terms</div>
+      </div>
+      <div class="sec-stats">
+        <span class="sec-progress-text" id="prog-sec-legal">0/0</span>
+        <div class="sec-mini-bar"><div class="sec-mini-fill" id="fill-sec-legal"></div></div>
+        <span class="sec-toggle">▼</span>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="category">
+        <div class="cat-title">Dokumenti</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Privacy Policy stranica (jasna, na lokalnom jeziku)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Uslovi korišćenja (Terms of Service)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Cookie Policy sa listom svih kolačića</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Kontakt informacije kompanije u footer-u (adresa, telefon, email)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Impressum (za .at, .de domene — zakonska obaveza)</div></div><span class="badge req">OBAVEZNO</span></div>
+      </div>
+      <div class="category">
+        <div class="cat-title">GDPR & Cookies</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Cookie consent banner (opt-in prije učitavanja trackera)</div><div class="item-note">GA4 i marketing cookies samo nakon pristanka</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Samo esencijalni kolačići bez pristanka</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Google Analytics u GDPR-compliant modu (IP anonymization)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Forma za kontakt: jasna svrha sakupljanja podataka</div></div><span class="badge req">OBAVEZNO</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 08. CONTENT ═══ -->
+  <div class="section" id="sec-content">
+    <div class="section-header" onclick="toggleSection('sec-content')">
+      <span class="sec-icon">✍️</span>
+      <div class="sec-info">
+        <div class="sec-title">08 · Sadržaj & Copy</div>
+        <div class="sec-desc">Stranice · Copywriting · Multimedija · Trust Signals</div>
+      </div>
+      <div class="sec-stats">
+        <span class="sec-progress-text" id="prog-sec-content">0/0</span>
+        <div class="sec-mini-bar"><div class="sec-mini-fill" id="fill-sec-content"></div></div>
+        <span class="sec-toggle">▼</span>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="category">
+        <div class="cat-title">Obavezne Stranice</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Home — jasna value proposition above the fold</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">O nama / About</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Kontakt sa formom i kontakt informacijama</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">404 stranica sa navigacijom</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Privacy Policy + Terms</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Blog / Resursi sekcija (za SEO i autoritet)</div></div><span class="badge opt">OPCIONO</span></div>
+      </div>
+      <div class="category">
+        <div class="cat-title">Kvalitet Sadržaja</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Nema lorem ipsum ili placeholder teksta</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Pravopisno i gramatički ispravan tekst</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Jasni CTA (Call-to-Action) dugmići</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Profesionalne fotografije (ne generičke stock slike)</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Testimonijali / recenzije / social proof</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">OG slika kreirana (1200×630px)</div></div><span class="badge req">OBAVEZNO</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 09. DEPLOYMENT ═══ -->
+  <div class="section" id="sec-deploy">
+    <div class="section-header" onclick="toggleSection('sec-deploy')">
+      <span class="sec-icon">🚀</span>
+      <div class="sec-info">
+        <div class="sec-title">09 · Deployment & Infrastruktura</div>
+        <div class="sec-desc">Server · nginx · CI/CD · Git · DNS</div>
+      </div>
+      <div class="sec-stats">
+        <span class="sec-progress-text" id="prog-sec-deploy">0/0</span>
+        <div class="sec-mini-bar"><div class="sec-mini-fill" id="fill-sec-deploy"></div></div>
+        <span class="sec-toggle">▼</span>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="category">
+        <div class="cat-title">Git & Verzionisanje</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Git repozitorij kreiran (GitHub)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">README.md sa setup instrukcijama</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">.gitignore konfigurisan (node_modules, .env, DS_Store)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">GitHub Actions — auto-deploy pri push na main</div><div class="item-note">rsync ili scp na server + nginx reload</div></div><span class="badge rec">PREPORUČENO</span></div>
+      </div>
+      <div class="category">
+        <div class="cat-title">Server (nginx / Hetzner)</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">nginx virtual host konfigurisan za domenu</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">SSL cert izdat (Certbot + Let's Encrypt)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Gzip kompresija u nginx config</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Cache-Control headers za statičke resurse</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">nginx konfiguracija testirana (nginx -t)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">sites-enabled symlink kreiran i aktivan</div></div><span class="badge req">OBAVEZNO</span></div>
+      </div>
+      <div class="category">
+        <div class="cat-title">DNS & Domena</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">A record usmjeren na server IP</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">www CNAME ili A record konfigurisan</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">DNS propagacija provjerena (dnschecker.org)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Domena registrovana i plaćena za min 2 godine</div></div><span class="badge rec">PREPORUČENO</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 10. PWA ═══ -->
+  <div class="section" id="sec-pwa">
+    <div class="section-header" onclick="toggleSection('sec-pwa')">
+      <span class="sec-icon">📱</span>
+      <div class="sec-info">
+        <div class="sec-title">10 · PWA & Napredne Funkcije</div>
+        <div class="sec-desc">Manifest · Service Worker · Offline · Push notifikacije</div>
+      </div>
+      <div class="sec-stats">
+        <span class="sec-progress-text" id="prog-sec-pwa">0/0</span>
+        <div class="sec-mini-bar"><div class="sec-mini-fill" id="fill-sec-pwa"></div></div>
+        <span class="sec-toggle">▼</span>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="category">
+        <div class="cat-title">Progressive Web App</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Web App Manifest (manifest.json)</div><div class="item-note">name, icons (192+512px), theme_color, display: standalone</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Service Worker sa cache strategijom</div></div><span class="badge opt">OPCIONO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Offline fallback stranica</div></div><span class="badge opt">OPCIONO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Add to Home Screen prompt</div></div><span class="badge opt">OPCIONO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Push notifikacije (gdje ima smisla)</div></div><span class="badge opt">OPCIONO</span></div>
+      </div>
+      <div class="category">
+        <div class="cat-title">Internacionalizacija (i18n)</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Višejezična podrška (/bs/, /de/, /en/) ako je potrebna</div></div><span class="badge opt">OPCIONO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">hreflang tagovi za svaki jezik</div></div><span class="badge opt">OPCIONO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Lokalizovani formati datuma, valute</div></div><span class="badge opt">OPCIONO</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 11. PRE-LAUNCH ═══ -->
+  <div class="section" id="sec-launch">
+    <div class="section-header" onclick="toggleSection('sec-launch')">
+      <span class="sec-icon">✅</span>
+      <div class="sec-info">
+        <div class="sec-title">11 · Pre-Launch Final Check</div>
+        <div class="sec-desc">Zadnja provjera prije go-live — ne propusti ništa</div>
+      </div>
+      <div class="sec-stats">
+        <span class="sec-progress-text" id="prog-sec-launch">0/0</span>
+        <div class="sec-mini-bar"><div class="sec-mini-fill" id="fill-sec-launch"></div></div>
+        <span class="sec-toggle">▼</span>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="category">
+        <div class="cat-title">Tehničke Provjere</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Lighthouse score 90+ za sve kategorije</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Svi linkovi funkcionišu (nema broken linkova)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Forme šalju podatke ispravno (test submission)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Cross-browser test: Chrome, Firefox, Safari, Edge</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">iOS Safari test (iPhone) — posebno SVG i WebP</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Android Chrome test</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Favicon prikazan u svim browserima i tab-ovima</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">OG slika prikazana u WhatsApp/Facebook preview</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Nema placeholder/test sadržaja</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">console.log poruke uklonene iz produkcije</div></div><span class="badge req">OBAVEZNO</span></div>
+      </div>
+      <div class="category">
+        <div class="cat-title">SEO & Analytics Aktivacija</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Google Search Console verifikovan za novu domenu</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Google Analytics 4 prima podatke (real-time provjera)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Sitemap submitovan u Search Console</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">robots.txt ne blokira bitne stranice</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Structured data validiran (Rich Results Test)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Uptime monitoring aktivan</div></div><span class="badge req">OBAVEZNO</span></div>
+      </div>
+      <div class="category">
+        <div class="cat-title">Sigurnost & Legal</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">SSL aktivan i zeleni katanac vidljiv</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Security headers provjereni (securityheaders.com)</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Cookie consent funkcionalan</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Privacy Policy i Terms linkovi rade</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Backup automatizovan i testiran</div></div><span class="badge req">OBAVEZNO</span></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /wrap -->
+
+<script>
+  const STORAGE_KEY = 'website-checklist-v1';
+
+  function toggle(el) {
+    el.classList.toggle('done');
+    saveProgress();
+    updateAll();
+  }
+
+  function toggleSection(id) {
+    const sec = document.getElementById(id);
+    sec.classList.toggle('open');
+  }
+
+  function expandAll() {
+    document.querySelectorAll('.section').forEach(s => s.classList.add('open'));
+  }
+
+  function collapseAll() {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('open'));
+  }
+
+  function updateAll() {
+    const sections = document.querySelectorAll('.section');
+    let totalDone = 0, totalAll = 0;
+
+    sections.forEach(sec => {
+      const items = sec.querySelectorAll('.item');
+      const done = sec.querySelectorAll('.item.done').length;
+      const all = items.length;
+      totalDone += done;
+      totalAll += all;
+      const pct = all ? (done / all * 100) : 0;
+      const id = sec.id;
+      const pt = document.getElementById('prog-' + id);
+      const fill = document.getElementById('fill-' + id);
+      if (pt) pt.textContent = done + '/' + all;
+      if (fill) fill.style.width = pct + '%';
+    });
+
+    const gPct = totalAll ? (totalDone / totalAll * 100) : 0;
+    document.getElementById('global-count').textContent = totalDone + ' / ' + totalAll;
+    document.getElementById('global-fill').style.width = gPct + '%';
+  }
+
+  function saveProgress() {
+    const state = [];
+    document.querySelectorAll('.item').forEach((el, i) => {
+      state.push(el.classList.contains('done') ? 1 : 0);
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }
+
+  function loadProgress() {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) return;
+    const state = JSON.parse(saved);
+    document.querySelectorAll('.item').forEach((el, i) => {
+      if (state[i]) el.classList.add('done');
+    });
+  }
+
+  function resetProgress() {
+    if (!confirm('Resetovati sav progres?')) return;
+    document.querySelectorAll('.item').forEach(el => el.classList.remove('done'));
+    localStorage.removeItem(STORAGE_KEY);
+    updateAll();
+  }
+
+  // Build quick nav
+  const qn = document.getElementById('quick-nav');
+  document.querySelectorAll('.section').forEach(sec => {
+    const title = sec.querySelector('.sec-title').textContent;
+    const a = document.createElement('a');
+    a.className = 'qn-btn';
+    a.href = '#' + sec.id;
+    a.textContent = title;
+    qn.appendChild(a);
+  });
+
+  loadProgress();
+  updateAll();
+</script>
+</body>
+</html>
