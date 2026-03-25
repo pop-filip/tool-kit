@@ -1,0 +1,163 @@
+{
+  "_meta": {
+    "description": "Fluid typography scales per mood — clamp() sizing, line-height, letter-spacing, special text styles",
+    "usage": "Svaki mood ima kompletnu tipografsku hijerarhiju. Koristi clamp() vrijednosti direktno u CSS.",
+    "version": "1.0"
+  },
+
+  "mood_to_typography_mapping": {
+    "brutalist":      "type-brutalist",
+    "glassmorphism":  "type-glassmorphism",
+    "neobrutalism":   "type-neobrutalism",
+    "editorial":      "type-editorial",
+    "luxury-dark":    "type-luxury",
+    "neon-cyberpunk": "type-cyberpunk",
+    "earth-organic":  "type-organic",
+    "pastel-soft":    "type-pastel",
+    "swiss-minimal":  "type-swiss",
+    "dark-tech":      "type-darktech"
+  },
+
+  "scales": {
+
+    "type-brutalist": {
+      "note": "Ekstremni kontrast veličina. H1 ogromno, body kompaktno. Sve uppercase na naslovima.",
+      "h1": { "size": "clamp(3.5rem, 9vw, 8rem)", "weight": "900", "line_height": "0.9", "letter_spacing": "-3px", "transform": "uppercase", "font": "var(--font-heading)" },
+      "h2": { "size": "clamp(2rem, 5vw, 4.5rem)", "weight": "900", "line_height": "0.95", "letter_spacing": "-1px", "transform": "uppercase" },
+      "h3": { "size": "clamp(1.2rem, 2.5vw, 2rem)", "weight": "700", "line_height": "1", "letter_spacing": "0px", "transform": "uppercase" },
+      "h4": { "size": "clamp(0.9rem, 1.5vw, 1.2rem)", "weight": "700", "line_height": "1.2", "letter_spacing": "3px", "transform": "uppercase" },
+      "body": { "size": "clamp(0.875rem, 1.2vw, 1rem)", "weight": "400", "line_height": "1.5", "letter_spacing": "0px" },
+      "eyebrow": { "size": "0.75rem", "weight": "700", "letter_spacing": "4px", "transform": "uppercase", "color": "var(--primary)", "border_left": "4px solid var(--primary)", "padding_left": "12px" },
+      "caption": { "size": "0.75rem", "weight": "400", "letter_spacing": "1px", "transform": "uppercase", "color": "var(--text-muted)" },
+      "quote": { "size": "clamp(1.5rem, 3vw, 2.5rem)", "weight": "900", "line_height": "1.1", "transform": "uppercase", "border_left": "6px solid var(--primary)" },
+      "stat_number": { "size": "clamp(3rem, 8vw, 7rem)", "weight": "900", "line_height": "1", "letter_spacing": "-4px", "color": "var(--primary)" },
+      "css_vars": "--fs-h1: clamp(3.5rem, 9vw, 8rem); --fs-h2: clamp(2rem, 5vw, 4.5rem); --fs-h3: clamp(1.2rem, 2.5vw, 2rem); --fs-body: clamp(0.875rem, 1.2vw, 1rem); --lh-tight: 0.9; --lh-body: 1.5;"
+    },
+
+    "type-glassmorphism": {
+      "note": "Srednje veličine, glatko. Naslovi se ističu kroz boju i glow, ne samo veličinom.",
+      "h1": { "size": "clamp(2.5rem, 6vw, 5.5rem)", "weight": "800", "line_height": "1.05", "letter_spacing": "-1.5px", "font": "var(--font-heading)" },
+      "h2": { "size": "clamp(1.75rem, 4vw, 3.5rem)", "weight": "700", "line_height": "1.1", "letter_spacing": "-0.5px" },
+      "h3": { "size": "clamp(1.1rem, 2vw, 1.6rem)", "weight": "600", "line_height": "1.2" },
+      "h4": { "size": "1rem", "weight": "600", "line_height": "1.3", "letter_spacing": "0.5px" },
+      "body": { "size": "clamp(0.9rem, 1.3vw, 1.05rem)", "weight": "400", "line_height": "1.7", "color": "rgba(248,250,252,0.85)" },
+      "eyebrow": { "size": "0.75rem", "weight": "600", "letter_spacing": "3px", "transform": "uppercase", "color": "var(--primary)", "background": "rgba(167,139,250,0.15)", "padding": "4px 12px", "border_radius": "999px" },
+      "caption": { "size": "0.8rem", "color": "rgba(248,250,252,0.5)", "letter_spacing": "0.5px" },
+      "quote": { "size": "clamp(1.25rem, 2.5vw, 2rem)", "weight": "600", "line_height": "1.4", "color": "var(--primary)", "font_style": "italic" },
+      "stat_number": { "size": "clamp(2.5rem, 6vw, 5rem)", "weight": "800", "background": "linear-gradient(135deg, var(--primary), var(--accent))", "webkit_background_clip": "text", "webkit_text_fill_color": "transparent" },
+      "css_vars": "--fs-h1: clamp(2.5rem, 6vw, 5.5rem); --fs-h2: clamp(1.75rem, 4vw, 3.5rem); --fs-h3: clamp(1.1rem, 2vw, 1.6rem); --fs-body: clamp(0.9rem, 1.3vw, 1.05rem); --lh-tight: 1.05; --lh-body: 1.7;"
+    },
+
+    "type-neobrutalism": {
+      "note": "Serif naslovi (Fraunces), playful sizing, italic akcenti, bold kontrast.",
+      "h1": { "size": "clamp(2.75rem, 7vw, 6rem)", "weight": "900", "line_height": "1.0", "letter_spacing": "-2px", "font": "var(--font-heading)" },
+      "h2": { "size": "clamp(1.8rem, 4.5vw, 3.75rem)", "weight": "700", "line_height": "1.05", "letter_spacing": "-1px", "font_style": "italic" },
+      "h3": { "size": "clamp(1.1rem, 2.2vw, 1.75rem)", "weight": "700", "line_height": "1.15" },
+      "h4": { "size": "1rem", "weight": "700", "line_height": "1.25", "letter_spacing": "1px", "transform": "uppercase" },
+      "body": { "size": "clamp(0.9rem, 1.3vw, 1.05rem)", "weight": "400", "line_height": "1.65" },
+      "eyebrow": { "size": "0.75rem", "weight": "700", "letter_spacing": "2px", "transform": "uppercase", "background": "var(--primary)", "color": "var(--text)", "padding": "3px 10px", "border": "1.5px solid var(--text)", "display": "inline-block", "transform_rotate": "rotate(-1deg)" },
+      "caption": { "size": "0.8rem", "weight": "500", "color": "var(--text-muted)" },
+      "quote": { "size": "clamp(1.4rem, 3vw, 2.5rem)", "weight": "700", "line_height": "1.2", "font_style": "italic", "font": "var(--font-heading)" },
+      "stat_number": { "size": "clamp(3rem, 7vw, 6rem)", "weight": "900", "color": "var(--primary)", "text_shadow": "3px 3px 0 var(--text)" },
+      "css_vars": "--fs-h1: clamp(2.75rem, 7vw, 6rem); --fs-h2: clamp(1.8rem, 4.5vw, 3.75rem); --fs-h3: clamp(1.1rem, 2.2vw, 1.75rem); --fs-body: clamp(0.9rem, 1.3vw, 1.05rem); --lh-tight: 1.0; --lh-body: 1.65;"
+    },
+
+    "type-editorial": {
+      "note": "Playfair Display serif, puno whitespace, italic subnaslovi, novinarski line-height.",
+      "h1": { "size": "clamp(2.25rem, 5.5vw, 5rem)", "weight": "700", "line_height": "1.1", "letter_spacing": "-0.5px", "font": "var(--font-heading)", "font_style": "normal" },
+      "h2": { "size": "clamp(1.6rem, 3.5vw, 3rem)", "weight": "400", "line_height": "1.15", "font_style": "italic", "font": "var(--font-heading)" },
+      "h3": { "size": "clamp(1rem, 1.8vw, 1.5rem)", "weight": "600", "line_height": "1.3", "letter_spacing": "0.25px" },
+      "h4": { "size": "0.875rem", "weight": "600", "line_height": "1.4", "letter_spacing": "3px", "transform": "uppercase" },
+      "body": { "size": "clamp(1rem, 1.4vw, 1.125rem)", "weight": "300", "line_height": "1.85", "color": "var(--text)" },
+      "eyebrow": { "size": "0.7rem", "weight": "400", "letter_spacing": "4px", "transform": "uppercase", "color": "var(--accent)", "padding_bottom": "8px", "border_bottom": "1px solid var(--accent)" },
+      "caption": { "size": "0.8rem", "weight": "300", "line_height": "1.6", "color": "var(--text-muted)", "font_style": "italic" },
+      "quote": { "size": "clamp(1.5rem, 3vw, 2.75rem)", "weight": "400", "line_height": "1.3", "font_style": "italic", "font": "var(--font-heading)", "color": "var(--accent)" },
+      "stat_number": { "size": "clamp(2.5rem, 5vw, 4.5rem)", "weight": "300", "letter_spacing": "-2px", "color": "var(--accent)" },
+      "css_vars": "--fs-h1: clamp(2.25rem, 5.5vw, 5rem); --fs-h2: clamp(1.6rem, 3.5vw, 3rem); --fs-h3: clamp(1rem, 1.8vw, 1.5rem); --fs-body: clamp(1rem, 1.4vw, 1.125rem); --lh-tight: 1.1; --lh-body: 1.85;"
+    },
+
+    "type-luxury": {
+      "note": "Cormorant Garamond thin/light. Ekstremno letter-spacing na labelama. Veličina kroz eleganciju, ne brutalnost.",
+      "h1": { "size": "clamp(2.5rem, 6vw, 6rem)", "weight": "300", "line_height": "1.05", "letter_spacing": "-1px", "font": "var(--font-heading)" },
+      "h2": { "size": "clamp(1.75rem, 4vw, 4rem)", "weight": "300", "line_height": "1.1", "letter_spacing": "0px", "font_style": "italic", "font": "var(--font-heading)" },
+      "h3": { "size": "clamp(1rem, 2vw, 1.75rem)", "weight": "300", "line_height": "1.2", "letter_spacing": "2px" },
+      "h4": { "size": "0.75rem", "weight": "400", "line_height": "1.5", "letter_spacing": "6px", "transform": "uppercase" },
+      "body": { "size": "clamp(0.9rem, 1.3vw, 1rem)", "weight": "300", "line_height": "1.9", "letter_spacing": "0.3px" },
+      "eyebrow": { "size": "0.65rem", "weight": "400", "letter_spacing": "8px", "transform": "uppercase", "color": "var(--primary)", "padding_bottom": "16px" },
+      "caption": { "size": "0.7rem", "letter_spacing": "3px", "transform": "uppercase", "color": "var(--text-muted)", "font_weight": "300" },
+      "quote": { "size": "clamp(1.5rem, 3.5vw, 3.5rem)", "weight": "300", "line_height": "1.2", "font_style": "italic", "font": "var(--font-heading)", "letter_spacing": "1px" },
+      "stat_number": { "size": "clamp(3rem, 6vw, 5.5rem)", "weight": "300", "letter_spacing": "-2px", "color": "var(--primary)", "font": "var(--font-heading)" },
+      "css_vars": "--fs-h1: clamp(2.5rem, 6vw, 6rem); --fs-h2: clamp(1.75rem, 4vw, 4rem); --fs-h3: clamp(1rem, 2vw, 1.75rem); --fs-body: clamp(0.9rem, 1.3vw, 1rem); --lh-tight: 1.05; --lh-body: 1.9;"
+    },
+
+    "type-cyberpunk": {
+      "note": "Rajdhani bold uppercase, Share Tech Mono za body. Neon glow na naslovima.",
+      "h1": { "size": "clamp(2.5rem, 7vw, 6.5rem)", "weight": "700", "line_height": "0.95", "letter_spacing": "3px", "transform": "uppercase", "text_shadow": "0 0 30px var(--primary), 0 0 60px rgba(0,245,255,0.3)", "font": "var(--font-heading)" },
+      "h2": { "size": "clamp(1.5rem, 4vw, 3.5rem)", "weight": "700", "line_height": "1", "letter_spacing": "2px", "transform": "uppercase" },
+      "h3": { "size": "clamp(1rem, 2vw, 1.5rem)", "weight": "600", "line_height": "1.1", "letter_spacing": "2px", "transform": "uppercase" },
+      "h4": { "size": "0.75rem", "weight": "700", "letter_spacing": "4px", "transform": "uppercase", "color": "var(--primary)" },
+      "body": { "size": "clamp(0.8rem, 1.2vw, 0.95rem)", "weight": "400", "line_height": "1.7", "letter_spacing": "0.5px", "font": "var(--font-body)" },
+      "eyebrow": { "size": "0.65rem", "weight": "700", "letter_spacing": "6px", "transform": "uppercase", "color": "var(--primary)", "border": "1px solid var(--primary)", "padding": "3px 10px", "text_shadow": "0 0 8px var(--primary)" },
+      "caption": { "size": "0.75rem", "letter_spacing": "2px", "transform": "uppercase", "color": "var(--text-muted)", "font": "var(--font-body)" },
+      "quote": { "size": "clamp(1.25rem, 2.5vw, 2rem)", "weight": "700", "letter_spacing": "2px", "transform": "uppercase", "color": "var(--primary)", "text_shadow": "0 0 15px var(--primary)" },
+      "stat_number": { "size": "clamp(3rem, 7vw, 6rem)", "weight": "700", "letter_spacing": "-1px", "color": "var(--primary)", "text_shadow": "0 0 30px var(--primary)" },
+      "css_vars": "--fs-h1: clamp(2.5rem, 7vw, 6.5rem); --fs-h2: clamp(1.5rem, 4vw, 3.5rem); --fs-h3: clamp(1rem, 2vw, 1.5rem); --fs-body: clamp(0.8rem, 1.2vw, 0.95rem); --lh-tight: 0.95; --lh-body: 1.7;"
+    },
+
+    "type-organic": {
+      "note": "Lora serif, topli tonovi. Naslovi su pristupačni, ne agresivni.",
+      "h1": { "size": "clamp(2.25rem, 5.5vw, 4.5rem)", "weight": "600", "line_height": "1.1", "letter_spacing": "-0.5px", "font": "var(--font-heading)" },
+      "h2": { "size": "clamp(1.5rem, 3.5vw, 3rem)", "weight": "600", "line_height": "1.2", "font_style": "italic", "font": "var(--font-heading)" },
+      "h3": { "size": "clamp(1.05rem, 2vw, 1.5rem)", "weight": "600", "line_height": "1.3" },
+      "h4": { "size": "0.9rem", "weight": "700", "line_height": "1.4", "letter_spacing": "1.5px", "transform": "uppercase", "color": "var(--accent)" },
+      "body": { "size": "clamp(0.95rem, 1.3vw, 1.1rem)", "weight": "400", "line_height": "1.8" },
+      "eyebrow": { "size": "0.75rem", "weight": "700", "letter_spacing": "2px", "transform": "uppercase", "color": "var(--primary)", "padding": "4px 12px", "background": "rgba(74,124,89,0.1)", "border_radius": "999px" },
+      "caption": { "size": "0.85rem", "weight": "400", "line_height": "1.6", "color": "var(--text-muted)", "font_style": "italic" },
+      "quote": { "size": "clamp(1.25rem, 2.5vw, 2rem)", "weight": "400", "line_height": "1.6", "font_style": "italic", "font": "var(--font-heading)", "color": "var(--primary)" },
+      "stat_number": { "size": "clamp(2.5rem, 5vw, 4rem)", "weight": "600", "color": "var(--primary)", "font": "var(--font-heading)" },
+      "css_vars": "--fs-h1: clamp(2.25rem, 5.5vw, 4.5rem); --fs-h2: clamp(1.5rem, 3.5vw, 3rem); --fs-h3: clamp(1.05rem, 2vw, 1.5rem); --fs-body: clamp(0.95rem, 1.3vw, 1.1rem); --lh-tight: 1.1; --lh-body: 1.8;"
+    },
+
+    "type-pastel": {
+      "note": "Quicksand rounded, prijazno. Nikad uppercase osim labela. Naslovi su topli.",
+      "h1": { "size": "clamp(2rem, 5.5vw, 4.5rem)", "weight": "700", "line_height": "1.15", "letter_spacing": "-0.5px", "font": "var(--font-heading)" },
+      "h2": { "size": "clamp(1.5rem, 3.5vw, 3rem)", "weight": "700", "line_height": "1.2" },
+      "h3": { "size": "clamp(1rem, 2vw, 1.5rem)", "weight": "700", "line_height": "1.3" },
+      "h4": { "size": "0.9rem", "weight": "700", "line_height": "1.4", "letter_spacing": "1px", "color": "var(--primary)" },
+      "body": { "size": "clamp(0.9rem, 1.3vw, 1.05rem)", "weight": "400", "line_height": "1.75" },
+      "eyebrow": { "size": "0.75rem", "weight": "700", "letter_spacing": "1.5px", "color": "var(--primary)", "background": "rgba(192,132,252,0.15)", "padding": "4px 14px", "border_radius": "999px" },
+      "caption": { "size": "0.8rem", "color": "var(--text-muted)", "line_height": "1.5" },
+      "quote": { "size": "clamp(1.1rem, 2.5vw, 1.75rem)", "weight": "600", "line_height": "1.5", "color": "var(--primary)" },
+      "stat_number": { "size": "clamp(2.5rem, 5vw, 4rem)", "weight": "700", "color": "var(--primary)" },
+      "css_vars": "--fs-h1: clamp(2rem, 5.5vw, 4.5rem); --fs-h2: clamp(1.5rem, 3.5vw, 3rem); --fs-h3: clamp(1rem, 2vw, 1.5rem); --fs-body: clamp(0.9rem, 1.3vw, 1.05rem); --lh-tight: 1.15; --lh-body: 1.75;"
+    },
+
+    "type-swiss": {
+      "note": "Inter u svim težinama kao dizajn element. Naslovi kroz kontrast bold/regular, ne veličinu.",
+      "h1": { "size": "clamp(3rem, 8vw, 8rem)", "weight": "900", "line_height": "0.9", "letter_spacing": "-4px", "font": "var(--font-heading)" },
+      "h2": { "size": "clamp(1.75rem, 4vw, 3.5rem)", "weight": "700", "line_height": "1", "letter_spacing": "-1px" },
+      "h3": { "size": "clamp(1rem, 2vw, 1.5rem)", "weight": "700", "line_height": "1.1" },
+      "h4": { "size": "0.8rem", "weight": "700", "line_height": "1.3", "letter_spacing": "2px", "transform": "uppercase" },
+      "body": { "size": "clamp(0.9rem, 1.3vw, 1.05rem)", "weight": "400", "line_height": "1.6" },
+      "eyebrow": { "size": "0.7rem", "weight": "700", "letter_spacing": "3px", "transform": "uppercase", "color": "var(--primary)", "padding_bottom": "8px", "border_bottom": "2px solid var(--primary)" },
+      "caption": { "size": "0.75rem", "weight": "400", "color": "var(--text-muted)", "letter_spacing": "0.5px" },
+      "quote": { "size": "clamp(1.5rem, 3.5vw, 3rem)", "weight": "400", "line_height": "1.2", "letter_spacing": "-0.5px", "border_left": "4px solid var(--primary)", "padding_left": "24px" },
+      "stat_number": { "size": "clamp(3.5rem, 8vw, 7rem)", "weight": "900", "letter_spacing": "-4px", "color": "var(--primary)" },
+      "css_vars": "--fs-h1: clamp(3rem, 8vw, 8rem); --fs-h2: clamp(1.75rem, 4vw, 3.5rem); --fs-h3: clamp(1rem, 2vw, 1.5rem); --fs-body: clamp(0.9rem, 1.3vw, 1.05rem); --lh-tight: 0.9; --lh-body: 1.6;"
+    },
+
+    "type-darktech": {
+      "note": "Sora bold za naslove, Inter za body. Gradient tekst na key headlineu.",
+      "h1": { "size": "clamp(2.5rem, 6.5vw, 6rem)", "weight": "800", "line_height": "1.0", "letter_spacing": "-2px", "font": "var(--font-heading)", "background": "linear-gradient(135deg, #F1F5F9 0%, var(--accent) 100%)", "webkit_background_clip": "text", "webkit_text_fill_color": "transparent" },
+      "h2": { "size": "clamp(1.75rem, 4vw, 3.75rem)", "weight": "700", "line_height": "1.05", "letter_spacing": "-1px" },
+      "h3": { "size": "clamp(1.05rem, 2vw, 1.6rem)", "weight": "600", "line_height": "1.2" },
+      "h4": { "size": "0.8rem", "weight": "600", "line_height": "1.3", "letter_spacing": "2px", "transform": "uppercase", "color": "var(--accent)" },
+      "body": { "size": "clamp(0.875rem, 1.2vw, 1rem)", "weight": "400", "line_height": "1.75", "color": "var(--text-muted)" },
+      "eyebrow": { "size": "0.7rem", "weight": "600", "letter_spacing": "3px", "transform": "uppercase", "color": "var(--accent)", "background": "rgba(56,189,248,0.1)", "padding": "4px 12px", "border_radius": "4px", "border": "1px solid rgba(56,189,248,0.2)" },
+      "caption": { "size": "0.8rem", "color": "var(--text-muted)", "letter_spacing": "0.5px" },
+      "quote": { "size": "clamp(1.25rem, 2.5vw, 2rem)", "weight": "600", "line_height": "1.4", "color": "var(--text)", "border_left": "2px solid var(--primary)", "padding_left": "20px" },
+      "stat_number": { "size": "clamp(2.5rem, 6vw, 5rem)", "weight": "800", "letter_spacing": "-2px", "color": "var(--accent)" },
+      "css_vars": "--fs-h1: clamp(2.5rem, 6.5vw, 6rem); --fs-h2: clamp(1.75rem, 4vw, 3.75rem); --fs-h3: clamp(1.05rem, 2vw, 1.6rem); --fs-body: clamp(0.875rem, 1.2vw, 1rem); --lh-tight: 1.0; --lh-body: 1.75;"
+    }
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "_meta": {
+    "type": "luxury",
+    "description": "Premium usluge, high-end boutique, nakit, satovi, ekskluzivni smještaj, privatni jet, premium konsalting",
+    "keywords": ["luksuz", "ekskluzivno", "premium", "high-end", "boutique", "privatno", "elite", "prestiž"],
+    "examples": ["boutique hotel", "nakit", "premium konsalting", "privatni smještaj", "premium auto"]
+  },
+
+  "palettes": [
+    {
+      "name": "Obsidian Gold",
+      "mood": "ultra-premium, exclusivity, old money",
+      "bg":        "#080706",
+      "bg2":       "#0f0d0b",
+      "bg3":       "#161411",
+      "border":    "rgba(201,169,110,0.12)",
+      "primary":   "#c9a96e",
+      "text":      "#f5f0e8",
+      "text2":     "rgba(245,240,232,0.6)",
+      "text3":     "rgba(245,240,232,0.3)",
+      "cta":       "#c9a96e",
+      "cta_hover": "#dbbe89",
+      "success":   "#22c55e",
+      "warning":   "#f59e0b",
+      "error":     "#ef4444"
+    },
+    {
+      "name": "Platinum Silver",
+      "mood": "moderno-luksuzno, contemporary premium",
+      "bg":        "#07090c",
+      "bg2":       "#0d1015",
+      "bg3":       "#13181f",
+      "border":    "rgba(192,192,192,0.12)",
+      "primary":   "#c0c0c0",
+      "text":      "#f8f8f8",
+      "text2":     "rgba(248,248,248,0.6)",
+      "text3":     "rgba(248,248,248,0.3)",
+      "cta":       "#c0c0c0",
+      "cta_hover": "#e0e0e0",
+      "success":   "#22c55e",
+      "warning":   "#f59e0b",
+      "error":     "#ef4444"
+    },
+    {
+      "name": "Ivory Creme",
+      "mood": "soft luxury, couture, bridal",
+      "bg":        "#faf8f4",
+      "bg2":       "#f3efe8",
+      "bg3":       "#ebe5da",
+      "border":    "rgba(0,0,0,0.06)",
+      "primary":   "#8b7355",
+      "text":      "#1a1510",
+      "text2":     "#5a5040",
+      "text3":     "#9a9080",
+      "cta":       "#8b7355",
+      "cta_hover": "#a08565",
+      "success":   "#16a34a",
+      "warning":   "#d97706",
+      "error":     "#dc2626"
+    }
+  ],
+
+  "fonts": [
+    {
+      "name": "Old Money",
+      "heading": "Cormorant Garamond",
+      "subheading": "Cormorant Garamond",
+      "body": "Jost",
+      "mono": null,
+      "google_url": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&display=swap",
+      "note": "Ultra elegantno — tanak serifni font, puno bijelog prostora"
+    },
+    {
+      "name": "Modern Couture",
+      "heading": "Bodoni Moda",
+      "body": "DM Sans",
+      "mono": null,
+      "google_url": "https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400&family=DM+Sans:wght@200;300;400&display=swap",
+      "note": "Fashion-forward luksuz — za couture, visoku modu"
+    },
+    {
+      "name": "Refined Minimal",
+      "heading": "Tenor Sans",
+      "body": "Tenor Sans",
+      "mono": null,
+      "google_url": "https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Jost:wght@200;300;400&display=swap",
+      "note": "Diskretan luksuz — za nakit, satove, premium rezidencije"
+    }
+  ],
+
+  "animations": {
+    "scroll": "fade",
+    "hero_text": false,
+    "particles": false,
+    "parallax_images": true,
+    "tilt_cards": false,
+    "preloader": true,
+    "dark_mode_toggle": false,
+    "cursor_custom": true,
+    "slow_transitions": true,
+    "note": "Sve mora biti sporo i namjerno — luksuz = prostor i tišina, ne efekti"
+  },
+
+  "hero": {
+    "style": "fullscreen-cinematic",
+    "note": "Minimalan tekst, velika fotografija ili video — whitespace je luksuz",
+    "headline_formula": "[Jedan red — kratko i snažno]",
+    "headline_example": "Gdje detalji čine razliku",
+    "cta_primary": "Istražite",
+    "cta_secondary": null,
+    "trust_elements": ["Godina tradicije", "Ekskluzivni klijenti", "Nagrade i certifikati"]
+  },
+
+  "sections_recommended": [
+    "hero",
+    "about-story",
+    "services-minimal",
+    "gallery-editorial",
+    "testimonials-quotes",
+    "contact-private",
+    "footer"
+  ],
+
+  "sections_optional": [
+    "press",
+    "certifications",
+    "private-events",
+    "membership"
+  ],
+
+  "design_rules": [
+    "Puno bijelog prostora — nikad gnječiti sadržaj",
+    "Fotografije su najvažniji element — nikad kompresovati",
+    "Animacije sporijeg tempa (0.8-1.2s transition)",
+    "Tekst uvijek manji nego što misliš — luksuz = diskrecija",
+    "Hover efekti umjesto klikova gdje je moguće",
+    "Nikad popust-badge ili '% OFF' — to ubija premijum dojam"
+  ],
+
+  "schema_type": "Organization",
+  "schema_subtypes": ["LocalBusiness", "LodgingBusiness", "Store", "JewelryStore"],
+
+  "og_image": {
+    "tags_example": [],
+    "tagline_example": "Ekskluzivno za one koji znaju",
+    "note": "OG slika — samo logo i jedna rečenica na tamnoj pozadini, nikad busy"
+  }
+}

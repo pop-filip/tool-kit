@@ -1,0 +1,141 @@
+{
+  "_meta": {
+    "description": "CTA section library — 7 varijanti za conversion sekcije",
+    "version": "2.0"
+  },
+
+  "variants": {
+
+    "full-width-banner": {
+      "name": "Full Width Banner",
+      "description": "Cijela širina, kontrastna pozadina, tekst i dugme u redu.",
+      "mood_default": ["dark-tech", "earth-organic", "pastel-soft"],
+      "css": {
+        "padding": "80px 24px",
+        "background": "var(--primary)",
+        "color": "var(--dark)",
+        "layout": "flex ili grid, tekst lijevo, dugme desno",
+        "headline_size": "clamp(2rem, 4vw, 3.5rem)",
+        "mobile": "stack vertical"
+      },
+      "html_skeleton": "<section class='cta-section' aria-labelledby='cta-title'>\n  <div class='cta-inner'>\n    <div>\n      <h2 id='cta-title'>[CTA Headline]</h2>\n      <p>[Kratki persuasive tekst]</p>\n    </div>\n    <a href='#kontakt' class='cta-btn'>[Dugme tekst]</a>\n  </div>\n</section>"
+    },
+
+    "card-centered": {
+      "name": "Centered Card",
+      "description": "Kartica u centru stranice, sa pozadinom koja se razlikuje. Elegantno.",
+      "mood_default": ["luxury-dark", "glassmorphism", "editorial"],
+      "css": {
+        "section_padding": "100px 24px",
+        "card_max_width": "700px",
+        "card_padding": "60px 48px",
+        "card_bg": "var(--surface) ili glass efekat",
+        "card_border": "1px solid var(--border)",
+        "card_radius": "var(--radius)",
+        "text_align": "center",
+        "headline_size": "clamp(2rem, 4vw, 3rem)"
+      },
+      "html_skeleton": "<section class='cta-section' aria-labelledby='cta-title'>\n  <div class='cta-card'>\n    <p class='cta-label'>[Pretitle]</p>\n    <h2 id='cta-title'>[CTA Headline]</h2>\n    <p>[Opis]</p>\n    <div class='cta-actions'>\n      <a href='#kontakt' class='btn-primary'>[Primary CTA]</a>\n      <a href='tel:+43...' class='btn-secondary'>[Secondary]</a>\n    </div>\n  </div>\n</section>"
+    },
+
+    "split-form": {
+      "name": "Split: Text + Form",
+      "description": "Tekst/argumenti lijevo, forma desno. Za direktnu konverziju.",
+      "mood_default": ["dark-tech", "neobrutalism", "neon-cyberpunk"],
+      "css": {
+        "section_padding": "100px 24px",
+        "grid": "grid-template-columns: 1fr 1fr, gap: 60px, align-items: start",
+        "form_bg": "var(--surface)",
+        "form_padding": "32px",
+        "form_radius": "var(--radius)"
+      },
+      "html_skeleton": "<section class='cta-section' aria-labelledby='cta-title'>\n  <div class='cta-split'>\n    <div class='cta-left'>\n      <p class='cta-label'>[Label]</p>\n      <h2 id='cta-title'>[Headline]</h2>\n      <ul class='cta-benefits'>\n        <li>[Benefit 1]</li>\n        <li>[Benefit 2]</li>\n        <li>[Benefit 3]</li>\n      </ul>\n    </div>\n    <div class='cta-form'>\n      <form id='ctaForm' action='https://api.web3forms.com/submit' method='POST' novalidate>\n        <input type='hidden' name='access_key' value='[KEY]'>\n        <div class='form-group'>\n          <label for='cta-name'>Name</label>\n          <input type='text' id='cta-name' name='name' required aria-required='true'>\n        </div>\n        <div class='form-group'>\n          <label for='cta-email'>E-Mail</label>\n          <input type='email' id='cta-email' name='email' required aria-required='true'>\n        </div>\n        <button type='submit' class='btn-primary'>[Submit]</button>\n      </form>\n    </div>\n  </div>\n</section>"
+    },
+
+    "brutalist-box": {
+      "name": "Brutalist Box",
+      "description": "Debela bordera, offset shadow, direktan tekst. Za brutalist/neo.",
+      "mood_default": ["brutalist", "neobrutalism", "swiss-minimal"],
+      "css": {
+        "section_padding": "100px 24px",
+        "box_border": "3px solid var(--text)",
+        "box_shadow": "8px 8px 0 var(--text)",
+        "box_padding": "48px",
+        "box_radius": "0",
+        "background": "var(--primary)",
+        "color": "var(--bg)",
+        "headline_size": "clamp(2.5rem, 5vw, 4.5rem)",
+        "headline_weight": "900",
+        "headline_transform": "uppercase"
+      },
+      "html_skeleton": "<section class='cta-section' aria-labelledby='cta-title'>\n  <div class='cta-brutal-box'>\n    <h2 id='cta-title'>[CTA HEADLINE\nIN CAPS]</h2>\n    <p>[Kratki tekst]</p>\n    <a href='#kontakt' class='cta-brutal-btn'>[DUGME TEKST] →</a>\n  </div>\n</section>"
+    },
+
+    "marquee-cta": {
+      "name": "Marquee + CTA",
+      "description": "Horizontalni infinite scroll tekst (marquee/ticker) iznad CTA dugmeta. Energetično, zapamtljivo.",
+      "mood_default": ["brutalist", "neobrutalism", "neon-cyberpunk"],
+      "css": {
+        "section_padding": "0",
+        "marquee_wrapper": "overflow:hidden; white-space:nowrap; background:var(--primary); color:var(--bg); padding:20px 0; border-top:2px solid var(--text); border-bottom:2px solid var(--text);",
+        "marquee_track": "display:inline-block; animation: marquee 18s linear infinite;",
+        "marquee_item": "font-size:clamp(1.2rem, 3vw, 2rem); font-weight:900; text-transform:uppercase; letter-spacing:2px; padding:0 32px;",
+        "separator": "opacity:0.4; margin:0 8px;",
+        "cta_below": "padding:60px 24px; text-align:center;",
+        "marquee_animation": "@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }",
+        "hover_pause": ".marquee-track:hover { animation-play-state: paused; }"
+      },
+      "html_skeleton": "<section class='cta-section' aria-labelledby='cta-title'>\n  <div class='marquee-wrap' aria-hidden='true'>\n    <div class='marquee-track'>\n      <span>[Tekst] · </span><span>[Tekst] · </span><span>[Tekst] · </span><span>[Tekst] · </span>\n      <span aria-hidden='true'>[Tekst] · </span><span>[Tekst] · </span><span>[Tekst] · </span><span>[Tekst] · </span>\n    </div>\n  </div>\n  <div class='cta-below'>\n    <h2 id='cta-title'>[Headline]</h2>\n    <p>[Subtitle]</p>\n    <div class='cta-actions'>\n      <a href='#kontakt' class='btn-primary'>[CTA]</a>\n    </div>\n  </div>\n</section>"
+    },
+
+    "floating-sticky-cta": {
+      "name": "Floating Sticky Bar",
+      "description": "Sticky bar pri dnu ekrana koji se pojavi nakon X px scrolla. Non-invasive, uvijek dostupan.",
+      "mood_default": ["dark-tech", "earth-organic", "neon-cyberpunk"],
+      "css": {
+        "bar": "position:fixed; bottom:0; left:0; right:0; z-index:500; background:var(--surface); border-top:1px solid var(--border); padding:12px 24px; display:flex; align-items:center; justify-content:space-between; transform:translateY(100%); transition:transform 0.4s ease; backdrop-filter:blur(12px);",
+        "bar_visible": "transform:translateY(0)",
+        "bar_text": "font-size:14px; color:var(--text-muted);",
+        "bar_cta": "flex-shrink:0; margin-left:24px;",
+        "mobile": "flex-direction:column; gap:12px; text-align:center"
+      },
+      "js": "const bar = document.getElementById('sticky-cta');\nwindow.addEventListener('scroll', () => {\n  bar.classList.toggle('visible', window.scrollY > window.innerHeight * 0.7);\n}, { passive: true });",
+      "note": "Ova komponenta je DODATAK stranici, ne zamjena za contact/CTA sekciju. Koristi sa drugom CTA varijantom.",
+      "html_skeleton": "<div id='sticky-cta' class='sticky-cta-bar' role='complementary' aria-label='Contact call to action'>\n  <p>[Kratki persuasive tekst — npr. Ready to get started?]</p>\n  <a href='#kontakt' class='btn-primary'>[CTA dugme]</a>\n</div>"
+    },
+
+    "urgency-countdown": {
+      "name": "Urgency + Countdown",
+      "description": "CTA sa countdown timerom koji gradi urgentnost. Za promotivne kampanje ili events.",
+      "mood_default": ["neon-cyberpunk", "dark-tech", "neobrutalism"],
+      "css": {
+        "section_padding": "80px 24px",
+        "section_bg": "var(--surface)",
+        "section_border": "1px solid var(--border)",
+        "section_radius": "var(--radius)",
+        "section_max_width": "700px; margin: 0 auto;",
+        "text_align": "center",
+        "countdown_wrapper": "display:flex; gap:24px; justify-content:center; margin:32px 0;",
+        "countdown_item": "text-align:center; min-width:70px;",
+        "countdown_num": "font-size:clamp(2.5rem, 6vw, 4rem); font-weight:700; font-family:var(--font-display); color:var(--primary); display:block; line-height:1;",
+        "countdown_label": "font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted);"
+      },
+      "js": "function updateCountdown(targetDate) {\n  const now = new Date();\n  const diff = new Date(targetDate) - now;\n  if(diff <= 0) return;\n  const d=Math.floor(diff/86400000), h=Math.floor(diff%86400000/3600000), m=Math.floor(diff%3600000/60000), s=Math.floor(diff%60000/1000);\n  document.getElementById('cd-d').textContent=String(d).padStart(2,'0');\n  document.getElementById('cd-h').textContent=String(h).padStart(2,'0');\n  document.getElementById('cd-m').textContent=String(m).padStart(2,'0');\n  document.getElementById('cd-s').textContent=String(s).padStart(2,'0');\n}\n// Postavi datum: new Date('2026-04-01T00:00:00')\nconst TARGET = '[ISO DATE STRING]';\nsetInterval(() => updateCountdown(TARGET), 1000);\nupdateCountdown(TARGET);",
+      "html_skeleton": "<section class='cta-section' aria-labelledby='cta-title'>\n  <div class='cta-urgency'>\n    <p class='cta-label'>[Urgency label — npr. Limited time offer]</p>\n    <h2 id='cta-title'>[Headline]</h2>\n    <div class='countdown' aria-label='Countdown timer'>\n      <div class='cd-item'><span class='cd-num' id='cd-d'>00</span><span class='cd-label'>Days</span></div>\n      <div class='cd-item'><span class='cd-num' id='cd-h'>00</span><span class='cd-label'>Hours</span></div>\n      <div class='cd-item'><span class='cd-num' id='cd-m'>00</span><span class='cd-label'>Min</span></div>\n      <div class='cd-item'><span class='cd-num' id='cd-s'>00</span><span class='cd-label'>Sec</span></div>\n    </div>\n    <div class='cta-actions'>\n      <a href='#kontakt' class='btn-primary'>[CTA]</a>\n    </div>\n  </div>\n</section>"
+    }
+
+  },
+
+  "mood_to_cta_mapping": {
+    "brutalist": "marquee-cta",
+    "glassmorphism": "card-centered",
+    "neobrutalism": "brutalist-box",
+    "editorial": "card-centered",
+    "luxury-dark": "card-centered",
+    "neon-cyberpunk": "split-form",
+    "earth-organic": "full-width-banner",
+    "pastel-soft": "full-width-banner",
+    "swiss-minimal": "brutalist-box",
+    "dark-tech": "split-form"
+  }
+}

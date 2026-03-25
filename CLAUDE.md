@@ -32,13 +32,25 @@ bash /Users/filip/tool-kit/init-website.sh \
 2. **Sadržaj**: sekcije koje treba (hero, o nama, usluge, galerija, kontakt...)
 3. **Jezik i tržište**: BS/HR/SR/DE/EN — prilagodi copy i SEO
 4. **Slike**: ima li vlastite slike ili treba placeholdere
-5. **Forma za kontakt**: Web3Forms (besplatno) ili email direktno
+5. **Forma za kontakt**: uvijek koristi `https://digitalnature.at/api/leads.php` (POST, JSON: name, email, phone, message, source)
 
 ### 4. SEO podaci koje treba popuniti
 - Title tag (50-60 znakova, ključna riječ)
 - Meta description (150-160 znakova)
 - Schema.org: LocalBusiness (adresa, tel, radno vrijeme)
-- OG slika (1200×630px)
+- OG slika (1200×630px) — **obavezno kreirati**:
+  ```bash
+  python3 /Users/filip/tool-kit/utils/create-og-image.py \
+    --name "NAZIV" --tagline "TAGLINE" --city "GRAD" \
+    --domain "DOMENA" --phone "+387 XX XXX XXX" \
+    --logo "./html/images/logo.png" \
+    --output "./html/images/og-image.jpg"
+  ```
+
+### 5. Social share provjera (obavezno nakon go-live)
+- OG URL mora biti ista domena kao `canonical` — nikad `.ba` ako je sajt na `.com`
+- `og:image` mora biti apsolutna URL (ne `/images/og-image.jpg`)
+- Testiraj na: https://www.opengraph.xyz ili Facebook debug tool
 
 ---
 
@@ -61,16 +73,40 @@ bash /Users/filip/tool-kit/init-website.sh \
 
 ## Pravila za svaki novi sajt
 
-1. **SVG kao `<img>`** — nikad `<style>` blok unutar SVG fajla (iOS Safari bug)
+1. **SVG kao `<img>`** — nikad `<style>` blok unutar SVG fajla (iOS Safari bug); inline fill atributi
 2. **WebP slike** — uvijek `<picture>` element s PNG fallbackom za stari iOS
-3. **Inline fill** na SVG atributima (ne CSS klase)
-4. **GA4** — učitavati tek nakon cookie consent-a
-5. **Schema.org** — Organization + LocalBusiness na svakoj stranici
-6. **Security headers** — koristiti nginx.conf iz kita (već podešeno)
-7. **Cache-Control** — slike 30d immutable, HTML no-cache
-8. **Google Search Console** — registrovati odmah nakon go-live
-9. **Uptime monitoring** — UptimeRobot za svaki sajt
-10. **Backup** — automatski, dnevno
+   - Pokreni prije deploya: `bash /Users/filip/tool-kit/utils/optimize-images.sh ./html/images`
+3. **NIKAD base64 inline slike u HTML-u** — čini HTML enormnim i blokira cijelo učitavanje
+   - Logo, ikone, slike — uvijek snimiti kao vanjski fajl u `html/images/`
+   - Brza provjera: `grep -c "data:image" html/index.html`
+4. **OG slika** — uvijek kreirati `html/images/og-image.jpg` (1200×630px) koristeći `create-og-image.py`
+5. **OG URL domena** — `og:url` mora biti ista domena kao `<link rel="canonical">` (ne miješati .ba/.com/.at)
+6. **GA4** — učitavati tek nakon cookie consent-a
+7. **prefers-reduced-motion** — uvijek dodati na kraju CSS animacija:
+   ```css
+   @media (prefers-reduced-motion: reduce) {
+     *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+   }
+   ```
+8. **ARIA obavezno** — kopiraj iz `tool-kit/accessibility/aria-snippets.md`:
+   - Skip-to-main link kao **prvo dijete `<body>`**
+   - `<header role="banner">`, `<main id="main-content" tabindex="-1">`, `<footer role="contentinfo">`
+   - `aria-expanded` + `aria-controls` na hamburger — JS toggle
+   - `aria-label` na SVG ikonama bez teksta; `aria-hidden="true"` na dekorativnim SVG
+   - `aria-labelledby` na svakom `<section>`
+   - `role="alert"` + `aria-live="polite"` na form greškama
+   - `:focus-visible` CSS vidljiv ring
+9. **Service Worker** — kopirati `tool-kit/pwa/sw-static.js` → `html/sw.js`; registrirati u HTML prije `</body>`:
+   ```html
+   <script>if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));</script>
+   ```
+   Kopirati i prilagoditi `tool-kit/pwa/offline.html` → `html/offline.html`
+10. **Schema.org** — Organization + LocalBusiness na svakoj stranici
+11. **Security headers** — koristiti nginx.conf iz kita (već podešeno)
+12. **Cache-Control** — slike 30d immutable, HTML no-cache
+13. **Monitoring** — po deployu pokrenuti: `bash /Users/filip/tool-kit/utils/setup-monitoring.sh --url "https://domain.com" --name "Naziv"`
+14. **Google Search Console** — registrovati odmah nakon go-live
+15. **Backup** — automatski, dnevno
 
 ---
 

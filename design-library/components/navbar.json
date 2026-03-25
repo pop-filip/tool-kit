@@ -1,0 +1,169 @@
+{
+  "_meta": {
+    "description": "Navbar component library — desktop + mobile varijante",
+    "usage": "Odaberi varijantu prema mood-u ili random. Svaka varijanta ima desktop i mobile ponašanje.",
+    "version": "1.0"
+  },
+
+  "variants": {
+
+    "classic": {
+      "name": "Classic Left",
+      "description": "Logo lijevo, linkovi desno. Najuniverzalniji layout.",
+      "mood_default": ["dark-tech", "earth-organic", "luxury-dark", "pastel-soft"],
+      "desktop": {
+        "layout": "flex, justify-content: space-between, align-items: center",
+        "logo_position": "left",
+        "links_position": "right",
+        "cta_position": "far right, after links"
+      },
+      "mobile": {
+        "type": "slide-right",
+        "description": "Meni se pojavljuje s desne strane kao drawer",
+        "trigger": "hamburger icon — 3 linije",
+        "overlay": true
+      },
+      "css": {
+        "nav_height": "68px",
+        "nav_bg": "rgba(var(--dark-rgb), 0.92)",
+        "nav_backdrop": "blur(12px)",
+        "nav_border": "1px solid var(--border)",
+        "logo_size": "1.4rem",
+        "link_size": "13px",
+        "link_weight": "600",
+        "link_transform": "uppercase",
+        "link_spacing": "1px"
+      },
+      "html_skeleton": "<header role='banner'>\n  <nav class='nav-classic'>\n    <a href='/' class='nav-logo'>[LOGO]</a>\n    <ul class='nav-links'>\n      <li><a href='#section'>[Link]</a></li>\n    </ul>\n    <a href='#cta' class='nav-cta'>[CTA]</a>\n    <button class='hamburger' aria-expanded='false' aria-controls='mobile-nav'>\n      <span></span><span></span><span></span>\n    </button>\n  </nav>\n  <nav class='mobile-nav' id='mobile-nav'>\n    <a href='#section'>[Link]</a>\n    <a href='#cta' class='mobile-cta'>[CTA]</a>\n  </nav>\n</header>"
+    },
+
+    "centered-logo": {
+      "name": "Centered Logo",
+      "description": "Logo u centru, linkovi podijeljeni lijevo/desno. Elegantno, simetrično.",
+      "mood_default": ["editorial", "luxury-dark"],
+      "desktop": {
+        "layout": "3-column grid: links | logo | links+cta",
+        "logo_position": "center",
+        "links_position": "split left and right of logo"
+      },
+      "mobile": {
+        "type": "fullscreen-overlay",
+        "description": "Fullscreen crni overlay, linkovi vertikalno centrirani, veliki font",
+        "trigger": "hamburger ili X ikona",
+        "overlay": true,
+        "animation": "fade-in"
+      },
+      "css": {
+        "nav_height": "80px",
+        "nav_bg": "transparent (postaje solid na scroll)",
+        "nav_scroll_bg": "rgba(var(--bg-rgb), 0.95)",
+        "logo_size": "1.6rem",
+        "logo_weight": "300",
+        "logo_spacing": "6px",
+        "link_size": "12px",
+        "link_weight": "500",
+        "link_transform": "uppercase",
+        "link_spacing": "2px"
+      },
+      "html_skeleton": "<header role='banner' class='nav-transparent'>\n  <nav class='nav-centered'>\n    <ul class='nav-links-left'>\n      <li><a href='#s1'>[Link]</a></li>\n      <li><a href='#s2'>[Link]</a></li>\n    </ul>\n    <a href='/' class='nav-logo'>[LOGO]</a>\n    <ul class='nav-links-right'>\n      <li><a href='#s3'>[Link]</a></li>\n      <li><a href='#cta' class='nav-cta'>[CTA]</a></li>\n    </ul>\n    <button class='hamburger' aria-expanded='false' aria-controls='mobile-nav'>\n      <span></span><span></span><span></span>\n    </button>\n  </nav>\n  <div class='mobile-overlay' id='mobile-nav'>\n    <a href='#s1'>[Link]</a>\n    <a href='#cta' class='mobile-cta'>[CTA]</a>\n  </div>\n</header>"
+    },
+
+    "bold-bordered": {
+      "name": "Bold Bordered",
+      "description": "Debela border na dnu, no blur, raw feel. Za brutalist i neobrutalist.",
+      "mood_default": ["brutalist", "neobrutalism", "swiss-minimal"],
+      "desktop": {
+        "layout": "flex, justify-content: space-between",
+        "logo_position": "left",
+        "links_position": "right",
+        "style_note": "nema backdrop blur, solid pozadina, debela donja linija"
+      },
+      "mobile": {
+        "type": "push-down",
+        "description": "Meni se otvara ispod navbara i gura sadržaj dolje",
+        "trigger": "MENU text ili hamburger",
+        "overlay": false,
+        "animation": "slide-down"
+      },
+      "css": {
+        "nav_height": "60px",
+        "nav_bg": "var(--bg)",
+        "nav_border_bottom": "3px solid var(--text)",
+        "nav_backdrop": "none",
+        "logo_size": "1.2rem",
+        "logo_weight": "900",
+        "logo_transform": "uppercase",
+        "logo_spacing": "3px",
+        "link_size": "12px",
+        "link_weight": "700",
+        "link_transform": "uppercase",
+        "link_spacing": "2px",
+        "link_hover": "background: var(--text); color: var(--bg); padding: 4px 8px"
+      },
+      "html_skeleton": "<header role='banner' class='nav-bordered'>\n  <nav class='nav-bold'>\n    <a href='/' class='nav-logo'>[LOGO]</a>\n    <ul class='nav-links'>\n      <li><a href='#s1'>[Link]</a></li>\n    </ul>\n    <button class='menu-btn' aria-expanded='false' aria-controls='mobile-nav'>MENU</button>\n  </nav>\n  <div class='mobile-pushdown' id='mobile-nav'>\n    <a href='#s1'>[Link]</a>\n  </div>\n</header>"
+    },
+
+    "transparent-scroll": {
+      "name": "Transparent on Hero",
+      "description": "Proziran iznad hero-a, postaje solid na scrollu. Smooth tranzicija.",
+      "mood_default": ["glassmorphism", "neon-cyberpunk", "earth-organic"],
+      "desktop": {
+        "layout": "flex, justify-content: space-between",
+        "logo_position": "left",
+        "links_position": "right",
+        "style_note": "početno transparent, JS dodaje .scrolled klasu"
+      },
+      "mobile": {
+        "type": "fullscreen-overlay",
+        "description": "Fullscreen overlay u boji pozadine, veliki linkovi",
+        "trigger": "hamburger",
+        "overlay": true,
+        "animation": "fade + slide-up na linkovima"
+      },
+      "css": {
+        "nav_initial": "background: transparent; border: none",
+        "nav_scrolled": "background: rgba(var(--bg-rgb), 0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border)",
+        "nav_height": "72px",
+        "nav_transition": "background 0.3s ease, backdrop-filter 0.3s ease",
+        "logo_size": "1.4rem",
+        "link_size": "13px",
+        "link_color_initial": "rgba(255,255,255,0.85)",
+        "link_color_scrolled": "var(--text-muted)"
+      },
+      "js_scroll": "window.addEventListener('scroll', () => { document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50); });",
+      "html_skeleton": "<header role='banner' id='site-header'>\n  <nav class='nav-transparent'>\n    <a href='/' class='nav-logo'>[LOGO]</a>\n    <ul class='nav-links'>\n      <li><a href='#s1'>[Link]</a></li>\n    </ul>\n    <a href='#cta' class='nav-cta'>[CTA]</a>\n    <button class='hamburger' aria-expanded='false' aria-controls='mobile-nav'>\n      <span></span><span></span><span></span>\n    </button>\n  </nav>\n  <div class='mobile-fullscreen' id='mobile-nav'>\n    <a href='#s1'>[Link]</a>\n  </div>\n</header>"
+    },
+
+    "minimal-dot": {
+      "name": "Minimal with Dot Indicator",
+      "description": "Logo lijevo, minimalni linkovi, aktivna stranica označena točkom ili linijom ispod.",
+      "mood_default": ["swiss-minimal", "editorial", "pastel-soft"],
+      "desktop": {
+        "layout": "flex, space-between, very minimal",
+        "logo_position": "left",
+        "links_position": "right",
+        "active_indicator": "small dot or 2px underline on hover/active"
+      },
+      "mobile": {
+        "type": "slide-right",
+        "description": "Drawer s desne strane, čist bijeli/dark panel",
+        "trigger": "hamburger ili ikona sa 4 kvadrata",
+        "overlay": true,
+        "width": "280px"
+      },
+      "css": {
+        "nav_height": "64px",
+        "nav_bg": "var(--bg)",
+        "nav_border": "none",
+        "logo_size": "1.1rem",
+        "logo_weight": "600",
+        "link_size": "13px",
+        "link_weight": "500",
+        "link_transform": "none",
+        "link_spacing": "0",
+        "link_indicator": "position:relative; ::after { content:''; position:absolute; bottom:-4px; left:50%; transform:translateX(-50%); width:4px; height:4px; border-radius:50%; background:var(--primary); opacity:0; transition:opacity 0.2s; } a:hover::after { opacity:1; }"
+      },
+      "html_skeleton": "<header role='banner'>\n  <nav class='nav-minimal'>\n    <a href='/' class='nav-logo'>[LOGO]</a>\n    <ul class='nav-links'>\n      <li><a href='#s1'>[Link]</a></li>\n    </ul>\n    <button class='nav-drawer-btn' aria-expanded='false' aria-controls='mobile-nav' aria-label='Meni'>\n      <svg>...</svg>\n    </button>\n  </nav>\n  <aside class='nav-drawer' id='mobile-nav'>\n    <button class='drawer-close' aria-label='Zatvori'>×</button>\n    <a href='#s1'>[Link]</a>\n  </aside>\n</header>"
+    }
+  }
+}

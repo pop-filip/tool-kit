@@ -1,0 +1,123 @@
+{
+  "_meta": {
+    "description": "Section dividers — prijelazi između sekcija. SVG shapes, diagonal cuts, overlap, curved edges.",
+    "usage": "Dodaj divider na dno sekcije ili vrh sljedeće. mood_to_divider_mapping određuje dozvoljene stilove.",
+    "version": "1.0"
+  },
+
+  "mood_to_divider_mapping": {
+    "brutalist":      ["hard-line", "thick-rule", "none"],
+    "glassmorphism":  ["wave-gentle", "blob-transition", "none"],
+    "neobrutalism":   ["hard-line", "zigzag", "angled-cut"],
+    "editorial":      ["thin-rule", "none", "partial-rule"],
+    "luxury-dark":    ["none", "thin-rule", "partial-rule"],
+    "neon-cyberpunk": ["glitch-line", "diagonal-sharp", "none"],
+    "earth-organic":  ["wave-organic", "blob-transition", "wave-gentle"],
+    "pastel-soft":    ["wave-gentle", "wave-organic", "blob-transition"],
+    "swiss-minimal":  ["hard-line", "thin-rule", "none"],
+    "dark-tech":      ["diagonal-sharp", "none", "glitch-line"]
+  },
+
+  "variants": {
+
+    "none": {
+      "name": "No Divider",
+      "description": "Sekcije se razdvajaju samo bojom pozadine. Za luxury i editorial.",
+      "css": "",
+      "html": ""
+    },
+
+    "hard-line": {
+      "name": "Hard Line",
+      "description": "Puna 2-4px linija između sekcija. Brutalist signature.",
+      "css": ".section-divider { border-top: 3px solid var(--text); margin: 0; }",
+      "html": "<div class='section-divider' role='separator' aria-hidden='true'></div>",
+      "note": "Stavi na vrh svake sekcije koja dolazi nakon druge sekcije iste boje"
+    },
+
+    "thin-rule": {
+      "name": "Thin Rule",
+      "description": "1px linija u boji border varijable. Za editorial i swiss.",
+      "css": ".section-divider { width: 60px; height: 1px; background: var(--accent); margin: 0 auto; }",
+      "html": "<div class='section-divider' role='separator' aria-hidden='true'></div>",
+      "note": "Centriran, kao interpunkcija između sekcija"
+    },
+
+    "partial-rule": {
+      "name": "Partial Rule",
+      "description": "Kratka linija lijevo aligned (editorial) ili centrirana (luxury). Elegantna.",
+      "css": ".section-divider { width: 80px; height: 1px; background: var(--primary); margin: 0; opacity: 0.5; }",
+      "html": "<div class='section-divider' role='separator' aria-hidden='true'></div>"
+    },
+
+    "thick-rule": {
+      "name": "Thick Rule",
+      "description": "8-12px debela linija u boji primary. Za neobrutalism.",
+      "css": ".section-divider { height: 8px; background: var(--primary); border-top: 2px solid var(--text); border-bottom: 2px solid var(--text); }",
+      "html": "<div class='section-divider' role='separator' aria-hidden='true'></div>"
+    },
+
+    "wave-gentle": {
+      "name": "Wave Gentle",
+      "description": "Blagi SVG val koji prelazi između dviju pozadina. Za glassmorphism i pastel.",
+      "css": ".section-wave { display: block; width: 100%; overflow: hidden; line-height: 0; }",
+      "html_bottom": "<div class='section-wave' aria-hidden='true'><svg viewBox='0 0 1440 60' preserveAspectRatio='none' style='display:block;width:100%;height:60px;'><path d='M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z' fill='[NEXT_SECTION_BG]'/></svg></div>",
+      "html_top": "<div class='section-wave' aria-hidden='true'><svg viewBox='0 0 1440 60' preserveAspectRatio='none' style='display:block;width:100%;height:60px;transform:rotate(180deg)'><path d='M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z' fill='[CURRENT_SECTION_BG]'/></svg></div>",
+      "note": "Zamijeni [NEXT_SECTION_BG] sa hex bojom sljedeće sekcije"
+    },
+
+    "wave-organic": {
+      "name": "Wave Organic",
+      "description": "Organski nepravilni val. Za earth-organic i pastel.",
+      "css": ".section-wave { display: block; width: 100%; overflow: hidden; line-height: 0; }",
+      "html_bottom": "<div class='section-wave' aria-hidden='true'><svg viewBox='0 0 1440 80' preserveAspectRatio='none' style='display:block;width:100%;height:80px;'><path d='M0,40 C200,80 400,0 600,40 C800,80 1000,10 1200,40 C1300,55 1380,35 1440,40 L1440,80 L0,80 Z' fill='[NEXT_SECTION_BG]'/></svg></div>",
+      "note": "Nepravilniji od wave-gentle — organski osjećaj"
+    },
+
+    "blob-transition": {
+      "name": "Blob Transition",
+      "description": "Soft blob oblak koji prelazi između sekcija. Glassmorphism i organic.",
+      "css": ".section-blob { position: relative; height: 100px; overflow: hidden; }",
+      "html": "<div class='section-blob' aria-hidden='true'><svg viewBox='0 0 1440 100' preserveAspectRatio='none' style='width:100%;height:100%;'><path d='M0,50 C150,20 350,80 500,50 C650,20 800,80 1000,50 C1150,25 1300,70 1440,50 L1440,100 L0,100 Z' fill='[NEXT_SECTION_BG]'/></svg></div>"
+    },
+
+    "angled-cut": {
+      "name": "Angled Cut",
+      "description": "Dijagonalni rez (clip-path). Za neobrutalism.",
+      "css": ".section-angled { clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%); padding-bottom: 80px !important; }",
+      "note": "Dodaj klasu na samu sekciju (ne separator element). Sljedeća sekcija treba margin-top: -40px",
+      "next_section_css": "margin-top: -40px; position: relative; z-index: 1;"
+    },
+
+    "diagonal-sharp": {
+      "name": "Diagonal Sharp",
+      "description": "Oštar dijagonalni prijelaz. Za cyberpunk i dark-tech.",
+      "css": ".section-diagonal { clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%); padding-bottom: 100px !important; }",
+      "note": "Za tamne sajtove — prijelaz iz tamne u tamniju sekciju",
+      "next_section_css": "margin-top: -50px; position: relative; z-index: 1;"
+    },
+
+    "zigzag": {
+      "name": "Zigzag",
+      "description": "Zubasti rubovi između sekcija. Neobrutalism speciality.",
+      "css": ".section-divider-zigzag { display: block; width: 100%; height: 20px; background: linear-gradient(135deg, var(--bg) 25%, transparent 25%) -10px 0, linear-gradient(225deg, var(--bg) 25%, transparent 25%) -10px 0, linear-gradient(315deg, var(--bg) 25%, transparent 25%), linear-gradient(45deg, var(--bg) 25%, transparent 25%); background-size: 20px 20px; background-color: var(--surface); }",
+      "html": "<div class='section-divider-zigzag' aria-hidden='true'></div>"
+    },
+
+    "glitch-line": {
+      "name": "Glitch Line",
+      "description": "Neon linija sa glitch animacijom. Cyberpunk only.",
+      "css": ".glitch-divider { height: 2px; background: var(--primary); box-shadow: 0 0 10px var(--primary), 0 0 20px rgba(0,245,255,0.5); position: relative; overflow: hidden; } .glitch-divider::before { content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent); animation: glitch-scan 3s linear infinite; } @keyframes glitch-scan { to { left: 150%; } }",
+      "html": "<div class='glitch-divider' aria-hidden='true'></div>"
+    }
+  },
+
+  "usage_rules": [
+    "Koristiti max 2-3 različita divider tipa u jednom sajtu",
+    "Između sekcija iste boje pozadine: uvijek dodaj nekakav separator",
+    "Između sekcija različite boje: može bez separatora (osim za brutalist)",
+    "Wave dividers: fill boja mora biti TAČNA boja NAREDNE sekcije",
+    "Diagonal/angled: NIKAD na zadnjoj sekciji prije footera",
+    "Luxury dark: max 1 thin-rule per page, ostalo whitespace"
+  ]
+}

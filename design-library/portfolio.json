@@ -1,0 +1,165 @@
+{
+  "_meta": {
+    "type": "portfolio",
+    "description": "Fotograf, videograf, dizajner, arhitekt, freelancer, kreativac",
+    "keywords": ["portfolio", "galerija", "radovi", "projekti", "kreativac", "freestyle", "vizualno"],
+    "examples": ["matografie.at", "videograf", "web dizajner", "fotograf vjenčanja"]
+  },
+
+  "palettes": [
+    {
+      "name": "Dark Cinematic",
+      "mood": "filmski, elegantno, vizualno snažno",
+      "bg":        "#080a0e",
+      "bg2":       "#0e1117",
+      "bg3":       "#141920",
+      "border":    "rgba(255,255,255,0.07)",
+      "primary":   "#c9a96e",
+      "text":      "#f5f0e8",
+      "text2":     "rgba(245,240,232,0.65)",
+      "text3":     "rgba(245,240,232,0.35)",
+      "cta":       "#c9a96e",
+      "cta_hover": "#dbbe89",
+      "success":   "#22c55e",
+      "warning":   "#f59e0b",
+      "error":     "#ef4444"
+    },
+    {
+      "name": "Monochrome Bold",
+      "mood": "minimalistično, fotografski, B&W",
+      "bg":        "#0a0a0a",
+      "bg2":       "#111111",
+      "bg3":       "#1a1a1a",
+      "border":    "rgba(255,255,255,0.1)",
+      "primary":   "#ffffff",
+      "text":      "#ffffff",
+      "text2":     "rgba(255,255,255,0.6)",
+      "text3":     "rgba(255,255,255,0.3)",
+      "cta":       "#ffffff",
+      "cta_hover": "#e0e0e0",
+      "success":   "#4ade80",
+      "warning":   "#facc15",
+      "error":     "#f87171"
+    },
+    {
+      "name": "Warm Creative",
+      "mood": "toplo, artsy, boutique",
+      "bg":        "#faf7f2",
+      "bg2":       "#f3ede3",
+      "bg3":       "#ede4d5",
+      "border":    "rgba(0,0,0,0.08)",
+      "primary":   "#8b5e3c",
+      "text":      "#1a1208",
+      "text2":     "#5a4a3a",
+      "text3":     "#9a8a7a",
+      "cta":       "#8b5e3c",
+      "cta_hover": "#a06d47",
+      "success":   "#16a34a",
+      "warning":   "#d97706",
+      "error":     "#dc2626"
+    },
+    {
+      "name": "Neon Digital",
+      "mood": "futurističko, digitalno, gaming/tech kreativci",
+      "bg":        "#05050a",
+      "bg2":       "#0a0a14",
+      "bg3":       "#10101e",
+      "border":    "rgba(139,92,246,0.15)",
+      "primary":   "#8b5cf6",
+      "text":      "#f0eeff",
+      "text2":     "rgba(240,238,255,0.65)",
+      "text3":     "rgba(240,238,255,0.35)",
+      "cta":       "#8b5cf6",
+      "cta_hover": "#a78bfa",
+      "success":   "#22c55e",
+      "warning":   "#f59e0b",
+      "error":     "#ef4444"
+    }
+  ],
+
+  "fonts": [
+    {
+      "name": "Cinematic Serif",
+      "heading": "Playfair Display",
+      "body": "DM Sans",
+      "mono": null,
+      "google_url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700;900&family=DM+Sans:wght@300;400;500&display=swap",
+      "note": "Klasično i elegantno — idealno za fotografe, filmske kreativce"
+    },
+    {
+      "name": "Editorial",
+      "heading": "Cormorant Garamond",
+      "body": "Jost",
+      "mono": null,
+      "google_url": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500&display=swap",
+      "note": "Visoko-modni, editorial stil — za dizajnere i arhitekte"
+    },
+    {
+      "name": "Modern Condensed",
+      "heading": "Bebas Neue",
+      "body": "Inter",
+      "mono": null,
+      "google_url": "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&display=swap",
+      "note": "Bold i grafički — za videografe, motion dizajnere"
+    },
+    {
+      "name": "Clean Geometric",
+      "heading": "Plus Jakarta Sans",
+      "body": "Plus Jakarta Sans",
+      "mono": null,
+      "google_url": "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap",
+      "note": "Moderno bez grmalja — za UI/UX dizajnere, web kreativce"
+    }
+  ],
+
+  "animations": {
+    "scroll": "fade-up",
+    "hero_text": "typing",
+    "particles": false,
+    "parallax_images": true,
+    "cursor_custom": true,
+    "tilt_cards": true,
+    "preloader": true,
+    "dark_mode_toggle": false,
+    "image_reveal": true,
+    "note": "Vizualni efekti su ključni — portfolio = sama sebe prodaje vizualnim dojmom"
+  },
+
+  "hero": {
+    "style": "fullscreen-media",
+    "note": "Hero video ili velika fotografija fullscreen — ime + tagline iznad mediea",
+    "headline_formula": "[Ime] — [Specijalnost]",
+    "headline_example": "Marko Perić — Videograf & Fotograf",
+    "cta_primary": "Pogledaj radove",
+    "cta_secondary": "Kontaktiraj me",
+    "trust_elements": ["Broj projekata", "Godine iskustva", "Klijenti/brendovi"]
+  },
+
+  "sections_recommended": [
+    "hero",
+    "about",
+    "portfolio-grid",
+    "services",
+    "process",
+    "testimonials",
+    "contact",
+    "footer"
+  ],
+
+  "sections_optional": [
+    "awards",
+    "clients-logos",
+    "blog",
+    "pricing",
+    "faq",
+    "instagram-feed"
+  ],
+
+  "schema_type": "Person",
+  "schema_subtypes": ["ProfessionalService", "CreativeWork"],
+
+  "og_image": {
+    "tags_example": ["Fotograf", "Videograf", "Portfolio", "Profesionalno"],
+    "tagline_example": "Vizualno pripovijedanje koje ostavlja trag"
+  }
+}

@@ -1,0 +1,342 @@
+{
+  "_meta": {
+    "description": "Copywriting templates per business type — headline formulas, sub-copy, CTA text, about openers, service descriptions",
+    "usage": "Koristi formule kao osnovu. Popuni [PLACEHOLDERS] sa stvarnim podacima iz briefa. Prilagodi jezik (bs/de/en).",
+    "version": "1.0"
+  },
+
+  "hero_headline_formulas": {
+
+    "sport-fitness": {
+      "formula_1": "[REZULTAT] počinje ovdje.",
+      "formula_2": "Treniraj kao [ELITA]. Postani [CILJ].",
+      "formula_3": "Nije gym. To je [DISCIPLINE] akademija.",
+      "formula_4": "[N]+ boraca. Jedan cilj: [OUTCOME].",
+      "sub_formula": "Treninzi za [NIVO] — od početnika do profesionalaca. [GRAD], svaki dan.",
+      "cta_options": ["Rezerviraj probni trening", "Besplatni prvi trening", "Vidi raspored", "Pridruži se"],
+      "examples_de": {
+        "h1": "Stärker werden beginnt hier.",
+        "h2": "MMA · BJJ · Kickboxen in Linz",
+        "sub": "Professionelles Training für alle Levels. Jeden Tag. Erste Einheit kostenlos.",
+        "cta": "Gratis Probetraining"
+      },
+      "examples_bs": {
+        "h1": "Postani bolji. Svaki dan.",
+        "h2": "MMA akademija u Linzu",
+        "sub": "Treninzi prilagođeni svim nivoima — od potpunih početnika do natjecatelja.",
+        "cta": "Besplatni probni trening"
+      }
+    },
+
+    "restaurant-food": {
+      "formula_1": "Gdje [PORIJEKLO] tradicija postaje [OSJEĆAJ].",
+      "formula_2": "[ADJECTIVE] hrana. [ADJECTIVE] atmosfera. [GRAD].",
+      "formula_3": "Svaki zalogaj priča [PRICHA].",
+      "formula_4": "Kuhinjausta za [PRILIKE].",
+      "sub_formula": "Svježi sastojci, [COOKING_STYLE] priprema. Rezerviraj stol za [EVENT/SVAKI DAN].",
+      "cta_options": ["Rezerviraj stol", "Pogledaj meni", "Naruči online", "Rezervacija"],
+      "examples_de": {
+        "h1": "Wo Genuss auf Tradition trifft.",
+        "h2": "Bosnische & internationale Küche in Wien",
+        "sub": "Frische Zutaten, traditionelle Rezepte, herzliche Atmosphäre.",
+        "cta": "Tisch reservieren"
+      }
+    },
+
+    "salon-beauty": {
+      "formula_1": "Tvoja [BEAUTY_ASPECT] je naš zanat.",
+      "formula_2": "Ljepota koja [TRAJANJE]. Stručnost koja [OSJEĆAJ].",
+      "formula_3": "Više od [USLUGA]. To je ritual.",
+      "formula_4": "[ADJECTIVE] tretmani. [ADJECTIVE] rezultati.",
+      "sub_formula": "Specijalizirani za [USLUGE]. Termin već za [TIMEFRAME]. [GRAD].",
+      "cta_options": ["Rezerviraj termin", "Pogledaj usluge", "Booking online", "Zakaži"],
+      "examples_de": {
+        "h1": "Deine Schönheit ist unser Handwerk.",
+        "h2": "Haare · Nägel · Wimpern in Graz",
+        "sub": "Spezialisiert auf natürliche Looks und moderne Techniken. Termin in 24h.",
+        "cta": "Termin buchen"
+      }
+    },
+
+    "web-agency": {
+      "formula_1": "Websites koji [PRAVE_RAZLIKU].",
+      "formula_2": "[N] dana do live sajta. Garantovano.",
+      "formula_3": "Ne pravimo template. Pravimo [BRAND].",
+      "formula_4": "Dizajn koji prodaje. Kod koji traje.",
+      "sub_formula": "Od briefa do live — [TIMEFRAME]. SEO, dizajn, deployment uključeni.",
+      "cta_options": ["Besplatni brief", "Pogledaj radove", "Kontaktiraj nas", "Pokreni projekt"],
+      "examples_en": {
+        "h1": "Websites that work while you sleep.",
+        "h2": "Design · Development · SEO",
+        "sub": "Live in 24-72 hours. No templates, no bloat. Just fast, beautiful sites that convert.",
+        "cta": "Start your project"
+      }
+    },
+
+    "portfolio-freelancer": {
+      "formula_1": "[ROLE] sa strašću za [SPECIALTY].",
+      "formula_2": "Pretvaramo [INPUT] u [OUTPUT].",
+      "formula_3": "[N]+ projekata. [N]+ zadovoljnih klijenata.",
+      "formula_4": "Radim [WHAT]. Moja vizija, tvoj brand.",
+      "sub_formula": "Dostupan za freelance projekte u [NICHE]. Remote ili [GRAD].",
+      "cta_options": ["Pogledaj radove", "Kontaktiraj me", "Download CV", "Hajde radimo"]
+    },
+
+    "local-business": {
+      "formula_1": "[GRAD]'s most trusted [CATEGORY].",
+      "formula_2": "Servisiamo [REGION] od [YEAR].",
+      "formula_3": "Brzo. Pouzdano. [LOKALNO].",
+      "formula_4": "Kad treba biti urađeno kako treba.",
+      "sub_formula": "[USLUGE] za [TARGET]. Dostupni [HOURS]. Pozovi odmah.",
+      "cta_options": ["Pozovi odmah", "Zatraži ponudu", "Kontaktiraj nas", "Besplatna procjena"]
+    },
+
+    "real-estate": {
+      "formula_1": "Pronađi dom koji [OSJEĆAJ].",
+      "formula_2": "[N]+ nekretnina. Jedna za tebe.",
+      "formula_3": "Kupovina. Prodaja. Bez kompromisa.",
+      "formula_4": "[GRAD] nekretnine — stručno vodstvo.",
+      "cta_options": ["Pretraži ponudu", "Besplatna procjena", "Kontaktiraj agenta", "Zakazi razgovor"]
+    },
+
+    "medical-health": {
+      "formula_1": "Vaše zdravlje, naša misija.",
+      "formula_2": "Stručna njega. [ADJECTIVE] okruženje.",
+      "formula_3": "Više od liječenja — [HOLISTIC_APPROACH].",
+      "formula_4": "Povjerite nam [HEALTH_ASPECT].",
+      "sub_formula": "Specijalnost: [AREAS]. Termin u [TIMEFRAME]. [LOKACIJA].",
+      "cta_options": ["Zakazi pregled", "Kontaktiraj nas", "Online narudžba", "Pozovi"]
+    },
+
+    "ecommerce": {
+      "formula_1": "[ADJECTIVE] [PRODUKT] — isporučen za [TIMEFRAME].",
+      "formula_2": "Sve što trebaš za [LIFESTYLE/NEED]. Na jednom mjestu.",
+      "formula_3": "[N]+ zadovoljnih kupaca. Tvoj red.",
+      "formula_4": "Kupi [PRODUKT]. Pocijeni razliku.",
+      "sub_formula": "Besplatna dostava od [IZNOS] €. [N] dana povrat bez pitanja.",
+      "cta_options": ["Kupi odmah", "Shop now", "Pogledaj kolekciju", "Istraži ponudu"],
+      "examples_de": {
+        "h1": "Qualität, die bleibt.",
+        "h2": "Handgefertigte [PRODUKT] aus [HERKUNFT]",
+        "sub": "Kostenloser Versand ab €49. 30 Tage Rückgabe. Direkt vom Hersteller.",
+        "cta": "Jetzt einkaufen"
+      }
+    },
+
+    "autohaus": {
+      "formula_1": "Vaš auto, naša briga. [N]+ godina iskustva.",
+      "formula_2": "Stručan servis. [ADJECTIVE] rok. [ADJECTIVE] cijena.",
+      "formula_3": "Nije samo servis — to je [PARTNERSHIP].",
+      "formula_4": "Sve marke. Jedna adresa. [GRAD].",
+      "sub_formula": "Termin za [TIMEFRAME]. Transparentne cijene. Certifikovani tehničari.",
+      "cta_options": ["Zakazi termin", "Jetzt Termin buchen", "Anrufen", "Angebot anfragen"],
+      "examples_de": {
+        "h1": "Ihr Auto in besten Händen.",
+        "h2": "KFZ Werkstatt · Reifenservice · HU/AU in [Grad]",
+        "sub": "Alle Marken. Feste Preise. Termin online oder telefonisch — schnell und unkompliziert.",
+        "cta": "Termin buchen"
+      }
+    },
+
+    "legal": {
+      "formula_1": "Vaše pravo. Naša stručnost.",
+      "formula_2": "Pravna sigurnost za [SITUATION].",
+      "formula_3": "Jasna strategija. [ADJECTIVE] zastupanje.",
+      "formula_4": "[AREA] pravo — bez kompromisa.",
+      "sub_formula": "Specijalnost: [RECHTSGEBIETE]. Erstgespräch kostenlos. [GRAD].",
+      "cta_options": ["Besplatni razgovor", "Kostenlose Erstberatung", "Kontakt", "Termin anfragen"],
+      "examples_de": {
+        "h1": "Ihr Recht. Unsere Stärke.",
+        "h2": "Rechtsanwaltskanzlei [NAME] — [Spezialisierung] in [Grad]",
+        "sub": "Kompetente Beratung in [Rechtsgebieten]. Klare Kommunikation, faire Honorare.",
+        "cta": "Kostenlose Erstberatung"
+      }
+    },
+
+    "events-wedding": {
+      "formula_1": "Vaš [EVENT] — savršen do posljednjeg detalja.",
+      "formula_2": "Jednom se živi. Jednom se pravi [EVENT].",
+      "formula_3": "Mi pamtimo svaki detalj. Vi pamtite trenutak.",
+      "formula_4": "Od vizije do stvarnosti — [N]+ nezaboravnih [EVENTS].",
+      "sub_formula": "Potpuna organizacija ili samo koordinacija — kako vam odgovara.",
+      "cta_options": ["Besplatna konsultacija", "Kontaktiraj nas", "Unverbindliches Gespräch", "Jetzt anfragen"],
+      "examples_de": {
+        "h1": "Ihr Tag. Perfekt in jedem Detail.",
+        "h2": "Hochzeitsplanung & Event Management in [Grad]",
+        "sub": "Von der ersten Idee bis zum letzten Tanz — wir planen, Sie genießen.",
+        "cta": "Kostenlose Erstberatung"
+      },
+      "examples_bs": {
+        "h1": "Vaš dan. Naša posvećenost.",
+        "h2": "Organizacija vjenčanja i evenata u [Grad]",
+        "sub": "Svaki detalj osmišljen s ljubavlju. Vi uživate — mi brinemo o svemu.",
+        "cta": "Besplatna konsultacija"
+      }
+    },
+
+    "architecture-interior": {
+      "formula_1": "Prostori koji [OSJEĆAJ/FUNKCIJA].",
+      "formula_2": "Dizajn koji traje. Arhitektura koja [IMPRESSES].",
+      "formula_3": "Svaki prostor priča priču. Neka vaša bude [ADJECTIVE].",
+      "formula_4": "Od nacrta do doma — [N]+ projekata u [GRAD].",
+      "sub_formula": "Stambena i komercijalna arhitektura. [GRAD] i okolica.",
+      "cta_options": ["Projekt inquiry", "Erstgespräch", "Kontakt", "Projekt anfragen"],
+      "examples_de": {
+        "h1": "Räume, die bleiben.",
+        "h2": "Architektur & Innenarchitektur · [Grad]",
+        "sub": "Vom Konzept bis zur Schlüsselübergabe — präzise geplant, handwerklich umgesetzt.",
+        "cta": "Projekt anfragen"
+      }
+    },
+
+    "hotel-accommodation": {
+      "formula_1": "Više od noćenja — [EXPERIENCE].",
+      "formula_2": "Vaš dom u [GRAD/REGION].",
+      "formula_3": "Odmarajte gdje [LOKALNI_OSJEĆAJ].",
+      "formula_4": "[ADJECTIVE] boravak. Nezaboravna iskustva.",
+      "sub_formula": "[N] smještajnih jedinica. [LOKACIJA_PREDNOST]. Besplatni otkazivanje.",
+      "cta_options": ["Rezerviši sada", "Jetzt buchen", "Verfügbarkeit prüfen", "Direktna rezervacija"],
+      "examples_de": {
+        "h1": "Mehr als eine Übernachtung.",
+        "h2": "Boutique Hotel [NAME] — [Grad], [Region]",
+        "sub": "Herzliche Gastfreundschaft, ruhige Lage, direkte Buchung ohne Gebühren.",
+        "cta": "Zimmer buchen"
+      }
+    },
+
+    "education-courses": {
+      "formula_1": "[SKILL] koji otvara vrata.",
+      "formula_2": "Uči od [EXPERT_TYPE]. Postani [OUTCOME].",
+      "formula_3": "[N]+ polaznika. [N]% uspješno završilo.",
+      "formula_4": "Tvoje znanje. Naša metoda. Zajedno do [CILJ].",
+      "sub_formula": "[NIVO] za [TARGET_AUDIENCE]. Online ili uživo. Certifikat uključen.",
+      "cta_options": ["Prijavi se", "Besplatni uvodni sat", "Kostenlose Probestunde", "Jetzt anmelden"],
+      "examples_de": {
+        "h1": "Deutsch lernen, das wirkt.",
+        "h2": "Sprachschule [NAME] — [Grad]",
+        "sub": "Kleine Gruppen, erfahrene Lehrkräfte, flexibel online oder vor Ort. Erste Stunde kostenlos.",
+        "cta": "Kostenlose Probestunde"
+      },
+      "examples_bs": {
+        "h1": "Znanje koje ostaje.",
+        "h2": "Kursevi [PREDMET] u [Grad]",
+        "sub": "Male grupe, individualni pristup, certifikat na kraju kursa.",
+        "cta": "Besplatni probni čas"
+      }
+    },
+
+    "barber-shop": {
+      "formula_1": "Pravi majstor. Pravi rez.",
+      "formula_2": "Tradicija brijanja. [ADJECTIVE] preciznost.",
+      "formula_3": "Svaki detalj se računa.",
+      "formula_4": "[ADJECTIVE] izgled. [ADJECTIVE] osjećaj. [GRAD].",
+      "sub_formula": "Haircut, Beard, Hot Towel Shave. Termin online. [GRAD].",
+      "cta_options": ["Rezerviši termin", "Book now", "Termin online", "Jetzt buchen"],
+      "examples_de": {
+        "h1": "Echter Schnitt. Echter Stil.",
+        "h2": "Barbershop [NAME] — [Grad]",
+        "sub": "Klassische Barbierkunst trifft modernes Styling. Schnell, präzise, persönlich.",
+        "cta": "Termin buchen"
+      },
+      "examples_bs": {
+        "h1": "Pravi majstor. Pravi rez.",
+        "h2": "Barbershop [NAME] u [Grad]",
+        "sub": "Šišanje, brada, hot towel shave. Termin za 10 minuta.",
+        "cta": "Rezerviši termin"
+      }
+    }
+  },
+
+  "section_copy_templates": {
+
+    "about": {
+      "opener_formulas": [
+        "Nismo [GENERIC]. Mi smo [SPECIFIC].",
+        "Od [YEAR], [WHAT_WE_DO] u [GRAD].",
+        "Naša priča počinje sa [FOUNDING_MOMENT].",
+        "[N] godine iskustva. [N] zadovoljnih klijenata. Jedno obećanje: [PROMISE]."
+      ],
+      "stat_labels": ["Godina iskustva", "Zadovoljnih klijenata", "Projekata završeno", "Gradova"],
+      "value_prop_structure": "[SERVICE_VERB] koji [BENEFIT]. Bez [NEGATIVE]. Samo [POSITIVE]."
+    },
+
+    "services": {
+      "service_card_structure": {
+        "title": "Max 3 riječi — konkretna usluga",
+        "description": "1-2 rečenice. Šta KLIJENT dobija, ne šta TI radiš.",
+        "cta": "Kratko → saznaj više / rezerviši / kontaktiraj"
+      },
+      "description_formula": "[BENEFIT] za [TARGET]. Uz [FEATURE] i [FEATURE2]."
+    },
+
+    "testimonials": {
+      "review_structure": {
+        "quote": "Specifična priča — nije 'odlično', nego 'za [N] dana sam [OUTCOME]'",
+        "attribution": "Ime Prezime, [ROLA/GRAD]",
+        "rating": "5/5 zvjezdica"
+      },
+      "section_headline_options": [
+        "Šta kažu naši klijenti",
+        "Rezultati govore",
+        "Povjerenje [N]+ klijenata",
+        "Ovo kažu o nama"
+      ]
+    },
+
+    "faq": {
+      "question_starters": [
+        "Koliko košta [USLUGA]?",
+        "Koliko dugo traje [PROCES]?",
+        "Da li [COMMON_CONCERN]?",
+        "Kako početi?",
+        "Šta je uključeno u [PAKET]?",
+        "Da li radite [SPECIFIC_CASE]?"
+      ],
+      "section_headline": "Česta pitanja"
+    },
+
+    "cta_section": {
+      "urgency_formulas": [
+        "Počni danas. [BENEFIT] već [TIMEFRAME].",
+        "Slobodnih mjesta: [N]. Rezerviši odmah.",
+        "Besplatna [OFFER] — samo do [DATE].",
+        "Kontaktiraj nas. Odgovor u [TIMEFRAME]."
+      ],
+      "generic_ctas": [
+        "Krenimo zajedno →",
+        "Napravi prvi korak",
+        "Rezerviši svoju [SESSION]",
+        "Razgovarajmo →"
+      ]
+    }
+  },
+
+  "seo_title_formulas": {
+    "local_business": "[USLUGA] [GRAD] | [BRAND_NAME] — [USP]",
+    "portfolio": "[IME] — [ROLE] | [SPECIALTY] & [SPECIALTY2]",
+    "agency": "[BRAND] | [USLUGA] [GRAD] | Live in [TIMEFRAME]",
+    "restaurant": "[NAZIV] [GRAD] | [KUHINJA] Restoran | Rezervacija",
+    "examples": {
+      "gym": "Delta Team MMA Linz | BJJ, Kickboxen & MMA Training",
+      "agency": "Digital Nature | Webdesign Linz | Live in 24h",
+      "salon": "Bella Beauty Graz | Friseur & Kosmetik | Online Termin"
+    }
+  },
+
+  "meta_description_formulas": {
+    "formula": "[BRAND] — [PRIMARY_SERVICE] u [GRAD]. [USP]. [CTA] — [CONTACT_DETAIL].",
+    "max_chars": 160,
+    "examples": {
+      "gym": "Delta Team MMA Linz — professionelles Training in MMA, BJJ und Kickboxen. Für Anfänger bis Profis. Kostenloses Probetraining buchen.",
+      "salon": "Bella Beauty Graz — Friseur, Nägel & Wimpern. Schnelle Terminvergabe, faire Preise. Jetzt online buchen oder anrufen.",
+      "agency": "Digital Nature Linz — professionelle Websites ab €490. Live in 24-72h. SEO, Design & Hosting inklusive. Jetzt Projekt starten."
+    }
+  },
+
+  "language_notes": {
+    "german_at": "Du-Form preferirano (außer medical). Kurze Sätze. Verben ans Ende.",
+    "german_de": "Sie-Form za professionalne servise. Du-Form za sport/lifestyle.",
+    "bosnian": "Vi-forma za business, ti-forma za sport/casual. Izbjegavati anglicizme u naslovima.",
+    "english": "Active voice. Power verbs: transform, unlock, build, master, grow. Avoid: amazing, great, best."
+  }
+}

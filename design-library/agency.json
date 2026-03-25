@@ -1,0 +1,169 @@
+{
+  "_meta": {
+    "type": "agency",
+    "description": "Marketing agencija, web agencija, dizajn studio, PR agencija, konzalting, IT firma, startup",
+    "keywords": ["agencija", "tim", "projekti", "klijenti", "strategija", "growth", "digitalni marketing", "branding"],
+    "examples": ["web agencija", "marketing firma", "dizajn studio", "IT konzalting", "startup"]
+  },
+
+  "palettes": [
+    {
+      "name": "Dark Agency",
+      "mood": "profesionalno, ambiciozno, dark-modern",
+      "bg":        "#06080f",
+      "bg2":       "#0d1018",
+      "bg3":       "#131822",
+      "border":    "rgba(99,102,241,0.15)",
+      "primary":   "#6366f1",
+      "text":      "#f0f0ff",
+      "text2":     "rgba(240,240,255,0.65)",
+      "text3":     "rgba(240,240,255,0.35)",
+      "cta":       "#6366f1",
+      "cta_hover": "#818cf8",
+      "success":   "#22c55e",
+      "warning":   "#f59e0b",
+      "error":     "#ef4444"
+    },
+    {
+      "name": "Electric Teal",
+      "mood": "inovativno, energično, tech-forward",
+      "bg":        "#040d10",
+      "bg2":       "#081419",
+      "bg3":       "#0d1c22",
+      "border":    "rgba(20,184,166,0.15)",
+      "primary":   "#14b8a6",
+      "text":      "#f0faf9",
+      "text2":     "rgba(240,250,249,0.65)",
+      "text3":     "rgba(240,250,249,0.35)",
+      "cta":       "#14b8a6",
+      "cta_hover": "#2dd4bf",
+      "success":   "#22c55e",
+      "warning":   "#f59e0b",
+      "error":     "#ef4444"
+    },
+    {
+      "name": "Clean Corporate",
+      "mood": "povjerenje, stabilnost, enterprise",
+      "bg":        "#ffffff",
+      "bg2":       "#f8fafc",
+      "bg3":       "#f1f5f9",
+      "border":    "rgba(0,0,0,0.07)",
+      "primary":   "#0f172a",
+      "text":      "#0f172a",
+      "text2":     "#475569",
+      "text3":     "#94a3b8",
+      "cta":       "#4f46e5",
+      "cta_hover": "#4338ca",
+      "success":   "#16a34a",
+      "warning":   "#d97706",
+      "error":     "#dc2626"
+    },
+    {
+      "name": "Bold Orange",
+      "mood": "kreativno, smjelo, startup vibes",
+      "bg":        "#0a0500",
+      "bg2":       "#130a00",
+      "bg3":       "#1c1000",
+      "border":    "rgba(249,115,22,0.15)",
+      "primary":   "#f97316",
+      "text":      "#fff8f0",
+      "text2":     "rgba(255,248,240,0.65)",
+      "text3":     "rgba(255,248,240,0.35)",
+      "cta":       "#f97316",
+      "cta_hover": "#fb923c",
+      "success":   "#22c55e",
+      "warning":   "#f59e0b",
+      "error":     "#ef4444"
+    }
+  ],
+
+  "fonts": [
+    {
+      "name": "Tech Modern",
+      "heading": "Plus Jakarta Sans",
+      "body": "Inter",
+      "mono": "JetBrains Mono",
+      "google_url": "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap",
+      "note": "Premium tech feel — za web agencije i IT firme"
+    },
+    {
+      "name": "Bold Sans",
+      "heading": "Syne",
+      "body": "DM Sans",
+      "mono": null,
+      "google_url": "https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap",
+      "note": "Edgy i moderno — za kreativne agencije"
+    },
+    {
+      "name": "Corporate Clean",
+      "heading": "Montserrat",
+      "body": "Source Sans 3",
+      "mono": null,
+      "google_url": "https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Source+Sans+3:wght@300;400;600&display=swap",
+      "note": "Profesionalno i čitljivo — za konzalting i enterprise"
+    }
+  ],
+
+  "animations": {
+    "scroll": "fade-up",
+    "hero_text": "typing",
+    "particles": true,
+    "tilt_cards": true,
+    "preloader": true,
+    "dark_mode_toggle": true,
+    "counter_numbers": true,
+    "gradient_mesh": true,
+    "note": "Agencije mogu imati više efekata — to demonstrira tehničke sposobnosti"
+  },
+
+  "hero": {
+    "style": "centered-with-gradient",
+    "note": "Snažna headline + kratak value proposition + 2 CTA — bez distrakcija",
+    "headline_formula": "[Što radite] za [Rezultat]",
+    "headline_example": "Digitalni marketing koji donosi rezultate",
+    "cta_primary": "Pokreni projekt",
+    "cta_secondary": "Naši radovi",
+    "trust_elements": ["Broj projekata", "Zadovoljnih klijenata", "Godina iskustva", "Generisani prihod klijenata"]
+  },
+
+  "sections_recommended": [
+    "hero",
+    "clients-logos",
+    "services",
+    "case-studies",
+    "process",
+    "stats",
+    "team",
+    "testimonials",
+    "faq",
+    "contact-cta",
+    "footer"
+  ],
+
+  "sections_optional": [
+    "blog",
+    "awards",
+    "pricing",
+    "careers",
+    "tech-stack"
+  ],
+
+  "special_features": {
+    "case_studies": {
+      "note": "Prikaži 2-3 case study sa rezultatima — konkretni brojevi prodaju agenciju",
+      "layout": "featured cards sa before/after metrima"
+    },
+    "process": {
+      "note": "Koraci rada — klijenti žele znati što ih čeka",
+      "layout": "horizontalni timeline ili numbered steps"
+    }
+  },
+
+  "schema_type": "Organization",
+  "schema_subtypes": ["ProfessionalService", "MarketingAgency", "ITCompany"],
+
+  "og_image": {
+    "tags_example": ["Digitalni marketing", "Web dizajn", "SEO", "Growth"],
+    "tagline_example": "Vaš partner za digitalni rast"
+  }
+}

@@ -1,0 +1,279 @@
+{
+  "_doc": "Advanced animation layer — opt-in experimental tier za new-website-v3. Overlay na bilo koji mood, ne zamjenjuje dizajn system.",
+
+  "_workflow": "KAKO DODATI NOVU TEHNIKU: 1) Dodaj entry pod 'techniques' sa _doc/html/css/js/usage poljima. 2) Dodaj ključ u relevantne mood_experimental_combos[] arraye. 3) Dodaj u experimental_presets gdje odgovara. 4) Dodaj u skill quick reference u new-website-v3.md. NEMA POTREBE za HTML demo-om — JSON + skill docs su dovoljni.",
+
+  "libraries": {
+    "gsap":             "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js",
+    "gsap_scrolltrigger":"https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js",
+    "lenis":            "https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"
+  },
+
+  "techniques": {
+
+    "lenis_init": {
+      "_doc": "Smooth scroll — uvijek na vrhu JS, ako je experimental aktivan",
+      "_used_in": ["forma_dark", "arca_editorial", "vila_hospitality"],
+      "js": "const lenis = new Lenis({ duration: 1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true }); lenis.on('scroll', ScrollTrigger.update); gsap.ticker.add(time => lenis.raf(time * 1000)); gsap.ticker.lagSmoothing(0);"
+    },
+
+    "grain_overlay": {
+      "_doc": "CSS grain tekstura — SVG turbulence filter, animiran. Opacity ovisi o mood-u.",
+      "_used_in": ["forma_dark", "arca_editorial", "vila_hospitality"],
+      "opacity_per_mood": { "brutalist":0.035, "luxury_dark":0.05, "editorial":0.04, "neon_cyberpunk":0.06, "dark_tech":0.05, "glassmorphism":0.025, "earth_organic":0.025, "neobrutalism":0.025, "pastel_soft":0.02, "swiss_minimal":0.03 },
+      "css": "body::before { content:''; position:fixed; inset:0; z-index:9999; pointer-events:none; opacity:[OPACITY]; background-image:url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\"); animation:grain .5s steps(2) infinite; }",
+      "keyframes": "@keyframes grain { 0%{background-position:0 0} 25%{background-position:60% 30%} 50%{background-position:30% 70%} 75%{background-position:80% 40%} }"
+    },
+
+    "scroll_progress": {
+      "_doc": "Tanka traka na vrhu koja pokazuje scroll progress.",
+      "_used_in": ["forma_dark", "arca_editorial", "vila_hospitality"],
+      "html": "<div class='scroll-prog' aria-hidden='true'></div>",
+      "css": ".scroll-prog { position:fixed; top:0; left:0; height:2px; background:var(--primary); z-index:9996; width:0%; }",
+      "js_lenis": "lenis.on('scroll', ({ progress }) => { document.querySelector('.scroll-prog').style.width = (progress*100)+'%'; });",
+      "js_fallback": "window.addEventListener('scroll', () => { const pct=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100; document.querySelector('.scroll-prog').style.width=pct+'%'; });"
+    },
+
+    "custom_cursor": {
+      "_doc": "Cursor: dot (6px) + ring (40px) sa lerp lag. mix-blend-mode:difference. FORMA style.",
+      "_used_in": ["forma_dark"],
+      "html": "<div class='cursor-dot' aria-hidden='true'></div><div class='cursor-ring' aria-hidden='true'></div>",
+      "css": "@media (pointer:fine) { *{cursor:none!important} .cursor-dot{position:fixed;width:6px;height:6px;border-radius:50%;background:var(--accent,var(--primary));pointer-events:none;z-index:99999;transform:translate(-50%,-50%);mix-blend-mode:difference} .cursor-ring{position:fixed;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--accent,var(--primary));pointer-events:none;z-index:99998;transform:translate(-50%,-50%);mix-blend-mode:difference;opacity:.6;transition:width .2s,height .2s} .cursor-ring.hover{width:60px;height:60px;opacity:.3} }",
+      "js": "const dot=document.querySelector('.cursor-dot'),ring=document.querySelector('.cursor-ring'); let mx=0,my=0,rx=0,ry=0; window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'}); (function lerp(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(lerp)})(); document.querySelectorAll('a,button,[data-cursor-hover]').forEach(el=>{el.addEventListener('mouseenter',()=>ring.classList.add('hover'));el.addEventListener('mouseleave',()=>ring.classList.remove('hover'))});"
+    },
+
+    "cursor_label": {
+      "_doc": "Cursor: tekst pill koji se mijenja po sekciji. Dodaj data-cursor-label='EXPLORE' na hover elemente. ARCA style.",
+      "_used_in": ["arca_editorial"],
+      "html": "<div class='cursor-label' id='cursorLabel' aria-hidden='true'></div>",
+      "css": ".cursor-label{position:fixed;pointer-events:none;background:var(--text,#1A1A1A);color:var(--bg,#fff);font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:100px;z-index:9998;opacity:0;transition:opacity .2s;transform:translate(14px,-50%);white-space:nowrap} .cursor-label.visible{opacity:1}",
+      "js": "const lbl=document.getElementById('cursorLabel'); document.addEventListener('mousemove',e=>{lbl.style.left=e.clientX+'px';lbl.style.top=e.clientY+'px'}); document.querySelectorAll('[data-cursor-label]').forEach(el=>{el.addEventListener('mouseenter',()=>{lbl.textContent=el.dataset.cursorLabel;lbl.classList.add('visible')});el.addEventListener('mouseleave',()=>lbl.classList.remove('visible'))});",
+      "usage": "Dodaj data-cursor-label='EXPLORE' / 'VIEW' / 'WRITE' na btn, section, gallery item"
+    },
+
+    "loader_letters": {
+      "_doc": "Loader: slova brand naziva stagger-in → traka → yPercent(-100) exit. FORMA style.",
+      "_used_in": ["forma_dark"],
+      "html": "<div id='loader' role='status' aria-label='Loading'><div class='ldr-inner'><div class='ldr-letters'></div><div class='ldr-bar'><div class='ldr-fill'></div></div></div></div>",
+      "css": "#loader{position:fixed;inset:0;z-index:99990;background:var(--bg);display:flex;align-items:center;justify-content:center} .ldr-inner{text-align:center} .ldr-letters{display:flex;gap:.05em;justify-content:center;margin-bottom:2rem} .ldr-letter{font-family:var(--font-heading);font-weight:800;font-size:clamp(2.5rem,8vw,6rem);color:var(--text);opacity:0;transform:translateY(20px)} .ldr-bar{width:160px;height:2px;background:rgba(0,0,0,.1);margin:0 auto} .ldr-fill{height:100%;width:0%;background:var(--primary);transition:width .05s linear}",
+      "js": "function initLoaderLetters(brandName){const ll=document.querySelector('.ldr-letters');brandName.split('').forEach(c=>{const s=document.createElement('span');s.className='ldr-letter';s.textContent=c===' '?'\\u00A0':c;ll.appendChild(s)});const fill=document.querySelector('.ldr-fill');let p=0;const t=setInterval(()=>{p=Math.min(100,p+Math.random()*15+5);fill.style.width=p+'%';if(p>=100)clearInterval(t)},80);gsap.to('.ldr-letter',{opacity:1,y:0,duration:.6,stagger:.07,ease:'power3.out',onComplete:()=>{setTimeout(()=>{gsap.to('#loader',{yPercent:-100,duration:.9,ease:'power3.inOut',onComplete:()=>{document.getElementById('loader').style.display='none';document.body.classList.add('loaded')}})},300)}})}"
+    },
+
+    "loader_number": {
+      "_doc": "Loader: broj 0→100 u centru → split-screen gore/dole exit. ARCA style.",
+      "_used_in": ["arca_editorial"],
+      "html": "<div id='loader' aria-hidden='true'><div class='ldr-half ldr-top'></div><div class='ldr-num' id='ldrNum'>0</div><div class='ldr-half ldr-bot'></div></div>",
+      "css": "#loader{position:fixed;inset:0;z-index:99990;display:flex;align-items:center;justify-content:center;pointer-events:none} .ldr-half{position:absolute;left:0;right:0;background:var(--dark,#1A1A1A);height:50%;transition:transform .9s cubic-bezier(.76,0,.24,1)} .ldr-top{top:0} .ldr-bot{bottom:0} .ldr-num{position:relative;z-index:2;font-family:var(--font-heading);font-size:clamp(6rem,18vw,12rem);font-weight:700;color:var(--bg,#fff);letter-spacing:-4px;line-height:1;transition:opacity .3s} #loader.open .ldr-top{transform:translateY(-100%)} #loader.open .ldr-bot{transform:translateY(100%)} #loader.open .ldr-num{opacity:0} #loader.done{display:none}",
+      "js": "function initLoaderNumber(){const numEl=document.getElementById('ldrNum'),loader=document.getElementById('loader');let c=0;const t=setInterval(()=>{c=Math.min(100,c+Math.floor(Math.random()*9+4));numEl.textContent=c;if(c>=100){clearInterval(t);setTimeout(()=>{loader.classList.add('open');setTimeout(()=>{loader.classList.add('done');document.body.classList.remove('loading')},950)},180)}},55)}"
+    },
+
+    "hero_line_reveal": {
+      "_doc": "Headline: linije upadaju iz clip-path dolje gore, stagger. Wrap svaki red u .reveal-line span.",
+      "_used_in": ["forma_dark", "arca_editorial"],
+      "html_example": "<h1><span class='h-line'><span class='h-line-inner'>Your Headline</span></span><br><span class='h-line'><span class='h-line-inner'>Second Line</span></span></h1>",
+      "css": ".h-line{display:block;overflow:hidden} .h-line-inner{display:block;opacity:0;transform:translateY(100%)}",
+      "js": "gsap.to('.h-line-inner',{y:0,opacity:1,duration:1.1,stagger:.14,ease:'power4.out',delay:.3})"
+    },
+
+    "hero_clip_reveal": {
+      "_doc": "Hero right panel ili cijela sekcija: clip-path inset od desne strane. Za split-screen hero.",
+      "_used_in": ["arca_editorial"],
+      "js": "gsap.from('.hero-right, [data-hero-clip]',{clipPath:'inset(0 100% 0 0)',duration:1.4,ease:'power4.out',delay:.2})"
+    },
+
+    "video_hero": {
+      "_doc": "Full-screen video background u hero sekciji. Poster image kao fallback. Play/pause ctrl.",
+      "_used_in": ["vila_hospitality"],
+      "html": "<section id='hero'><video id='heroVid' autoplay muted loop playsinline poster='[POSTER_URL]' aria-hidden='true'><source src='videos/hero.mp4' type='video/mp4'></video><div class='hero-overlay' aria-hidden='true'></div><div class='hero-content'>[CONTENT]</div><button class='video-ctrl' id='videoCtrl' aria-label='Pause video'>⏸</button></section>",
+      "css": "#hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden} #heroVid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 8s ease-out} #heroVid.playing{transform:scale(1)} .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.25) 0%,rgba(0,0,0,.1) 40%,rgba(0,0,0,.65) 100%)} .hero-content{position:relative;z-index:2;text-align:center} .video-ctrl{position:absolute;bottom:2rem;right:2.5rem;z-index:3;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.7);width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px)}",
+      "js": "window.addEventListener('load',()=>{const v=document.getElementById('heroVid');if(v)v.classList.add('playing')}); const vid=document.getElementById('heroVid'),ctrl=document.getElementById('videoCtrl'); if(vid&&ctrl){ctrl.addEventListener('click',()=>{if(vid.paused){vid.play();ctrl.textContent='⏸';ctrl.setAttribute('aria-label','Pause video')}else{vid.pause();ctrl.textContent='▶';ctrl.setAttribute('aria-label','Play video')}})}",
+      "usage": "Poster image se prikazuje dok se video učitava. Stavi hero.mp4 u html/videos/ folder.",
+      "note": "Za production: koristiti WebM + MP4, kompresovati na max 8MB za hero video"
+    },
+
+    "bg_color_morph": {
+      "_doc": "Body background boja se mijenja dok scrolluješ kroz sekcije — GSAP gsap.to(body, { backgroundColor }). VILA style.",
+      "_used_in": ["vila_hospitality"],
+      "js_pattern": "const bgStops=[{trigger:'#section1',bg:'#FAF6F0'},{trigger:'#section2',bg:'#F5EDE0'},{trigger:'#dark-section',bg:'#1E1208'}]; bgStops.forEach(({trigger,bg},i)=>{ const prev=i>0?bgStops[i-1].bg:document.body.style.backgroundColor||'#1A1A1A'; ScrollTrigger.create({trigger,start:'top 55%',onEnter:()=>gsap.to('body',{backgroundColor:bg,duration:1.4,ease:'power2.inOut'}),onLeaveBack:()=>gsap.to('body',{backgroundColor:prev,duration:1.2,ease:'power2.inOut'})}) });",
+      "usage": "Postavi body{background:var(--dark)} kao početni, pa definiši bgStops array sa trigger+bg parovima za svaku sekciju",
+      "note": "Radi s dark hero sekcijama — body kreće tamno, zatim prelazi u light dok korisnik skrola"
+    },
+
+    "mouse_parallax": {
+      "_doc": "Hero slika prati pokret miša — subtle depth efekat. ARCA style.",
+      "_used_in": ["arca_editorial"],
+      "js": "document.addEventListener('mousemove',e=>{ const xPct=(e.clientX/window.innerWidth-.5)*2; const yPct=(e.clientY/window.innerHeight-.5)*2; gsap.to('[data-mouse-parallax]',{x:xPct*-18,y:yPct*-12,duration:1.4,ease:'power2.out'}) });",
+      "html_attr": "data-mouse-parallax",
+      "css": "[data-mouse-parallax]{will-change:transform}",
+      "usage": "Dodaj data-mouse-parallax na img/div koji treba da prati miš. Koristi position:absolute;inset:-8% na wrappered img za headroom."
+    },
+
+    "blur_reveal": {
+      "_doc": "Elementi se pojavljuju iz blura — filter:blur(8px)→0 + scale(1.02)→1 na scroll. VILA gallery style.",
+      "_used_in": ["vila_hospitality"],
+      "js": "gsap.utils.toArray('[data-blur-reveal]').forEach((el,i)=>{ gsap.fromTo(el,{opacity:0,filter:'blur(8px)',scale:1.02},{opacity:1,filter:'blur(0px)',scale:1,duration:1.0,ease:'power3.out',delay:(i%3)*.1,scrollTrigger:{trigger:el,start:'top 88%'}}) });",
+      "html_attr": "data-blur-reveal",
+      "usage": "Dodaj data-blur-reveal na gallery items ili bilo koje kartice. Stagger je automatski po modulo 3."
+    },
+
+    "tilt_3d": {
+      "_doc": "3D tilt na hover — rotateX/Y po mouse poziciji unutar card-a. VILA gallery style.",
+      "_used_in": ["vila_hospitality"],
+      "js": "document.querySelectorAll('[data-tilt]').forEach(card=>{ card.addEventListener('mousemove',e=>{ const r=card.getBoundingClientRect(); const x=(e.clientX-r.left)/r.width-.5; const y=(e.clientY-r.top)/r.height-.5; gsap.to(card,{rotateY:x*14,rotateX:-y*14,transformPerspective:900,duration:.35,ease:'power2.out'}) }); card.addEventListener('mouseleave',()=>gsap.to(card,{rotateY:0,rotateX:0,duration:.7,ease:'power3.out'})) });",
+      "html_attr": "data-tilt",
+      "css": "[data-tilt]{transform-style:preserve-3d;will-change:transform}"
+    },
+
+    "polygon_clip_reveal": {
+      "_doc": "Clip-path polygon wipe — lijevo na desno, kao curtain. Drugačije od inset() — dijagonalniji feel. VILA about image.",
+      "_used_in": ["vila_hospitality"],
+      "js": "gsap.utils.toArray('[data-poly-reveal]').forEach(el=>{ gsap.fromTo(el,{clipPath:'polygon(0 0, 0 0, 0 100%, 0 100%)'},{clipPath:'polygon(0 0, 100% 0, 100% 100%, 0 100%)',duration:1.5,ease:'power4.out',scrollTrigger:{trigger:el,start:'top 72%'}}) });",
+      "html_attr": "data-poly-reveal",
+      "usage": "Alternativa za clip inset — koristiti na about/story slikama da se razlikuje od gallery blur-reveal na istoj stranici"
+    },
+
+    "spinning_badge": {
+      "_doc": "Kružni badge koji se rotira (tekst stoji na mjestu counter-rotate). Za about/hero dekoraciju.",
+      "_used_in": ["vila_hospitality"],
+      "html": "<div class='spin-badge' aria-hidden='true'><span>[TEKST]</span></div>",
+      "css": ".spin-badge{width:90px;height:90px;border-radius:50%;background:var(--primary);color:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;font-style:italic;font-size:.75rem;line-height:1.3;text-align:center;animation:badge-spin 20s linear infinite} .spin-badge span{animation:badge-spin 20s linear infinite reverse;display:block} @keyframes badge-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}",
+      "usage": "Koristiti za datume (Est. 1889), nagrade (Best of 2025), ili brand slogane. Position absolute na corner image-a."
+    },
+
+    "accordion_gsap": {
+      "_doc": "Accordion sa GSAP height animacijom umjesto CSS transition — smooth i bez layout shift. ARCA style.",
+      "_used_in": ["arca_editorial"],
+      "html_pattern": "<ul><li class='acc-item'><button class='acc-trigger' aria-expanded='false' aria-controls='acc1' id='acc1-btn'>[TITLE]<span class='acc-icon'>+</span></button><div class='acc-body' id='acc1' role='region' aria-labelledby='acc1-btn'><div class='acc-inner'>[CONTENT]</div></div></li></ul>",
+      "css": ".acc-body{height:0;overflow:hidden} .acc-icon{transition:transform .4s,background .2s} .acc-item.open .acc-icon{transform:rotate(45deg)}",
+      "js": "document.querySelectorAll('.acc-trigger').forEach(btn=>{ btn.addEventListener('click',()=>{ const item=btn.closest('.acc-item'),body=item.querySelector('.acc-body'),isOpen=item.classList.contains('open'); document.querySelectorAll('.acc-item.open').forEach(o=>{if(o!==item){o.classList.remove('open');o.querySelector('.acc-trigger').setAttribute('aria-expanded','false');gsap.to(o.querySelector('.acc-body'),{height:0,duration:.4,ease:'power2.in'})}}); if(isOpen){item.classList.remove('open');btn.setAttribute('aria-expanded','false');gsap.to(body,{height:0,duration:.4,ease:'power2.in'})}else{item.classList.add('open');btn.setAttribute('aria-expanded','true');gsap.set(body,{height:'auto'});const h=body.offsetHeight;gsap.fromTo(body,{height:0},{height:h,duration:.5,ease:'power3.out'})} }) });"
+    },
+
+    "quote_word_stagger": {
+      "_doc": "Quote tekst split na riječi, svaka fade-up sa stagger-om. ARCA style.",
+      "_used_in": ["arca_editorial"],
+      "js": "document.querySelectorAll('[data-word-stagger]').forEach(el=>{ const raw=el.textContent.trim(); el.innerHTML=raw.split(' ').map(w=>`<span class='qw' style='opacity:0;display:inline-block;transform:translateY(12px)'>${w}</span>`).join(' '); gsap.to(el.querySelectorAll('.qw'),{opacity:1,y:0,duration:.6,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 65%'}}) });",
+      "html_attr": "data-word-stagger",
+      "usage": "Dodaj data-word-stagger na blockquote, pull quote, ili bilo koji kratki statement tekst"
+    },
+
+    "statement_scrollytelling": {
+      "_doc": "Word-by-word color reveal na scroll — pinned sticky sekcija. FORMA style.",
+      "_used_in": ["forma_dark"],
+      "html": "<section id='statement' class='section-statement'><div class='statement-sticky'><p class='statement-text'>[TEXT]</p></div></section>",
+      "css": ".section-statement{min-height:300vh;position:relative} .statement-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;padding:clamp(2rem,6vw,6rem)} .statement-text{font-family:var(--font-heading);font-size:clamp(1.8rem,4vw,3.5rem);font-weight:700;line-height:1.4;max-width:900px;text-align:center} .statement-text .word{display:inline-block;margin:0 .15em} .statement-text .word-inner{display:inline-block;color:rgba(255,255,255,.18)}",
+      "js": "function initStatement(text){const el=document.querySelector('.statement-text');el.innerHTML=text.split(' ').map(w=>`<span class='word'><span class='word-inner'>${w}</span></span>`).join(' ');gsap.timeline({scrollTrigger:{trigger:'#statement',start:'top top',end:'bottom bottom',scrub:1}}).to('.word-inner',{color:'var(--text)',stagger:{each:.08},ease:'none'})}"
+    },
+
+    "horizontal_scroll": {
+      "_doc": "Horizontalni scroll za work/portfolio sekciju — GSAP pin + scrub. FORMA style.",
+      "_used_in": ["forma_dark"],
+      "html": "<section id='work' class='section-work'><div class='work-track' id='workTrack'>[CARDS]</div></section>",
+      "css": ".section-work{overflow:hidden} .work-track{display:flex;gap:clamp(1.5rem,3vw,2.5rem);padding:0 clamp(2rem,5vw,5rem);width:max-content;align-items:center;height:100vh} .work-card{flex:0 0 clamp(280px,35vw,480px);height:clamp(320px,50vh,500px);overflow:hidden;position:relative;background:var(--surface)}",
+      "js": "function initHorizontalScroll(){const track=document.querySelector('#workTrack');if(!track)return;const w=track.scrollWidth-window.innerWidth;gsap.to(track,{x:-w,ease:'none',scrollTrigger:{trigger:'#work',start:'top top',end:()=>'+='+(w*1.2),pin:true,scrub:1,anticipatePin:1,invalidateOnRefresh:true}})}"
+    },
+
+    "magnetic_button": {
+      "_doc": "CTA button koji se pomjera prema mišu — elastic.out na leave. FORMA style.",
+      "_used_in": ["forma_dark"],
+      "html_attr": "data-magnetic",
+      "js": "document.querySelectorAll('[data-magnetic]').forEach(btn=>{ btn.addEventListener('mousemove',e=>{const r=btn.getBoundingClientRect();gsap.to(btn,{x:(e.clientX-r.left-r.width/2)*.35,y:(e.clientY-r.top-r.height/2)*.35,duration:.3,ease:'power2.out'})}); btn.addEventListener('mouseleave',()=>gsap.to(btn,{x:0,y:0,duration:.8,ease:'elastic.out(1,.4)'})) });"
+    },
+
+    "text_scramble": {
+      "_doc": "Matrix chars hover efekat — tekst se scramble-a pa vraća na original.",
+      "_used_in": ["arca_editorial", "forma_dark"],
+      "html_attr": "data-scramble",
+      "js": "function scramble(el,final,dur=700){const chars='!<>-_\\/[]{}—=+*^?#·';let f=0;const total=Math.round(dur/30);const iv=setInterval(()=>{el.textContent=final.split('').map((c,i)=>{if(c==='.'||c==='@')return c;return i<(f/total)*final.length?c:chars[Math.floor(Math.random()*chars.length)]}).join('');if(++f>=total){el.textContent=final;clearInterval(iv)}},30)} document.querySelectorAll('[data-scramble]').forEach(el=>{const orig=el.textContent.trim();el.addEventListener('mouseenter',()=>scramble(el,orig))});"
+    },
+
+    "count_up": {
+      "_doc": "Animirani brojevi od 0 do vrijednosti na scroll.",
+      "_used_in": ["arca_editorial", "vila_hospitality"],
+      "html_attr": "data-count='150' data-suffix='+'",
+      "js": "document.querySelectorAll('[data-count]').forEach(el=>{const target=parseFloat(el.dataset.count),suffix=el.dataset.suffix||''; gsap.to({val:0},{val:target,duration:2.2,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 80%'},onUpdate(){el.textContent=Math.floor(this.targets()[0].val)+suffix}})});"
+    },
+
+    "stagger_reveal": {
+      "_doc": "Fade-up stagger za grupe elemenata (kartice, liste, amenities).",
+      "_used_in": ["forma_dark", "arca_editorial", "vila_hospitality"],
+      "html_attr": "data-stagger on container, data-stagger-item on children",
+      "js": "gsap.utils.toArray('[data-stagger]').forEach(container=>{const items=container.querySelectorAll('[data-stagger-item]');gsap.from(items,{y:40,opacity:0,duration:.7,stagger:.1,ease:'power3.out',scrollTrigger:{trigger:container,start:'top 75%'}})});",
+      "js_individual": "gsap.utils.toArray('[data-stagger-item]').forEach((el,i)=>{gsap.fromTo(el,{opacity:0,y:25},{opacity:1,y:0,duration:.65,ease:'power3.out',delay:(i%4)*.08,scrollTrigger:{trigger:el,start:'top 85%'}})})"
+    },
+
+    "parallax_images": {
+      "_doc": "Slike/sekcije se sporije pomiču od scroll-a — depth efekat.",
+      "_used_in": ["forma_dark", "arca_editorial"],
+      "html_attr": "data-parallax='0.3'",
+      "js": "document.querySelectorAll('[data-parallax]').forEach(img=>{const speed=parseFloat(img.dataset.parallax)||.3;gsap.to(img,{yPercent:speed*50,ease:'none',scrollTrigger:{trigger:img.closest('section')||img,start:'top bottom',end:'bottom top',scrub:true}})});",
+      "usage": "0.1 = suptilno, 0.3 = medium, 0.5 = agresivno. Postavi overflow:hidden na parent."
+    },
+
+    "side_nav_dots": {
+      "_doc": "Fixed dots na desnoj strani viewporta — IntersectionObserver prati aktivnu sekciju, klik skrola do sekcije (Lenis ili native). Skriva se na mobilnom.",
+      "_used_in": ["forma_dark", "arca_editorial", "vila_hospitality"],
+      "html": "<nav class='side-nav' aria-label='Section navigation'></nav>",
+      "css": ".side-nav{position:fixed;right:1.5rem;top:50%;transform:translateY(-50%);z-index:200;display:flex;flex-direction:column;gap:.75rem;pointer-events:none} .side-nav-dot{width:8px;height:8px;border-radius:50%;border:1.5px solid var(--primary);background:transparent;cursor:pointer;pointer-events:all;transition:background .3s,transform .3s,opacity .3s;opacity:.45} .side-nav-dot.active{background:var(--primary);transform:scale(1.3);opacity:1} .side-nav-dot:hover{opacity:.9} @media(max-width:768px){.side-nav{display:none}}",
+      "js": "function initSideNav(sectionIds){const nav=document.querySelector('.side-nav');if(!nav)return;sectionIds.forEach((id,i)=>{const dot=document.createElement('button');dot.className='side-nav-dot';dot.setAttribute('aria-label','Scroll to section '+(i+1));dot.addEventListener('click',()=>{const target=document.getElementById(id);if(!target)return;if(typeof lenis!=='undefined')lenis.scrollTo(target,{offset:-80,duration:1.4});else target.scrollIntoView({behavior:'smooth'})});nav.appendChild(dot)});const dots=nav.querySelectorAll('.side-nav-dot');const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const idx=sectionIds.indexOf(e.target.id);dots.forEach((d,i)=>d.classList.toggle('active',i===idx))}})},{threshold:.35,rootMargin:'-10% 0px -10% 0px'});sectionIds.forEach(id=>{const el=document.getElementById(id);if(el)observer.observe(el)})}",
+      "usage": "Pozovi initSideNav(['hero','about','services','gallery','contact']) na kraju init bloka. Array mora sadržavati ID-eve svih glavnih sekcija stranice redom."
+    }
+
+  },
+
+  "experimental_presets": {
+    "_doc": "Pre-built setovi tehnika za specifične stilove. Odaberi preset u GRUP C.5 setup-u.",
+
+    "forma_dark": {
+      "name": "FORMA — Dark Agency",
+      "vibe": "Dark bg, neon accent, creative agency, Awwwards feel",
+      "best_for": ["portfolio-freelancer", "web-agency"],
+      "mood_pairing": ["dark_tech", "neon_cyberpunk", "brutalist"],
+      "techniques": ["grain_overlay", "loader_letters", "custom_cursor", "lenis_init", "hero_line_reveal", "statement_scrollytelling", "horizontal_scroll", "magnetic_button", "scroll_progress", "stagger_reveal", "side_nav_dots"],
+      "font_suggestion": "Syne 700/800 + DM Mono",
+      "reference_demo": "~/experimental-demo/html/index.html",
+      "palette_hint": "bg:#0C0C0C, accent:#C8FF00 (neon lime) ili #FF3B00 ili #A78BFA"
+    },
+
+    "arca_editorial": {
+      "name": "ARCA — Warm Editorial",
+      "vibe": "Light warm bg, serif italic, luxury/architecture/portfolio feel",
+      "best_for": ["portfolio-freelancer", "real-estate", "salon-beauty"],
+      "mood_pairing": ["editorial", "luxury_dark", "earth_organic"],
+      "techniques": ["grain_overlay", "loader_number", "cursor_label", "lenis_init", "mouse_parallax", "hero_line_reveal", "hero_clip_reveal", "count_up", "stagger_reveal", "text_scramble", "accordion_gsap", "quote_word_stagger", "scroll_progress", "side_nav_dots"],
+      "font_suggestion": "Playfair Display ital 300/700 + Inter",
+      "reference_demo": "~/arca-experimental/html/index.html",
+      "palette_hint": "bg:#F3F0E8 (warm cream), accent:#B99B6B (gold) ili #C4552A (terra)"
+    },
+
+    "vila_hospitality": {
+      "name": "VILA — Warm Hospitality",
+      "vibe": "Video hero, warm Mediterranean/hospitality feel, photos-first",
+      "best_for": ["restaurant-food", "local-business (hotel/rental)"],
+      "mood_pairing": ["earth_organic", "editorial", "luxury_dark"],
+      "techniques": ["grain_overlay", "video_hero", "bg_color_morph", "lenis_init", "count_up", "blur_reveal", "tilt_3d", "polygon_clip_reveal", "stagger_reveal", "scroll_progress", "spinning_badge", "side_nav_dots"],
+      "font_suggestion": "Cormorant Garamond 300/400 + DM Sans",
+      "reference_demo": "~/vila-maslina/html/index.html",
+      "palette_hint": "bg:#FAF6F0, dark:#1E1208, accent:#B84A2F (terra) ili #4B8FA8 (sea)"
+    }
+  },
+
+  "mood_experimental_combos": {
+    "_doc": "Koji preset/tehnike preporučiti per mood ako korisnik ne odabere specifičan preset",
+    "brutalist":      "forma_dark",
+    "glassmorphism":  ["grain_overlay", "loader_letters", "hero_line_reveal", "parallax_images", "count_up", "stagger_reveal", "lenis_init", "scroll_progress"],
+    "neobrutalism":   ["grain_overlay", "loader_letters", "statement_scrollytelling", "magnetic_button", "stagger_reveal", "count_up", "lenis_init"],
+    "editorial":      "arca_editorial",
+    "luxury_dark":    ["grain_overlay", "loader_number", "hero_line_reveal", "statement_scrollytelling", "parallax_images", "scroll_progress", "lenis_init"],
+    "neon_cyberpunk": ["grain_overlay", "custom_cursor", "loader_letters", "stagger_reveal", "text_scramble", "count_up", "lenis_init"],
+    "earth_organic":  "vila_hospitality",
+    "pastel_soft":    ["loader_letters", "stagger_reveal", "magnetic_button", "count_up", "lenis_init"],
+    "swiss_minimal":  ["grain_overlay", "hero_line_reveal", "scroll_progress", "stagger_reveal", "lenis_init"],
+    "dark_tech":      "forma_dark"
+  },
+
+  "full_stack": {
+    "_doc": "SVE tehnike — za Awwwards-tier projekat. Koristiti samo za portfolio/agency.",
+    "techniques": ["grain_overlay", "loader_letters", "custom_cursor", "lenis_init", "hero_line_reveal", "statement_scrollytelling", "horizontal_scroll", "magnetic_button", "blur_reveal", "tilt_3d", "bg_color_morph", "polygon_clip_reveal", "text_scramble", "count_up", "stagger_reveal", "quote_word_stagger", "accordion_gsap", "scroll_progress", "side_nav_dots"],
+    "note": "Odaberi kombinaciju koja nema overlap funkcija — ne koristiti istovremeno custom_cursor i cursor_label, ne koristiti statement_scrollytelling i quote_word_stagger na istoj stranici."
+  }
+}

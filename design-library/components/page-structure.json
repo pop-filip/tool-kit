@@ -1,0 +1,611 @@
+{
+  "_meta": {
+    "description": "Page structure blueprints — redoslijed sekcija i konfiguracija za svaki tip biznisa. OVO JE OSNOVA ZA /new-website-v3: otvori ovaj fajl, odaberi business_type, i generiši sekcije u datom redoslijedu.",
+    "usage": "1. Identifikuj business_type iz briefa. 2. Čitaj sections[] array — to je redoslijed generisanja. 3. Za svaku sekciju, koristi sections.json varijantu koja odgovara mood-u.",
+    "version": "1.0"
+  },
+
+  "how_to_use": {
+    "step1": "Odaberi business_type koji odgovara projektu",
+    "step2": "Provjeri sections[] — generiši HTML sekcije OVIM REDOSLIJEDOM",
+    "step3": "Za svaku sekciju: pogledaj sections.json → mood_to_sections_mapping za varijantu layouta",
+    "step4": "required: true = uvijek uključi | required: false = uključi ako klijent ima sadržaj",
+    "step5": "schema_type kopiraj u Schema.org JSON-LD blok"
+  },
+
+  "business_types": {
+
+    "web-agency": {
+      "name": "Web Studio / Digitalna Agencija",
+      "examples": ["digitalnature.at", "web design studio", "freelance developer"],
+      "schema_type": ["Organization", "ProfessionalService"],
+      "primary_language": "en ili de",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "stats-hero ili big-type",          "content": "H1 sa value prop, stat brojevi (sajtovi, klijenti, brzina), CTA na kontakt/pricing" },
+        { "id": "brand-slider", "required": false, "variant_note": "infinite scroll logoi",            "content": "Logoi klijenata — pokazuje social proof odmah ispod hero-a" },
+        { "id": "how-it-works", "required": true,  "variant_note": "numbered 3 koraka",                "content": "3 koraka: Brief → Design → Live. Jednostavno i jasno" },
+        { "id": "services",     "required": true,  "variant_note": "sections.json → services",         "content": "Šta nudimo: Web dizajn, SEO, Hosting, Maintenance itd." },
+        { "id": "pricing",      "required": true,  "variant_note": "sections.json → pricing",          "content": "3 paketa sa cijenama — Starter/Pro/Premium" },
+        { "id": "portfolio",    "required": true,  "variant_note": "sections.json → gallery featured-grid", "content": "2-4 završena projekta sa screenshotima i live linkovima" },
+        { "id": "testimonials", "required": true,  "variant_note": "sections.json → testimonials",     "content": "3+ recenzija klijenata — Schema.org AggregateRating" },
+        { "id": "faq",          "required": true,  "variant_note": "sections.json → faq accordion",    "content": "6 pitanja: brzina, cijena, uključeno, revizije, hosting, održavanje" },
+        { "id": "about",        "required": true,  "variant_note": "sections.json → about",            "content": "Osnivač/tim, misija, years of experience" },
+        { "id": "contact",      "required": true,  "variant_note": "sections.json → contact",          "content": "Web3Forms forma + email + WhatsApp" },
+        { "id": "impressum",    "required": true,  "variant_note": "inline ili posebna stranica",       "content": "Obavezno za .at/.de domene" }
+      ],
+      "key_cta": "Kontakt forma ili WhatsApp",
+      "seo_keywords": "web design [grad], website erstellen, homepage [grad]",
+      "recommended_moods": ["dark-tech", "swiss-minimal", "glassmorphism", "brutalist"]
+    },
+
+    "sport-fitness": {
+      "name": "Gym / Fitnes / Borilački sport",
+      "examples": ["delta-team.at", "MMA gym", "kickboxen", "crossfit", "yoga studio"],
+      "schema_type": ["SportsActivityLocation", "LocalBusiness"],
+      "primary_language": "de (Linz/AT) ili en",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "split-text-image ili big-type",    "content": "H1 sa imenom gyma, opis sporta, CTA na free trial booking" },
+        { "id": "about",        "required": true,  "variant_note": "split-50-50 ili big-quote",        "content": "Zašto ovaj gym — atmosfera, community, razlika od konkurencije" },
+        { "id": "services",     "required": true,  "variant_note": "numbered-cards",                   "content": "Kampfsportarten/discipline: BJJ, Kickboxen, MMA, Ringen itd." },
+        { "id": "schedule",     "required": true,  "variant_note": "table (custom)",                   "content": "Sedmični raspored treninga — dan, vrijeme, disciplina, trener" },
+        { "id": "team",         "required": true,  "variant_note": "sections.json → team",             "content": "Treneri — foto + ime + rola + bio" },
+        { "id": "testimonials", "required": true,  "variant_note": "sections.json → testimonials",     "content": "Recenzije članova" },
+        { "id": "faq",          "required": true,  "variant_note": "accordion",                        "content": "Može li početnik, cijena, oprema, probni trening" },
+        { "id": "gallery",      "required": false, "variant_note": "masonry ili uniform-grid",         "content": "Fotke sa treninga, gym prostora" },
+        { "id": "contact",      "required": true,  "variant_note": "booking-only ili split-form-info", "content": "Booksy/Calendly booking ili kontakt forma" },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                   "content": "Legal za .at domenu" }
+      ],
+      "key_cta": "Besplatni probni trening — Booksy/direktan booking",
+      "seo_keywords": "MMA [grad], Kampfsport [grad], Kickboxen [grad], BJJ [grad]",
+      "recommended_moods": ["brutalist", "neon-cyberpunk", "dark-tech"]
+    },
+
+    "restaurant-food": {
+      "name": "Restoran / Cafe / Food biznis",
+      "examples": ["restoran", "cafe", "food truck", "pizzeria", "dostava hrane"],
+      "schema_type": ["Restaurant", "FoodEstablishment", "LocalBusiness"],
+      "primary_language": "de ili bs/hr",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "centered-overlay sa foto hrane",   "content": "H1 naziv, tagline, CTA na rezervaciju ili meni" },
+        { "id": "about",        "required": true,  "variant_note": "split-50-50 foto hrane",           "content": "Priča o restoranu, kuhinja, koncept" },
+        { "id": "menu",         "required": true,  "variant_note": "pricing → single-service stil",    "content": "Meni sekcije: Vorspeise, Hauptgericht, Dessert — sa cijenama" },
+        { "id": "gallery",      "required": true,  "variant_note": "masonry ili uniform-grid",         "content": "Fotke jela, ambijenta, kuhinje" },
+        { "id": "testimonials", "required": false, "variant_note": "card-grid",                        "content": "Recenzije gostiju" },
+        { "id": "hours-info",   "required": true,  "variant_note": "custom tabela ili lista",          "content": "Radno vrijeme (Mo-Fr, Sa-So) + adresa + parking info" },
+        { "id": "contact",      "required": true,  "variant_note": "split-form-info ili booking-only", "content": "Rezervacija stola ili kontakt forma" },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                   "content": "Legal .at/.de" }
+      ],
+      "key_cta": "Rezervacija stola ili naručivanje",
+      "seo_keywords": "restaurant [grad], essen [grad], [kuhinja] restaurant",
+      "recommended_moods": ["earth-organic", "luxury-dark", "editorial", "neobrutalism"]
+    },
+
+    "portfolio-freelancer": {
+      "name": "Portfolio / Freelancer / Kreativac",
+      "examples": ["fotograf", "dizajner", "arhitekt", "ilustrator", "video produkcija"],
+      "schema_type": ["Person", "Organization"],
+      "primary_language": "en ili de",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "big-type ili minimal-centered",    "content": "Ime + čime se baviš + 1 rečenica value prop. Bez statistika." },
+        { "id": "portfolio",    "required": true,  "variant_note": "gallery → masonry ili featured",   "content": "Radovi — najvažnija sekcija. 6-12 projekata sa kratkim opisima." },
+        { "id": "about",        "required": true,  "variant_note": "persona-cards ili split-50-50",    "content": "Lični pristup, iskustvo, softveri/alati" },
+        { "id": "services",     "required": false, "variant_note": "alternating-rows ili numbered",    "content": "Šta nudiš: fotografija, retuš, video itd. — samo ako ima više usluga" },
+        { "id": "pricing",      "required": false, "variant_note": "single-service ili three-tier",    "content": "Opciono — neke fotografe ne žele prikazivati cijene javno" },
+        { "id": "testimonials", "required": true,  "variant_note": "featured-quote",                   "content": "2-3 recenzije klijenata" },
+        { "id": "contact",      "required": true,  "variant_note": "centered-minimal",                 "content": "Forma + email. Bez telefona ako ne žele." },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                   "content": "Legal .at/.de" }
+      ],
+      "key_cta": "Kontakt forma — projekat inquiry",
+      "seo_keywords": "[zanimanje] [grad], [zanimanje] freelance, fotograf [grad]",
+      "recommended_moods": ["editorial", "luxury-dark", "swiss-minimal", "glassmorphism"]
+    },
+
+    "salon-beauty": {
+      "name": "Frizerski / Kozmetički salon / Wellness",
+      "examples": ["frizeri", "beauty salon", "nail studio", "spa", "massage"],
+      "schema_type": ["HealthAndBeautyBusiness", "LocalBusiness"],
+      "primary_language": "de ili bs",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "centered-overlay ili split",       "content": "Naziv salona, tagline, CTA na booking (Booksy/Treatwell)" },
+        { "id": "about",        "required": true,  "variant_note": "persona-cards",                    "content": "Vlasnički/tim pristup, iskustvo, filozofija" },
+        { "id": "services",     "required": true,  "variant_note": "icon-grid ili numbered-list",      "content": "Usluge: šišanje, bojenje, styling, tretmani..." },
+        { "id": "pricing",      "required": true,  "variant_note": "single-service (cjenik)",          "content": "Cjenik usluga sa cijenama" },
+        { "id": "team",         "required": false, "variant_note": "photo-cards",                      "content": "Tim stilista/majstora — samo ako ima više od jedne osobe" },
+        { "id": "gallery",      "required": true,  "variant_note": "masonry ili before-after",         "content": "Fotke radova — hairstyle, before/after" },
+        { "id": "testimonials", "required": true,  "variant_note": "card-grid",                        "content": "Recenzije klijentica" },
+        { "id": "contact",      "required": true,  "variant_note": "booking-only",                     "content": "Booksy/Calendly link — primarno. Forma sekundarno." },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                   "content": "Legal .at/.de" }
+      ],
+      "key_cta": "Online booking — Booksy/Treatwell",
+      "seo_keywords": "friseur [grad], haarschnitt [grad], beauty salon [grad]",
+      "recommended_moods": ["pastel-soft", "earth-organic", "editorial", "luxury-dark"]
+    },
+
+    "local-business": {
+      "name": "Lokalni biznis (opći)",
+      "examples": ["vodoinstalater", "električni", "automehaničar", "majstor", "čišćenje"],
+      "schema_type": ["LocalBusiness"],
+      "primary_language": "de",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "split-text-image ili stats-hero",  "content": "H1 sa uslugom i gradom, trust signals (god. iskustva, recenzije), CTA tel/forma" },
+        { "id": "services",     "required": true,  "variant_note": "icon-grid ili numbered-cards",     "content": "Šta nudimo — lista usluga sa kratkim opisima" },
+        { "id": "about",        "required": true,  "variant_note": "split-50-50",                      "content": "Ko smo, iskustvo, certifikati, servisno područje" },
+        { "id": "pricing",      "required": false, "variant_note": "single-service",                   "content": "Opciono — neke zanatlije ne žele javno prikazivati cijene" },
+        { "id": "gallery",      "required": false, "variant_note": "uniform-grid",                     "content": "Fotke završenih radova — ako postoje" },
+        { "id": "testimonials", "required": true,  "variant_note": "card-grid",                        "content": "3+ recenzija sa imenom i mjestom" },
+        { "id": "faq",          "required": false, "variant_note": "accordion",                        "content": "Uslužno područje, hitne intervencije, garancija" },
+        { "id": "contact",      "required": true,  "variant_note": "split-form-info",                  "content": "Forma + telefon (česte hitne intervencije) + adresa" },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                   "content": "Legal .at/.de" }
+      ],
+      "key_cta": "Telefon (poziv) ili kontakt forma",
+      "seo_keywords": "[usluga] [grad], [usluga] [oblast], [usluga] notdienst",
+      "recommended_moods": ["swiss-minimal", "dark-tech", "brutalist", "earth-organic"]
+    },
+
+    "real-estate": {
+      "name": "Nekretnine / Immobilien",
+      "examples": ["makler", "inmobilien agentur", "rental", "property management"],
+      "schema_type": ["RealEstateAgent", "LocalBusiness"],
+      "primary_language": "de ili en",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "centered-overlay ili split",       "content": "H1 + search bar opciono, ili value prop sa CTA" },
+        { "id": "services",     "required": true,  "variant_note": "alternating-rows",                 "content": "Kupnja, prodaja, iznajmljivanje, upravljanje nekretninama" },
+        { "id": "listings",     "required": false, "variant_note": "gallery featured-grid",            "content": "Aktivne nekretnine — ako postoji (3-6 featured)" },
+        { "id": "about",        "required": true,  "variant_note": "persona-cards",                    "content": "Agent/tim, iskustvo, broj transakcija" },
+        { "id": "testimonials", "required": true,  "variant_note": "featured-quote",                   "content": "Recenzije prodavaca/kupaca" },
+        { "id": "faq",          "required": true,  "variant_note": "accordion",                        "content": "Proces, provizija, dokumentacija, rokovi" },
+        { "id": "contact",      "required": true,  "variant_note": "split-form-info",                  "content": "Forma za procjenu nekretnine ili kontakt" },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                   "content": "Legal — posebno važno za financijske usluge" }
+      ],
+      "key_cta": "Besplatna procjena nekretnine",
+      "seo_keywords": "immobilien [grad], wohnung kaufen [grad], makler [grad]",
+      "recommended_moods": ["luxury-dark", "editorial", "swiss-minimal", "dark-tech"]
+    },
+
+    "medical-health": {
+      "name": "Medicinska ordinacija / Zdravstvene usluge",
+      "examples": ["stomatolog", "doktor", "fizioterapeut", "psiholog", "optičar"],
+      "schema_type": ["MedicalBusiness", "LocalBusiness"],
+      "primary_language": "de",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "minimal-centered ili split",       "content": "Naziv ordinacije, specijalnost, CTA na naručivanje" },
+        { "id": "services",     "required": true,  "variant_note": "icon-grid ili accordion-list",     "content": "Usluge/terapije — jasno i informativno" },
+        { "id": "about",        "required": true,  "variant_note": "persona-cards",                    "content": "Dr. ime, specijalizacija, iskustvo, pristup pacijentu" },
+        { "id": "team",         "required": false, "variant_note": "photo-cards",                      "content": "Tim — samo ako ordinacija ima više doktora/terapeuta" },
+        { "id": "testimonials", "required": false, "variant_note": "card-grid",                        "content": "Recenzije pacijenata — GDPR oprezan, bez punih imena" },
+        { "id": "faq",          "required": true,  "variant_note": "accordion",                        "content": "Kasa ili privatno, naručivanje, hitni slučajevi, parking" },
+        { "id": "contact",      "required": true,  "variant_note": "split-form-info ili booking-only", "content": "Naručivanje: forma + telefon + radno vrijeme + adresa" },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                   "content": "Legal — obavezno, posebno za medicinu" }
+      ],
+      "key_cta": "Naručivanje — telefon ili online booking",
+      "seo_keywords": "zahnarzt [grad], arzt [grad], praxis [grad]",
+      "recommended_moods": ["swiss-minimal", "pastel-soft", "earth-organic", "dark-tech"]
+    },
+
+    "ecommerce": {
+      "name": "E-commerce / Online shop",
+      "examples": ["online prodavnica", "fashion shop", "dropshipping", "handmade products", "wholesale"],
+      "schema_type": ["OnlineStore", "Organization"],
+      "primary_language": "de ili en",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "product-hero ili split-product",     "content": "H1 sa ključnom kategorijom ili USP, hero produkt foto, CTA na shop" },
+        { "id": "features",     "required": true,  "variant_note": "icon-grid (3-4 ikone)",              "content": "Trust: brza dostava, besplatni povrat, sigurno plaćanje, podrška" },
+        { "id": "products",     "required": true,  "variant_note": "gallery featured-grid",              "content": "Bestsellers / Featured products — 4-8 kartica sa slikom, cijena, CTA" },
+        { "id": "about",        "required": true,  "variant_note": "split-50-50",                        "content": "Priča brenda, zašto kupovati od nas, quality promise" },
+        { "id": "categories",   "required": false, "variant_note": "icon-grid ili image-cards",          "content": "Kategorije proizvoda — ako ima više od 3 kategorije" },
+        { "id": "testimonials", "required": true,  "variant_note": "card-grid",                          "content": "Recenzije kupaca sa foto i star rating" },
+        { "id": "faq",          "required": true,  "variant_note": "accordion",                          "content": "Dostava, povrat, plaćanje, garancija, veličine" },
+        { "id": "contact",      "required": true,  "variant_note": "split-form-info",                    "content": "Kontakt + radno vrijeme podrške" },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                     "content": "Legal — posebno važno za e-commerce (AGB, Widerruf)" }
+      ],
+      "key_cta": "Shop now / Kupi odmah",
+      "seo_keywords": "[produkt] kaufen, [produkt] online shop, [produkt] [grad]",
+      "recommended_moods": ["dark-tech", "monochrome", "aurora-gradient", "swiss-minimal"]
+    },
+
+    "autohaus": {
+      "name": "Autohaus / Auto servis / Detailing",
+      "examples": ["autohaus", "kfz werkstatt", "automehaničar", "car detailing", "auto servis"],
+      "schema_type": ["AutoDealer", "AutoRepair", "LocalBusiness"],
+      "primary_language": "de ili bs",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "split-text-image ili stats-hero",    "content": "Naziv, usluge (servis/prodaja/detailing), god. iskustva, CTA" },
+        { "id": "services",     "required": true,  "variant_note": "icon-grid ili numbered-cards",       "content": "Servisne usluge: Inspekcija, Bremsen, Ölwechsel, Klimaanlage itd." },
+        { "id": "about",        "required": true,  "variant_note": "split-50-50",                        "content": "Iskustvo, certifikati (TÜV partner?), servisirani modeli" },
+        { "id": "vehicles",     "required": false, "variant_note": "gallery featured-grid",              "content": "Vozila na prodaju — samo ako autohaus prodaje vozila" },
+        { "id": "pricing",      "required": false, "variant_note": "single-service",                     "content": "Pregled cijena servisa — ako žele javno prikazivati" },
+        { "id": "testimonials", "required": true,  "variant_note": "card-grid",                          "content": "Recenzije klijenata" },
+        { "id": "faq",          "required": true,  "variant_note": "accordion",                          "content": "Termin, čekanje, zamjenski auto, marke, garancija" },
+        { "id": "contact",      "required": true,  "variant_note": "split-form-info",                    "content": "Termin + telefon + adresa + radno vrijeme" },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                     "content": "Legal .at/.de" }
+      ],
+      "key_cta": "Termin zakazati / Anruf",
+      "seo_keywords": "kfz werkstatt [grad], autoservice [grad], reifenwechsel [grad]",
+      "recommended_moods": ["industrial", "dark-tech", "swiss-minimal", "brutalist"]
+    },
+
+    "legal": {
+      "name": "Pravnik / Odvjetnik / Notar / Consulting",
+      "examples": ["Rechtsanwalt", "Anwaltskanzlei", "Notar", "Steuerberater", "business consultant"],
+      "schema_type": ["LegalService", "ProfessionalService"],
+      "primary_language": "de",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "minimal-centered ili split",         "content": "Specijalizacija + ime ureda + lokacija, trust signals, CTA na savjetovanje" },
+        { "id": "services",     "required": true,  "variant_note": "alternating-rows ili icon-grid",     "content": "Pravna područja: Strafrecht, Familienrecht, Unternehmensrecht itd." },
+        { "id": "about",        "required": true,  "variant_note": "persona-cards",                      "content": "Odvjetnik/tim — foto, akademske titule, iskustvo, filozofija" },
+        { "id": "process",      "required": true,  "variant_note": "numbered 3-4 koraka",                "content": "Kako radimo: Erstgespräch → Analyse → Strategie → Umsetzung" },
+        { "id": "testimonials", "required": false, "variant_note": "featured-quote",                     "content": "Anonimne recenzije klijenata — bez detalja predmeta (GDPR)" },
+        { "id": "faq",          "required": true,  "variant_note": "accordion",                          "content": "Troškovi, tajnost, hitni slučajevi, inicijalni razgovor" },
+        { "id": "contact",      "required": true,  "variant_note": "split-form-info",                    "content": "Forma za upit + telefon + adresa + radno vrijeme" },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                     "content": "Obavezno, posebno za pravne usluge" }
+      ],
+      "key_cta": "Besplatni inicijalni razgovor",
+      "seo_keywords": "rechtsanwalt [grad], anwalt [specijalizacija], [pravna oblast] anwalt [grad]",
+      "recommended_moods": ["luxury-dark", "swiss-minimal", "editorial", "monochrome"]
+    },
+
+    "events-wedding": {
+      "name": "Vjenčanja / Event planer / Organizacija",
+      "examples": ["wedding planner", "event organizator", "venue", "catering", "fotograf vjenčanja"],
+      "schema_type": ["EventVenue", "LocalBusiness", "Organization"],
+      "primary_language": "de ili bs",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "centered-overlay sa wedding foto",   "content": "Emotivan H1, tagline koji dotiče osjećaje, CTA na konsultaciju" },
+        { "id": "about",        "required": true,  "variant_note": "split-50-50 ili persona-cards",      "content": "Ko smo, pristup, zašto nam povjeriti ovaj dan" },
+        { "id": "services",     "required": true,  "variant_note": "alternating-rows ili icon-grid",     "content": "Paketi: Full Planning, Partial, Day-of Coordination, Catering, Dekor" },
+        { "id": "gallery",      "required": true,  "variant_note": "masonry — ključna sekcija",          "content": "Fotke prethodnih evenata — najvažniji social proof" },
+        { "id": "pricing",      "required": false, "variant_note": "three-tier ili single-service",      "content": "Paketi sa cijenama — ili 'cijena na upit'" },
+        { "id": "testimonials", "required": true,  "variant_note": "featured-quote ili card-grid",       "content": "Recenzije parova/klijenata — emotivni citati" },
+        { "id": "faq",          "required": true,  "variant_note": "accordion",                          "content": "Koliko unaprijed rezervisati, uključeno, geografija, vendor suradnja" },
+        { "id": "contact",      "required": true,  "variant_note": "centered-minimal",                   "content": "Forma za inquiry + telefon" },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                     "content": "Legal .at/.de" }
+      ],
+      "key_cta": "Besplatna konsultacija",
+      "seo_keywords": "wedding planner [grad], hochzeitsplanung [grad], event organizer [grad]",
+      "recommended_moods": ["editorial", "luxury-dark", "retro-vintage", "pastel-soft"]
+    },
+
+    "architecture-interior": {
+      "name": "Arhitektura / Interior design / Dizajn prostora",
+      "examples": ["arhitekt", "interior designer", "landscape architect", "stageur"],
+      "schema_type": ["HomeAndConstructionBusiness", "ProfessionalService"],
+      "primary_language": "de ili en",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "big-type ili split-vertical",        "content": "Ime studija + filozofija u jednoj rečenici. Vizualni impact — bez kliše teksta." },
+        { "id": "portfolio",    "required": true,  "variant_note": "gallery masonry ili featured-grid",  "content": "Projekti — prva i najvažnija stvar za arhitekte. Veliki, visokokvalitetni." },
+        { "id": "about",        "required": true,  "variant_note": "editorial split",                    "content": "Studio/tim, pristup, filozofija dizajna, nagrade/press" },
+        { "id": "services",     "required": true,  "variant_note": "alternating-rows",                   "content": "Usluge: Architekturplanung, Innenarchitektur, Sanierung, Beratung" },
+        { "id": "process",      "required": false, "variant_note": "numbered timeline",                  "content": "Tok projekta: Konzept → Planung → Ausführung → Übergabe" },
+        { "id": "testimonials", "required": true,  "variant_note": "featured-quote",                     "content": "Recenzije klijenata — naglasak na transformaciji prostora" },
+        { "id": "contact",      "required": true,  "variant_note": "minimal ili split-form",             "content": "Projekt inquiry forma" },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                     "content": "Legal .at/.de" }
+      ],
+      "key_cta": "Projekt inquiry / Erstgespräch",
+      "seo_keywords": "architekt [grad], innenarchitekt [grad], raumgestaltung [grad]",
+      "recommended_moods": ["japandi", "swiss-minimal", "editorial", "monochrome"]
+    },
+
+    "hotel-accommodation": {
+      "name": "Hotel / B&B / Pension / Smještaj",
+      "examples": ["hotel", "boutique hotel", "B&B", "Ferienwohnung", "apartmani", "hostel"],
+      "schema_type": ["LodgingBusiness", "Hotel", "LocalBusiness"],
+      "primary_language": "de ili en",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "centered-overlay sa foto sobe",      "content": "Atmosferski hero, naziv, lokacija, CTA na rezervaciju" },
+        { "id": "about",        "required": true,  "variant_note": "split-50-50",                        "content": "Priča hotela/B&B, lokacija, posebnost" },
+        { "id": "rooms",        "required": true,  "variant_note": "gallery featured-grid",              "content": "Sobe/apartmani — foto, opis, kapacitet, cijena" },
+        { "id": "amenities",    "required": true,  "variant_note": "icon-grid",                          "content": "Pogodnosti: WiFi, parking, doručak, spa, bazen..." },
+        { "id": "gallery",      "required": true,  "variant_note": "masonry",                            "content": "Galerija prostora, okoline, atmosfere" },
+        { "id": "location",     "required": true,  "variant_note": "split sa mapom ili opis okolice",    "content": "Lokacija, šta je u blizini, kako doći" },
+        { "id": "testimonials", "required": true,  "variant_note": "card-grid",                          "content": "Recenzije gostiju" },
+        { "id": "contact",      "required": true,  "variant_note": "booking-only ili split-form",        "content": "Booking.com/Airbnb link ili direktna rezervacija forma" },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                     "content": "Legal .at/.de — posebno Tourismusabgabe" }
+      ],
+      "key_cta": "Rezervacija / Direktno booking",
+      "seo_keywords": "hotel [grad], unterkunft [grad], ferienwohnung [grad], übernachten [grad]",
+      "recommended_moods": ["luxury-dark", "editorial", "earth-organic", "japandi"]
+    },
+
+    "education-courses": {
+      "name": "Škola / Kursevi / Edukacija / Coaching",
+      "examples": ["jezička škola", "online kursevi", "coaching", "tutoring", "driving school"],
+      "schema_type": ["EducationalOrganization", "LocalBusiness"],
+      "primary_language": "de ili bs",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "stats-hero ili split",               "content": "Transformativni H1 (rezultat koji dobiju), brojevi uspjeha, CTA" },
+        { "id": "about",        "required": true,  "variant_note": "split-50-50 ili persona-cards",      "content": "Ko predaje, iskustvo, metoda, filozofija učenja" },
+        { "id": "courses",      "required": true,  "variant_note": "pricing → three-tier ili numbered",  "content": "Kursevi/programi — nazivi, trajanje, nivo, cijena" },
+        { "id": "process",      "required": true,  "variant_note": "numbered 3-4 koraka",                "content": "Kako funkcioniše: Prijava → Procjena nivoa → Nastava → Certifikat" },
+        { "id": "team",         "required": false, "variant_note": "photo-cards",                        "content": "Predavači/treneri ako ih ima više" },
+        { "id": "testimonials", "required": true,  "variant_note": "card-grid",                          "content": "Uspješne priče polaznika — što su postigli" },
+        { "id": "faq",          "required": true,  "variant_note": "accordion",                          "content": "Nivo, termin, online/offline, certifikat, grupni/indiv." },
+        { "id": "contact",      "required": true,  "variant_note": "split-form-info",                    "content": "Prijava za kurs ili upit" },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                     "content": "Legal .at/.de" }
+      ],
+      "key_cta": "Prijavi se / Besplatni uvodni sat",
+      "seo_keywords": "[predmet] kurs [grad], [predmet] lernen [grad], sprachschule [grad]",
+      "recommended_moods": ["dark-tech", "neobrutalism", "pastel-soft", "swiss-minimal"]
+    },
+
+    "barber-shop": {
+      "name": "Barber shop / Muški salon",
+      "examples": ["barbershop", "muški frizer", "beard specialist", "herren friseur"],
+      "schema_type": ["HealthAndBeautyBusiness", "LocalBusiness"],
+      "primary_language": "de ili bs",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "split ili centered dark",            "content": "Naziv, tagline (craft/precision/style), booking CTA" },
+        { "id": "services",     "required": true,  "variant_note": "icon-grid ili cjenik lista",         "content": "Usluge: Haircut, Beard Trim, Hot Towel Shave, Classic Cut + cijene" },
+        { "id": "about",        "required": true,  "variant_note": "split-50-50 ili persona-cards",      "content": "Majstor/tim, iskustvo, filosofija — craft i traditional barbering" },
+        { "id": "gallery",      "required": true,  "variant_note": "masonry ili before-after",           "content": "Fotke radova — frizure, brade, before/after" },
+        { "id": "team",         "required": false, "variant_note": "photo-cards",                        "content": "Barbers — samo ako ih ima više" },
+        { "id": "testimonials", "required": true,  "variant_note": "card-grid",                          "content": "Recenzije klijenata" },
+        { "id": "contact",      "required": true,  "variant_note": "booking-only",                       "content": "Booksy/Treatwell booking — primarni CTA. Adresa + radno vrijeme." },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                     "content": "Legal .at/.de" }
+      ],
+      "key_cta": "Online booking — Booksy",
+      "seo_keywords": "barbershop [grad], herren friseur [grad], bart rasieren [grad]",
+      "recommended_moods": ["brutalist", "retro-vintage", "luxury-dark", "dark-tech"]
+    },
+
+    "coffee-shop": {
+      "name": "Kafić / Coffee Bar / Specialty Coffee",
+      "examples": ["specialty coffee shop", "coffee bar", "café", "third wave coffee", "espresso bar"],
+      "schema_type": ["CafeOrCoffeeShop", "FoodEstablishment", "LocalBusiness"],
+      "primary_language": "de ili en",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "centered-overlay sa coffee foto",   "content": "Naziv, kratki tagline (specialty/craft/single-origin), atmosferski CTA" },
+        { "id": "about",        "required": true,  "variant_note": "split-50-50 ili big-quote",         "content": "Priča o kafi, sourcing, filozofija, zašto je ova kafa posebna" },
+        { "id": "menu",         "required": true,  "variant_note": "pricing → single-service stil",     "content": "Menu: Espresso drinks, Filter, Cold brew, Food — sa cijenama" },
+        { "id": "gallery",      "required": true,  "variant_note": "masonry",                           "content": "Fotke kafe, ambijenta, latte art, hrane" },
+        { "id": "hours-info",   "required": true,  "variant_note": "custom lista",                      "content": "Radno vrijeme + adresa + parking/transit info" },
+        { "id": "testimonials", "required": false, "variant_note": "card-grid",                         "content": "Recenzije gostiju ili Google review highlights" },
+        { "id": "contact",      "required": true,  "variant_note": "centered-minimal",                  "content": "Adresa, Instagram link, kratka forma za events/enquiry" },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                    "content": "Legal .at/.de" }
+      ],
+      "key_cta": "Posjeti nas — adresa + radno vrijeme",
+      "seo_keywords": "coffee shop [grad], café [grad], specialty coffee [grad], kafić [grad]",
+      "recommended_moods": ["earth-organic", "editorial", "neobrutalism", "swiss-minimal"]
+    },
+
+    "food-truck": {
+      "name": "Food Truck / Street Food / Pop-up",
+      "examples": ["food truck", "street food", "pop-up restaurant", "catering truck", "mobile kitchen"],
+      "schema_type": ["FoodEstablishment", "LocalBusiness"],
+      "primary_language": "de ili en",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "big-type ili centered-overlay",     "content": "Naziv traka, cuisine type, tagline, CTA na lokacije/schedule" },
+        { "id": "about",        "required": true,  "variant_note": "split-50-50",                       "content": "Priča o konceptu, kuhinja, inspiracija, ko stoji iza traka" },
+        { "id": "menu",         "required": true,  "variant_note": "accordion ili tabbed-services",     "content": "Menu po kategorijama: Hauptgerichte, Beilagen, Getränke, Specials" },
+        { "id": "schedule",     "required": true,  "variant_note": "custom tabela ili lista",           "content": "Sedmični/mjesečni raspored lokacija — dan, adresa, vrijeme" },
+        { "id": "gallery",      "required": true,  "variant_note": "masonry ili uniform-grid",          "content": "Fotke hrane, traka, gostiju, akcija" },
+        { "id": "catering",     "required": false, "variant_note": "split-50-50",                       "content": "Catering za events — privatni i korporativni" },
+        { "id": "contact",      "required": true,  "variant_note": "centered-minimal",                  "content": "Instagram/social, kontakt za catering, newsletter za lokacije" },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                    "content": "Legal .at/.de" }
+      ],
+      "key_cta": "Lokacija ove sedmice / Catering inquiry",
+      "seo_keywords": "food truck [grad], street food [grad], catering [grad]",
+      "recommended_moods": ["neobrutalism", "brutalist", "earth-organic", "editorial"]
+    },
+
+    "bakery-pastry": {
+      "name": "Pekara / Konditorei / Patisserie",
+      "examples": ["pekara", "konditorei", "patisserie", "cake shop", "artisan bakery", "bäckerei"],
+      "schema_type": ["Bakery", "FoodEstablishment", "LocalBusiness"],
+      "primary_language": "de ili bs",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "centered-overlay sa foto peciva",   "content": "Naziv, tagline (frisch gebacken/handmade/artisan), CTA na narudžbu" },
+        { "id": "about",        "required": true,  "variant_note": "split-50-50",                       "content": "Recepti, tradicija, prirodni sastojci, domaćinstvo" },
+        { "id": "products",     "required": true,  "variant_note": "gallery featured-grid",             "content": "Kruh, peciva, torte, kolači — kategorije sa fotografijama" },
+        { "id": "custom-orders","required": false, "variant_note": "split-50-50",                       "content": "Narudžbe po mjeri — svadbene torte, Geburtstagstorten" },
+        { "id": "hours-info",   "required": true,  "variant_note": "custom lista",                      "content": "Radno vrijeme, adresa, svježe pečeno ujutro" },
+        { "id": "gallery",      "required": false, "variant_note": "masonry",                           "content": "Fotogalerija proizvoda i procesa pečenja" },
+        { "id": "testimonials", "required": false, "variant_note": "card-grid",                         "content": "Recenzije kupaca i narudžbi" },
+        { "id": "contact",      "required": true,  "variant_note": "split-form-info",                   "content": "Narudžba forma + telefon + adresa" },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                    "content": "Legal .at/.de" }
+      ],
+      "key_cta": "Naruči / Telefonska narudžba",
+      "seo_keywords": "bäckerei [grad], konditorei [grad], torte narudžba [grad]",
+      "recommended_moods": ["pastel-soft", "earth-organic", "editorial", "neobrutalism"]
+    },
+
+    "photography-studio": {
+      "name": "Fotograf / Photo Studio / Videograf",
+      "examples": ["wedding photographer", "portrait studio", "commercial photographer", "videographer", "content creator"],
+      "schema_type": ["ProfessionalService", "LocalBusiness"],
+      "primary_language": "de ili en",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "fullscreen-overlay ili split-vertical", "content": "Udarni vizual, ime fotografa, kratki tagline, 'View portfolio' CTA" },
+        { "id": "portfolio",    "required": true,  "variant_note": "masonry ili horizontal-scroll-gallery", "content": "Radovi — najvažnija sekcija. Masonry grid, visoko-rezolutne slike." },
+        { "id": "services",     "required": true,  "variant_note": "alternating-rows ili three-columns",    "content": "Fotografija: Wedding, Portrait, Commercial, Product, Events + Videografija" },
+        { "id": "about",        "required": true,  "variant_note": "persona-cards ili split-50-50",         "content": "Fotograf — priča, pristup, oprema, grad/regija" },
+        { "id": "pricing",      "required": false, "variant_note": "three-tier ili single-service",         "content": "Paketi — opciono, mnogi fotografe ne prikazuju cijene" },
+        { "id": "testimonials", "required": true,  "variant_note": "featured-quote ili card-grid",          "content": "Recenzije klijenata — emotivne, opisne" },
+        { "id": "contact",      "required": true,  "variant_note": "centered-minimal",                      "content": "Booking inquiry forma — datum, tip fotografije, poruka" },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                        "content": "Legal .at/.de" }
+      ],
+      "key_cta": "Booking inquiry / Termin rezervacija",
+      "seo_keywords": "fotograf [grad], wedding photographer [grad], portrait fotograf [grad]",
+      "recommended_moods": ["luxury-dark", "editorial", "swiss-minimal", "glassmorphism"]
+    },
+
+    "tattoo-studio": {
+      "name": "Tattoo Studio / Piercing / Body Art",
+      "examples": ["tattoo studio", "piercing studio", "tattoo artist", "body art", "tätowierstudio"],
+      "schema_type": ["HealthAndBeautyBusiness", "LocalBusiness"],
+      "primary_language": "de ili en",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "split ili centered dark",           "content": "Studio naziv, art style (realism/blackwork/japanese/minimal), booking CTA" },
+        { "id": "artists",      "required": true,  "variant_note": "team → photo-cards",                "content": "Tattoo artisti — foto, ime, stil, portfolio preview" },
+        { "id": "portfolio",    "required": true,  "variant_note": "masonry",                           "content": "Galerija radova — po stilu ili artistu, visoko-rezolatne fotke" },
+        { "id": "about",        "required": true,  "variant_note": "split-50-50",                       "content": "Studio priča, oprema, sterilizacija, pristup klijentu" },
+        { "id": "services",     "required": true,  "variant_note": "icon-grid ili three-columns",       "content": "Usluge: Custom tattoo, Flash tattoo, Piercing, Cover-up, Touch-up" },
+        { "id": "faq",          "required": true,  "variant_note": "accordion",                         "content": "Cijena, bol, njega nakon, booking, konsultacija, touchup" },
+        { "id": "testimonials", "required": false, "variant_note": "card-grid",                         "content": "Recenzije klijenata" },
+        { "id": "contact",      "required": true,  "variant_note": "split-form-info",                   "content": "Booking forma — ideja/opis, artist preference, datum, kontakt" },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                    "content": "Legal .at/.de" }
+      ],
+      "key_cta": "Konsultacija / Booking",
+      "seo_keywords": "tattoo studio [grad], tätowierer [grad], piercing [grad]",
+      "recommended_moods": ["brutalist", "luxury-dark", "neon-cyberpunk", "dark-tech"]
+    },
+
+    "yoga-wellness": {
+      "name": "Yoga / Pilates / Wellness / Spa",
+      "examples": ["yoga studio", "pilates studio", "wellness center", "spa", "meditation center", "sound bath"],
+      "schema_type": ["HealthAndBeautyBusiness", "SportsActivityLocation", "LocalBusiness"],
+      "primary_language": "de ili en",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "centered-overlay ili split",        "content": "Naziv, tagline (breathe/balance/transform), CTA na trial klasu ili booking" },
+        { "id": "about",        "required": true,  "variant_note": "big-quote ili split-50-50",         "content": "Filosofija, metoda, pristup — zašto baš ovaj studio" },
+        { "id": "classes",      "required": true,  "variant_note": "pricing → three-tier ili numbered", "content": "Klase/programi: Hatha, Vinyasa, Yin, Pilates — level, trajanje, cijena" },
+        { "id": "schedule",     "required": true,  "variant_note": "tabela ili custom",                 "content": "Sedmični raspored klasa — dan, vrijeme, tip, trener" },
+        { "id": "team",         "required": true,  "variant_note": "photo-cards",                       "content": "Instruktori — foto, certificati, stil, iskustvo" },
+        { "id": "gallery",      "required": false, "variant_note": "masonry ili uniform-grid",          "content": "Fotke prostora, klasa, atmofere" },
+        { "id": "testimonials", "required": true,  "variant_note": "featured-quote ili card-grid",      "content": "Priče polaznika — transformacija, iskustvo" },
+        { "id": "contact",      "required": true,  "variant_note": "booking-only ili split-form-info",  "content": "Booksy/Mindbody booking ili forma za prvu klasu" },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                    "content": "Legal .at/.de" }
+      ],
+      "key_cta": "Besplatna prva klasa / Trial booking",
+      "seo_keywords": "yoga studio [grad], pilates [grad], wellness [grad], meditation [grad]",
+      "recommended_moods": ["earth-organic", "pastel-soft", "luxury-dark", "editorial"]
+    },
+
+    "cleaning-service": {
+      "name": "Čišćenje / Reinigung / Haushaltsservice",
+      "examples": ["Reinigungsservice", "Gebäudereinigung", "Haushaltsreinigung", "End of tenancy cleaning", "Büroreinigung"],
+      "schema_type": ["HomeAndConstructionBusiness", "LocalBusiness"],
+      "primary_language": "de",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "stats-hero ili split-text-image",   "content": "Usluga + grad, trust signals (god. iskustva, recenzije), telefon CTA" },
+        { "id": "services",     "required": true,  "variant_note": "icon-grid ili three-columns",       "content": "Haushaltsreinigung, Büroreinigung, Endreinigung, Fensterreinigung, Umzugsreinigung" },
+        { "id": "about",        "required": true,  "variant_note": "split-50-50",                       "content": "Ko smo, iskustvo, certificirani, pouzdani, osiguranje" },
+        { "id": "pricing",      "required": false, "variant_note": "single-service ili three-tier",     "content": "Okvirne cijene ili paketi — opciono" },
+        { "id": "process",      "required": true,  "variant_note": "numbered 3-4 koraka",               "content": "Kako funkcionira: Anfrage → Angebot → Termin → Reinigung" },
+        { "id": "testimonials", "required": true,  "variant_note": "card-grid",                         "content": "Recenzije klijenata sa ocjenom" },
+        { "id": "faq",          "required": false, "variant_note": "accordion",                         "content": "Materijali, prisutnost klijenta, ključevi, hitni termini" },
+        { "id": "contact",      "required": true,  "variant_note": "split-form-info",                   "content": "Forma za ponudu + telefon + WhatsApp" },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                    "content": "Legal .at/.de" }
+      ],
+      "key_cta": "Kostenfreies Angebot / Besplatna ponuda",
+      "seo_keywords": "reinigung [grad], putzmachen [grad], haushaltsreinigung [oblast], gebäudereinigung [grad]",
+      "recommended_moods": ["swiss-minimal", "dark-tech", "earth-organic", "brutalist"]
+    },
+
+    "veterinary": {
+      "name": "Veterinar / Tierklinik / Pet Care",
+      "examples": ["tierarzt", "tierklinik", "veterinarska ordinacija", "pet grooming", "hundesalon"],
+      "schema_type": ["VeterinaryCare", "LocalBusiness"],
+      "primary_language": "de",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "minimal-centered ili split",        "content": "Naziv ordinacije, specijalizacija, CTA na naručivanje/hitni kontakt" },
+        { "id": "services",     "required": true,  "variant_note": "icon-grid ili accordion-list",      "content": "Usluge: Vorsorge, Impfung, Chirurgie, Zahnpflege, Notfall, Grooming..." },
+        { "id": "about",        "required": true,  "variant_note": "persona-cards",                     "content": "Veterinar/tim — foto, stručnost, ljubav prema životinjama, iskustvo" },
+        { "id": "team",         "required": false, "variant_note": "photo-cards",                       "content": "Tim — samo ako ima više veterinara/osoblja" },
+        { "id": "faq",          "required": true,  "variant_note": "accordion",                         "content": "Hitni slučajevi, radno vrijeme, vrste životinja, osiguranje" },
+        { "id": "testimonials", "required": false, "variant_note": "card-grid",                         "content": "Recenzije vlasnika ljubimaca" },
+        { "id": "contact",      "required": true,  "variant_note": "split-form-info",                   "content": "Naručivanje: forma + telefon (hitni!) + adresa + radno vrijeme" },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                    "content": "Legal .at/.de" }
+      ],
+      "key_cta": "Termin zakazati / Hitni kontakt",
+      "seo_keywords": "tierarzt [grad], tierklinik [grad], veterinär [grad]",
+      "recommended_moods": ["earth-organic", "pastel-soft", "swiss-minimal", "dark-tech"]
+    },
+
+    "personal-trainer": {
+      "name": "Personal Trainer / Online Coaching / Fitnes trener",
+      "examples": ["personal trainer", "online coach", "nutrition coach", "strength coach", "life coach"],
+      "schema_type": ["HealthAndBeautyBusiness", "Person", "LocalBusiness"],
+      "primary_language": "de ili en",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "split-text-image ili stats-hero",   "content": "Trener + rezultat koji obećaje (Transformation/Gewichtsabnahme/Muskelaufbau), CTA" },
+        { "id": "about",        "required": true,  "variant_note": "persona-cards ili split-50-50",     "content": "Trener — priča, certifikati, vlastita transformacija, metoda rada" },
+        { "id": "services",     "required": true,  "variant_note": "three-columns ili alternating-rows","content": "1-on-1 Training, Online Coaching, Ernährungsberatung, Group Sessions" },
+        { "id": "pricing",      "required": true,  "variant_note": "three-tier ili single-service",     "content": "Paketi: Starter / Pro / Elite — trajanje, sessions, šta uključuje" },
+        { "id": "process",      "required": false, "variant_note": "numbered 3 koraka",                 "content": "Onboarding: Erstgespräch → Assessment → Plan → Training" },
+        { "id": "testimonials", "required": true,  "variant_note": "card-grid ili featured-quote",      "content": "Before/after priče, rezultati klijenata — s brojevima" },
+        { "id": "faq",          "required": true,  "variant_note": "accordion",                         "content": "Online ili in-person, oprema, iskustvo, trajanje, prehrana" },
+        { "id": "contact",      "required": true,  "variant_note": "centered-minimal",                  "content": "Intro call booking (Calendly) ili forma za inquiry" },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                    "content": "Legal .at/.de" }
+      ],
+      "key_cta": "Besplatni intro call / Probni trening",
+      "seo_keywords": "personal trainer [grad], online coaching [oblast], fitnesstrainer [grad]",
+      "recommended_moods": ["brutalist", "dark-tech", "neon-cyberpunk", "neobrutalism"]
+    },
+
+    "travel-agency": {
+      "name": "Travel Agencija / Putovanja / Turizam",
+      "examples": ["travel agency", "reisebüro", "tour operator", "adventure travel", "luxury travel planner"],
+      "schema_type": ["TravelAgency", "LocalBusiness"],
+      "primary_language": "de ili en",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "centered-overlay ili video-bg",      "content": "Destinacija ili vrsta putovanja u H1, atmosferski foto/video, CTA na ponude" },
+        { "id": "about",        "required": true,  "variant_note": "split-50-50 ili big-quote",          "content": "Ko smo, iskustvo, broj putnika, destinacije, posebnost ponude" },
+        { "id": "destinations", "required": true,  "variant_note": "gallery featured-grid",              "content": "Top destinacije ili kategorije putovanja — foto kartice sa naslovom i 'od cijena'" },
+        { "id": "services",     "required": true,  "variant_note": "icon-grid ili three-columns",        "content": "Usluge: Pauschalreisen, Individualreisen, Gruppenreisen, Kreuzfahrten, Last minute" },
+        { "id": "testimonials", "required": true,  "variant_note": "card-grid ili featured-quote",       "content": "Recenzije putnika — destinacija, iskustvo, šta su doživjeli" },
+        { "id": "faq",          "required": true,  "variant_note": "accordion",                          "content": "Visa, osiguranje, otkazivanje, plaćanje, posebni zahtjevi" },
+        { "id": "contact",      "required": true,  "variant_note": "split-form-info",                    "content": "Forma za ponudu: destinacija, termin, broj osoba, budžet" },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                     "content": "Legal .at/.de + licence za turizam" }
+      ],
+      "key_cta": "Zatražite ponudu / Kostenfreie Beratung",
+      "seo_keywords": "reisebüro [grad], urlaub [destinacija], reise [grad], pauschalreise [grad]",
+      "recommended_moods": ["earth-organic", "editorial", "luxury-dark", "glassmorphism"]
+    },
+
+    "it-startup": {
+      "name": "IT Startup / SaaS / Tech Produkt",
+      "examples": ["SaaS app", "web app", "mobile app startup", "tech tool", "B2B software", "developer tool"],
+      "schema_type": ["SoftwareApplication", "Organization"],
+      "primary_language": "en",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "stats-hero ili product-hero",        "content": "Produkt naziv + jedna rečenica šta radi + social proof (users/reviews), CTA free trial" },
+        { "id": "features",     "required": true,  "variant_note": "icon-grid ili alternating-rows",     "content": "3-6 ključnih featuri — ne liste, nego benefiti za korisnika" },
+        { "id": "how-it-works", "required": true,  "variant_note": "numbered 3 koraka",                  "content": "Sign up → Connect/Setup → Get results. Brzo i jasno." },
+        { "id": "pricing",      "required": true,  "variant_note": "three-tier (Free/Pro/Enterprise)",   "content": "Pricing plan sa monthly/yearly toggle — Free tier uvijek ako postoji" },
+        { "id": "testimonials", "required": true,  "variant_note": "logo-wall + featured-quote",         "content": "Company logoi + quote od key customers" },
+        { "id": "faq",          "required": true,  "variant_note": "accordion",                          "content": "Free trial, data security, integrations, cancellation, billing" },
+        { "id": "about",        "required": false, "variant_note": "split-50-50",                        "content": "Tim/osnivači — samo ako brand identity gradi poverenje" },
+        { "id": "contact",      "required": true,  "variant_note": "centered-minimal",                   "content": "Sales inquiry / Enterprise contact / Support" },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                     "content": "Legal .at/.de + Privacy Policy + Terms" }
+      ],
+      "key_cta": "Start free trial / Try for free",
+      "seo_keywords": "[product name] alternative, [category] software, [problem] tool",
+      "recommended_moods": ["dark-tech", "glassmorphism", "neon-cyberpunk", "swiss-minimal"]
+    },
+
+    "florist": {
+      "name": "Cvjećarnica / Florist / Blumengeschäft",
+      "examples": ["cvjećarnica", "florist", "blumengeschäft", "wedding florist", "event flowers"],
+      "schema_type": ["Florist", "LocalBusiness"],
+      "primary_language": "de ili bs",
+      "sections": [
+        { "id": "hero",         "required": true,  "variant_note": "centered-overlay ili split",         "content": "Naziv, tagline (svježe/ruční rad/za svaki trenutak), CTA na narudžbu" },
+        { "id": "about",        "required": true,  "variant_note": "split-50-50",                        "content": "Priča cvjećarnice, iskustvo, sezonsko cvijeće, poseban pristup" },
+        { "id": "services",     "required": true,  "variant_note": "icon-grid ili three-columns",        "content": "Buketi, Gestecke, Hochzeitsblumen, Trauerfloren, Raumdekor, Pflanzen" },
+        { "id": "gallery",      "required": true,  "variant_note": "masonry",                            "content": "Aranžmani — najvažnija sekcija za vizualni posao" },
+        { "id": "wedding",      "required": false, "variant_note": "split-50-50",                        "content": "Vjenčano cvijeće — posebna sekcija za brides" },
+        { "id": "hours-info",   "required": true,  "variant_note": "custom lista",                       "content": "Radno vrijeme, adresa, dostava (da/ne, zona)" },
+        { "id": "testimonials", "required": false, "variant_note": "card-grid",                          "content": "Recenzije kupaca i vjenčanih parova" },
+        { "id": "contact",      "required": true,  "variant_note": "split-form-info",                    "content": "Narudžba forma + telefon + WhatsApp za brze narudžbe" },
+        { "id": "impressum",    "required": true,  "variant_note": "impressum.html",                     "content": "Legal .at/.de" }
+      ],
+      "key_cta": "Naruči / Jetzt bestellen",
+      "seo_keywords": "florist [grad], blumengeschäft [grad], blumen [grad], hochzeitsblumen [grad]",
+      "recommended_moods": ["pastel-soft", "earth-organic", "editorial", "luxury-dark"]
+    }
+  },
+
+  "section_order_rules": {
+    "universal": [
+      "hero uvijek PRVI",
+      "contact uvijek PRED KRAJ (iza testimonials/faq)",
+      "impressum uvijek ZADNJI ili u footeru",
+      "about ide NAKON usluga — ne na početak (prvo pokaži šta nudiš, pa ko si)",
+      "pricing ide NAKON services — logičan flow: šta → koliko",
+      "testimonials ide NAKON pricing — social proof nakon price shock",
+      "faq ide IZMEĐU testimonials i contact — razrješava sumnje pred poziv na akciju"
+    ],
+    "mobile_note": "Na mobilnom sve sekcije su stacked vertikalno — redoslijed je kritičan",
+    "seo_note": "H1 samo u hero. H2 za sve sekcije. H3 za pod-elemente unutar sekcije. NIKAD skip."
+  }
+}

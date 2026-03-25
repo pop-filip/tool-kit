@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nema interneta — {{SITE_NAME}}</title>
+<meta name="robots" content="noindex">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: {{BG}};
+    --primary: {{PRIMARY}};
+    --t: {{TEXT}};
+    --t2: {{TEXT2}};
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--t);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+    gap: 24px;
+  }
+
+  .icon {
+    font-size: 72px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.6; transform: scale(0.95); }
+  }
+
+  h1 {
+    font-size: clamp(24px, 5vw, 36px);
+    font-weight: 700;
+    color: var(--t);
+  }
+
+  p {
+    color: var(--t2);
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 400px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 12px 28px;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .btn:hover { opacity: 0.85; }
+
+  .site-name {
+    font-size: 13px;
+    color: var(--t2);
+    opacity: 0.5;
+    margin-top: 40px;
+  }
+</style>
+</head>
+<body>
+  <div class="icon" aria-hidden="true">📡</div>
+
+  <h1>Nema interneta</h1>
+
+  <p>
+    Provjerite internetsku vezu i pokušajte ponovo.<br>
+    Stranica će se učitati kada se veza uspostavi.
+  </p>
+
+  <button class="btn" onclick="window.location.reload()">
+    Pokušaj ponovo
+  </button>
+
+  <p class="site-name">{{SITE_NAME}}</p>
+
+  <script>
+    // Automatski reload kad se veza vrati
+    window.addEventListener('online', () => window.location.reload());
+  </script>
+</body>
+</html>

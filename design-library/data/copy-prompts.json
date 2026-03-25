@@ -1,0 +1,21 @@
+{
+  "_doc": "Prompt templates za Claude API (Haiku) copy generation. Poziv: POST https://api.anthropic.com/v1/messages. Model: claude-haiku-4-5-20251001. Max tokens: 1200.",
+
+  "_api_call": {
+    "model": "claude-haiku-4-5-20251001",
+    "max_tokens": 1200,
+    "headers": {
+      "x-api-key": "[ANTHROPIC_API_KEY]",
+      "anthropic-version": "2023-06-01",
+      "content-type": "application/json"
+    }
+  },
+
+  "_response_format": "Uvijek tražiti JSON response. Parse .content[0].text kao JSON.",
+
+  "system_prompt": "You are a professional copywriter specializing in website content. Write concise, compelling, authentic copy. Never use generic filler phrases like 'innovative solutions' or 'passionate team'. Match the tone to the mood and business type. Return ONLY valid JSON, no markdown, no explanation.",
+
+  "user_prompt_template": "Write website copy for:\n- Business name: [BUSINESS_NAME]\n- Business type: [BUSINESS_TYPE]\n- City/location: [CITY]\n- Language: [LANG] (write all copy in this language)\n- Design mood/tone: [MOOD_NAME] ([MOOD_DESC])\n- Main services: [SERVICES_HINT]\n\nReturn this exact JSON structure:\n{\n  \"hero_headline\": \"[max 7 words, punchy, no question marks]\",\n  \"hero_subheading\": \"[1 sentence, what they do + for whom + key benefit, max 20 words]\",\n  \"hero_cta_primary\": \"[3-4 words, action verb]\",\n  \"hero_cta_secondary\": \"[3-4 words]\",\n  \"about_headline\": \"[max 6 words]\",\n  \"about_paragraph\": \"[2-3 sentences, story/origin/philosophy, first person or brand voice, max 60 words]\",\n  \"services_headline\": \"[max 5 words]\",\n  \"services\": [\n    {\"name\": \"[service 1]\", \"desc\": \"[max 15 words]\"},\n    {\"name\": \"[service 2]\", \"desc\": \"[max 15 words]\"},\n    {\"name\": \"[service 3]\", \"desc\": \"[max 15 words]\"}\n  ],\n  \"cta_headline\": \"[max 8 words, creates urgency or curiosity]\",\n  \"cta_subtext\": \"[1 sentence, removes friction or adds social proof]\",\n  \"cta_button\": \"[3-4 words]\",\n  \"footer_tagline\": \"[max 6 words, brand essence]\",\n  \"meta_title\": \"[SEO title, business name + main keyword + city, max 60 chars]\",\n  \"meta_description\": \"[SEO description, what + where + why, max 155 chars]\"\n}",
+
+  "fallback_note": "Ako API call ne uspije, koristi copywriting.json formula approach kao fallback. Ne prekidati generisanje sajta."
+}

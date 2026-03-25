@@ -1,0 +1,62 @@
+{
+  "_meta": {
+    "description": "Design Library index — mapira tip biznisa na odgovarajući JSON fajl",
+    "usage": "Čitaj ovaj fajl prvo, odaberi tip biznisa, zatim učitaj odgovarajući JSON",
+    "updated": "2026-03"
+  },
+
+  "types": {
+    "local-business": {
+      "file": "local-business.json",
+      "match_keywords": ["servis", "popravak", "majstor", "tehničar", "instalater", "elektro", "voda", "klimatizacija", "auto servis", "mehaničar", "čišćenje", "dostava", "prijevoz", "prevoz", "taksi"],
+      "description": "Lokalni servis i zanatske usluge"
+    },
+    "portfolio": {
+      "file": "portfolio.json",
+      "match_keywords": ["fotograf", "videograf", "dizajner", "grafičar", "arhitekt", "freelancer", "kreativac", "ilustrator", "animator", "motion", "ui", "ux", "portfolio"],
+      "description": "Kreativci i freelanceri"
+    },
+    "restaurant": {
+      "file": "restaurant.json",
+      "match_keywords": ["restoran", "kafić", "bar", "catering", "dostava hrane", "picerija", "pizza", "burger", "sushi", "pekara", "slastičarna", "vinoteka", "food truck", "kuhinja"],
+      "description": "Ugostiteljstvo i hrana"
+    },
+    "salon": {
+      "file": "salon.json",
+      "match_keywords": ["salon", "frizerski", "frizerka", "kozmetičar", "nail", "manikura", "pedikura", "spa", "masaža", "beauty", "tattoo", "piercing", "brow", "lash", "depilacija", "njega"],
+      "description": "Beauty, wellness i salon usluge"
+    },
+    "agency": {
+      "file": "agency.json",
+      "match_keywords": ["agencija", "marketing", "reklama", "branding", "web development", "seo", "social media", "pr", "konzalting", "konsalting", "startup", "it firma", "software", "dizajn studio"],
+      "description": "Agencije, konzalting i B2B usluge"
+    },
+    "luxury": {
+      "file": "luxury.json",
+      "match_keywords": ["luksuz", "premium", "ekskluzivno", "high-end", "boutique", "nakit", "sat", "rezidencija", "vila", "penthouse", "privatno", "vip", "elite", "couture"],
+      "description": "Premium i luksuzni brendovi"
+    }
+  },
+
+  "matching_algorithm": {
+    "description": "Kako odabrati tip na osnovu briefa",
+    "steps": [
+      "1. Uzmi opis biznisa iz briefa (tip + opis + ključne riječi)",
+      "2. Usporedi sa match_keywords svakog tipa",
+      "3. Odaberi tip s najviše podudaranja",
+      "4. Ako nema jasnog pobjednika → koristi 'local-business' kao default",
+      "5. Ako korisnik kaže 'premium' ili 'luksuz' → overriduj sa 'luxury' paletom bez obzira na tip"
+    ]
+  },
+
+  "palette_selection": {
+    "description": "Kako odabrati paletu unutar tipa",
+    "rules": [
+      "Ako korisnik navede boju → traži paletu koja je najbliža ili izgradi custom na bazi te boje",
+      "Ako korisnik kaže 'dark' / 'tamno' → uzmi prvu paletu (uvijek dark)",
+      "Ako korisnik kaže 'light' / 'bijelo' / 'clean' → uzmi clean/light paletu",
+      "Ako korisnik kaže 'luxury' / 'gold' → uvijek 'Obsidian Gold' iz luxury.json",
+      "Ako nema preferencije → uzmi prvu paletu iz tipa"
+    ]
+  }
+}

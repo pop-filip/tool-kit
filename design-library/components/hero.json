@@ -1,0 +1,323 @@
+{
+  "_meta": {
+    "description": "Hero section library — 13 layout varijanti",
+    "usage": "Svaka varijanta ima drugačiji layout, tipografiju i vizualni pristup.",
+    "version": "2.0"
+  },
+
+  "variants": {
+
+    "big-type": {
+      "name": "Big Typography",
+      "description": "Ogromna tipografija koja puni ekran. Tekst JE dizajn. Minimalan sadržaj.",
+      "mood_default": ["brutalist", "swiss-minimal", "editorial"],
+      "layout": "full-height, tekst zauzima 80% ekrana, bez slika",
+      "content": {
+        "headline": "1-3 riječi, clamp(4rem, 12vw, 12rem)",
+        "subline": "jedna rečenica, muted, ispod headline-a",
+        "cta": "text link sa strelicom, bez boja na dugmetu",
+        "extras": "opciono: horizontalna linija, broj projekata, godina"
+      },
+      "css": {
+        "section_min_height": "100vh",
+        "section_padding": "140px 24px 80px",
+        "headline_size": "clamp(4rem, 12vw, 12rem)",
+        "headline_weight": "900",
+        "headline_line_height": "0.9",
+        "headline_letter_spacing": "-3px",
+        "layout_type": "flex column, justify: center",
+        "bg_treatment": "solid ili subtle grid pattern"
+      },
+      "html_skeleton": "<section id='hero'>\n  <div class='hero-inner'>\n    <h1 class='hero-big-type'>[HEADLINE<br>WORD]</h1>\n    <div class='hero-bottom'>\n      <p class='hero-sub'>[Kratki opis u jednoj rečenici]</p>\n      <a href='#section' class='hero-link'>[CTA tekst] →</a>\n    </div>\n  </div>\n</section>"
+    },
+
+    "split-text-image": {
+      "name": "Split: Text + Image",
+      "description": "50/50 layout — tekst lijevo, slika/vizual desno. Klasičan i efektivan.",
+      "mood_default": ["dark-tech", "earth-organic", "neobrutalism"],
+      "layout": "2-column grid, text left 50%, image right 50%",
+      "content": {
+        "headline": "2-4 linije, clamp(2.5rem, 5vw, 5rem)",
+        "subline": "2-3 rečenice",
+        "cta": "primary dugme + secondary link",
+        "extras": "stats row ispod CTA (3 broja), badge iznad headline-a",
+        "image": "aspect-ratio 4/5 ili 1/1, zauzima cijelu desnu kolonu"
+      },
+      "css": {
+        "section_min_height": "100vh",
+        "grid": "grid-template-columns: 1fr 1fr, align-items: center",
+        "text_padding": "120px 60px 80px 24px",
+        "image_style": "object-fit: cover, height: 100vh, position: sticky top:0",
+        "mobile": "single column, image ispod teksta ili kao background"
+      },
+      "html_skeleton": "<section id='hero'>\n  <div class='hero-split'>\n    <div class='hero-text'>\n      <span class='hero-badge'>[Badge tekst]</span>\n      <h1>[Headline<br><span class='highlight'>Highlighted</span>]</h1>\n      <p>[Subheadline tekst]</p>\n      <div class='hero-actions'>\n        <a href='#cta' class='btn-primary'>[CTA]</a>\n        <a href='#more' class='btn-secondary'>[Secondary]</a>\n      </div>\n      <div class='hero-stats'>\n        <div><span class='num'>[N+]</span><span class='label'>[Label]</span></div>\n      </div>\n    </div>\n    <div class='hero-image'>\n      <picture>\n        <source srcset='images/hero.webp' type='image/webp'>\n        <img src='images/hero.jpg' alt='[Alt tekst]' width='800' height='1000'>\n      </picture>\n    </div>\n  </div>\n</section>"
+    },
+
+    "centered-overlay": {
+      "name": "Centered Text Overlay",
+      "description": "Tekst centriran, slika ili gradijent u pozadini sa overlay-om. Dramatic.",
+      "mood_default": ["glassmorphism", "luxury-dark", "neon-cyberpunk"],
+      "layout": "full-height, content centered, background image/gradient",
+      "content": {
+        "headline": "kratko, 1-3 riječi ili kratka fraza, veoma veliko",
+        "subline": "max 2 rečenice, ispod headline-a",
+        "cta": "jedno ili dva dugmeta",
+        "bg": "slika sa dark overlay ili CSS gradijent"
+      },
+      "css": {
+        "section_min_height": "100vh",
+        "display": "flex, align-items: center, justify-content: center",
+        "text_align": "center",
+        "bg_overlay": "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7))",
+        "headline_size": "clamp(3rem, 8vw, 8rem)",
+        "headline_weight": "900",
+        "content_max_width": "800px",
+        "content_z_index": "2"
+      },
+      "html_skeleton": "<section id='hero' style='position:relative; overflow:hidden;'>\n  <div class='hero-bg-image' aria-hidden='true'>\n    <picture>\n      <source srcset='images/hero-bg.webp' type='image/webp'>\n      <img src='images/hero-bg.jpg' alt=''>\n    </picture>\n    <div class='hero-overlay'></div>\n  </div>\n  <div class='hero-centered'>\n    <span class='hero-badge'>[Badge]</span>\n    <h1>[Headline]</h1>\n    <p>[Subtitle]</p>\n    <div class='hero-actions'>\n      <a href='#cta' class='btn-primary'>[CTA]</a>\n    </div>\n  </div>\n</section>"
+    },
+
+    "editorial-grid": {
+      "name": "Editorial Grid",
+      "description": "Magazinski layout — tekst i slike u neregularnom gridu. Sofisticirano.",
+      "mood_default": ["editorial"],
+      "layout": "CSS grid neregularan, tekst i slike miješani, horizontalne linije",
+      "content": {
+        "headline": "italic serif, 2 linije, srednja veličina",
+        "subline": "kratko, muted",
+        "extras": "broj izdanja ili datum, horizontalne linije, category tag",
+        "images": "2-3 slike različitih veličina u gridu"
+      },
+      "css": {
+        "section_min_height": "100vh",
+        "grid": "CSS grid sa named areas: headline | image1 / subline | image2",
+        "headline_font": "Playfair Display italic",
+        "headline_size": "clamp(2.5rem, 5vw, 6rem)",
+        "divider": "1px solid var(--text) horizontalne linije",
+        "spacing": "puno whitespace, grid gap 40px"
+      },
+      "html_skeleton": "<section id='hero' class='hero-editorial'>\n  <div class='editorial-grid'>\n    <div class='ed-meta'>[Category · Datum]</div>\n    <div class='ed-rule'></div>\n    <h1 class='ed-headline'>[Headline<br><em>italic dio</em>]</h1>\n    <div class='ed-image-1'>\n      <picture><source srcset='images/hero1.webp' type='image/webp'><img src='images/hero1.jpg' alt='[alt]'></picture>\n    </div>\n    <p class='ed-sub'>[Subtitle]</p>\n    <div class='ed-image-2'>\n      <picture><source srcset='images/hero2.webp' type='image/webp'><img src='images/hero2.jpg' alt='[alt]'></picture>\n    </div>\n    <div class='ed-cta'>\n      <a href='#section' class='ed-link'>[CTA] ↓</a>\n    </div>\n  </div>\n</section>"
+    },
+
+    "stats-hero": {
+      "name": "Stats Hero",
+      "description": "Tekst + prominentni brojevi/statistike. Gradi povjerenje odmah.",
+      "mood_default": ["dark-tech", "brutalist", "neobrutalism"],
+      "layout": "tekst i CTA gore, stats row dolje u hero-u",
+      "content": {
+        "headline": "bold, problem/solution fokus",
+        "stats": "3-4 velika broja sa labelama (npr. 200+ klijenata, 5 godina, 98% satisfakcija)",
+        "cta": "primary + optional social proof (npr. ⭐ 4.9 rating)"
+      },
+      "css": {
+        "section_min_height": "100vh",
+        "layout": "flex column, justify: space-between",
+        "stats_row": "flex, gap: 48px, border-top: 1px solid var(--border), padding-top: 40px",
+        "stat_num_size": "clamp(2rem, 5vw, 4rem)",
+        "stat_num_color": "var(--primary)",
+        "stat_num_font": "var(--font-display)",
+        "stat_label_size": "12px",
+        "stat_label_transform": "uppercase"
+      },
+      "html_skeleton": "<section id='hero'>\n  <div class='hero-inner'>\n    <div class='hero-top'>\n      <span class='hero-badge'>[Badge]</span>\n      <h1>[Headline]</h1>\n      <p>[Subtitle]</p>\n      <div class='hero-actions'>\n        <a href='#cta' class='btn-primary'>[CTA]</a>\n        <a href='#more' class='btn-secondary'>[Secondary]</a>\n      </div>\n    </div>\n    <div class='hero-stats'>\n      <div class='stat'><span class='stat-num'>[N]+</span><span class='stat-label'>[Label]</span></div>\n      <div class='stat'><span class='stat-num'>[N]+</span><span class='stat-label'>[Label]</span></div>\n      <div class='stat'><span class='stat-num'>[N]%</span><span class='stat-label'>[Label]</span></div>\n    </div>\n  </div>\n</section>"
+    },
+
+    "gradient-blob": {
+      "name": "Gradient Blob",
+      "description": "Animirani gradijent blobovi u pozadini, tekst lebdi iznad. Moderno.",
+      "mood_default": ["glassmorphism", "pastel-soft", "dark-tech"],
+      "layout": "tekst centriran ili lijevo, animated CSS blobs u bg",
+      "content": {
+        "headline": "srednja veličina, čitljivo na gradijent bg-u",
+        "extras": "glass kartica opciono kao container za tekst"
+      },
+      "css": {
+        "blob_1": "position:absolute; width:500px; height:500px; border-radius:50%; background: radial-gradient(circle, var(--primary) 0%, transparent 70%); opacity: 0.15; animation: blob-move 8s ease-in-out infinite;",
+        "blob_2": "isti, drugačija boja i animacija offset",
+        "animation": "@keyframes blob-move { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(80px,-40px) scale(1.1)} }",
+        "content_z": "position:relative; z-index:2"
+      },
+      "html_skeleton": "<section id='hero' style='overflow:hidden; position:relative;'>\n  <div class='blob blob-1' aria-hidden='true'></div>\n  <div class='blob blob-2' aria-hidden='true'></div>\n  <div class='hero-content'>\n    <span class='hero-badge'>[Badge]</span>\n    <h1>[Headline]</h1>\n    <p>[Subtitle]</p>\n    <div class='hero-actions'>\n      <a href='#cta' class='btn-primary'>[CTA]</a>\n    </div>\n  </div>\n</section>"
+    },
+
+    "asymmetric": {
+      "name": "Asymmetric Layout",
+      "description": "Offset layout, rotated elementi, bold. Dinamično, neobičan energetik.",
+      "mood_default": ["neobrutalism", "neon-cyberpunk"],
+      "layout": "tekst i box nisu u istoj osi, rotated badge, offset kartice",
+      "content": {
+        "headline": "2 linije, velika",
+        "badge": "rotiran -3deg ili -5deg",
+        "cta_card": "kartica sa shadow koja je malo rotirana ili offsetana",
+        "extras": "skewed divider ili diagonal element"
+      },
+      "css": {
+        "badge_transform": "rotate(-3deg)",
+        "card_transform": "rotate(1deg)",
+        "card_hover_transform": "rotate(0deg) translateY(-4px)",
+        "skew_divider": "transform: skewY(-3deg); background: var(--primary); height: 60px;",
+        "headline_size": "clamp(3rem, 7vw, 7rem)"
+      },
+      "html_skeleton": "<section id='hero'>\n  <div class='hero-asym'>\n    <div class='hero-text'>\n      <span class='hero-badge' style='transform:rotate(-3deg)'>[Badge]</span>\n      <h1>[Headline<br>Line Two]</h1>\n      <p>[Subtitle]</p>\n    </div>\n    <div class='hero-card' style='transform:rotate(1deg)'>\n      <div class='hero-card-inner'>\n        <p>[Kratki claim ili stat]</p>\n        <a href='#cta' class='btn-primary'>[CTA]</a>\n      </div>\n    </div>\n  </div>\n</section>"
+    },
+
+    "minimal-centered": {
+      "name": "Minimal Centered",
+      "description": "Sve centrirano, malo teksta, puno prostora. Luksuzno i mirno.",
+      "mood_default": ["luxury-dark", "swiss-minimal", "editorial"],
+      "layout": "100vh, flex center, text-align center, max-width 700px",
+      "content": {
+        "pretitle": "mali uppercase label iznad",
+        "headline": "srednje veliki, ne pretjeran",
+        "subline": "1-2 rečenice",
+        "cta": "jedan ili dva, centered"
+      },
+      "css": {
+        "section_min_height": "100vh",
+        "display": "flex, align-items: center, justify-content: center",
+        "text_align": "center",
+        "content_max_width": "680px",
+        "headline_size": "clamp(2.5rem, 5vw, 5rem)",
+        "headline_weight": "300 (luxury) ili 700 (swiss)",
+        "letter_spacing": "2px (luxury) ili 0 (swiss)",
+        "pretitle_style": "11px uppercase, letter-spacing: 4px, var(--primary)"
+      },
+      "html_skeleton": "<section id='hero'>\n  <div class='hero-minimal'>\n    <p class='hero-pretitle'>[Pretitle / Tagline]</p>\n    <h1>[Headline]</h1>\n    <p class='hero-sub'>[Subtitle rečenica]</p>\n    <div class='hero-actions'>\n      <a href='#cta' class='btn-primary'>[CTA]</a>\n      <a href='#more' class='btn-ghost'>[Learn more]</a>\n    </div>\n  </div>\n</section>"
+    },
+
+    "parallax-layers": {
+      "name": "Parallax Layers",
+      "description": "Više slojeva (tekst, slika, bg) pomiču se različitim brzinama na scroll. Dubina i dramatičnost.",
+      "mood_default": ["luxury-dark", "editorial", "earth-organic"],
+      "layout": "full-height, 3 apsolutno pozicionirana sloja, JS parallax na scroll",
+      "content": {
+        "headline": "veoma velika, u prednjem planu",
+        "bg_layer": "slika ili gradijent, pomak najsporiji (0.3x scroll brzine)",
+        "mid_layer": "dekorativni element ili tanka linija, srednji pomak (0.6x)",
+        "fg_layer": "tekst/cta, bez parallax-a"
+      },
+      "css": {
+        "section": "position:relative; height:100vh; overflow:hidden",
+        "bg_layer": "position:absolute; inset:0; will-change:transform",
+        "mid_layer": "position:absolute; will-change:transform",
+        "fg_layer": "position:relative; z-index:3; display:flex; align-items:center; height:100%",
+        "headline_size": "clamp(4rem, 10vw, 10rem)",
+        "headline_mix_blend": "mix-blend-mode: difference (opciono za kontrastni efekt)"
+      },
+      "js": "const hero = document.getElementById('hero');\nconst bg = hero.querySelector('.parallax-bg');\nconst mid = hero.querySelector('.parallax-mid');\nwindow.addEventListener('scroll', () => {\n  const y = window.scrollY;\n  bg.style.transform = `translateY(${y * 0.3}px)`;\n  mid.style.transform = `translateY(${y * 0.6}px)`;\n}, { passive: true });",
+      "html_skeleton": "<section id='hero' style='position:relative; height:100vh; overflow:hidden;'>\n  <div class='parallax-bg' aria-hidden='true'>\n    <picture><source srcset='images/hero-bg.webp' type='image/webp'><img src='images/hero-bg.jpg' alt=''></picture>\n  </div>\n  <div class='parallax-mid' aria-hidden='true'>\n    <!-- dekorativni element, npr. neon linija ili SVG -->\n  </div>\n  <div class='parallax-fg'>\n    <div class='hero-content'>\n      <h1>[Headline]</h1>\n      <p>[Subtitle]</p>\n      <a href='#next' class='btn-primary'>[CTA]</a>\n    </div>\n  </div>\n</section>"
+    },
+
+    "horizontal-ticker": {
+      "name": "Horizontal Ticker Hero",
+      "description": "Veliki headline + horizontalni infinite scroll tekst ispod (kao news ticker). Energetično.",
+      "mood_default": ["brutalist", "neobrutalism", "neon-cyberpunk"],
+      "layout": "tekst gore (60vh), ticker sekcija dolje (40vh), oba u hero-u",
+      "content": {
+        "headline": "kratko, 2-3 riječi, ogromno",
+        "ticker": "repetirajuća poruka razdvojena sa ·, animirana translateX beskonačno",
+        "cta": "opciono, mali u uglu"
+      },
+      "css": {
+        "ticker_wrapper": "overflow:hidden; white-space:nowrap; border-top: 2px solid var(--border);",
+        "ticker_track": "display:inline-block; animation: ticker-scroll 20s linear infinite;",
+        "ticker_animation": "@keyframes ticker-scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }",
+        "ticker_font_size": "clamp(2rem, 5vw, 5rem)",
+        "ticker_font_weight": "900",
+        "ticker_color": "var(--primary)",
+        "ticker_transform": "uppercase"
+      },
+      "html_skeleton": "<section id='hero'>\n  <div class='hero-top'>\n    <h1>[KRATKO<br>HEADLINE]</h1>\n    <a href='#cta' class='btn-primary'>[CTA]</a>\n  </div>\n  <div class='hero-ticker' aria-hidden='true'>\n    <div class='ticker-track'>\n      <span>[Poruka] · [Poruka] · [Poruka] · [Poruka] · </span>\n      <span aria-hidden='true'>[Poruka] · [Poruka] · [Poruka] · [Poruka] · </span>\n    </div>\n  </div>\n</section>"
+    },
+
+    "sticky-reveal": {
+      "name": "Sticky Scroll Reveal",
+      "description": "Hero ostaje sticky dok korisnik scrolla, tekst se otkriva u etapama. Kinematski.",
+      "mood_default": ["luxury-dark", "dark-tech", "swiss-minimal"],
+      "layout": "hero sticky za visinu = 3x viewport, IntersectionObserver mijenja tekst/opacity",
+      "content": {
+        "phase_1": "samo pretitle label vidljiv",
+        "phase_2": "headline se pojavljuje (translateY + opacity)",
+        "phase_3": "subtitle i CTA se pojavljuju",
+        "bg": "tamna pozadina, opciono suptilan gradijent koji se mijenja"
+      },
+      "css": {
+        "hero_wrapper": "position:sticky; top:0; height:100vh; overflow:hidden",
+        "hero_scroll_container": "height:300vh",
+        "content": "position:absolute; inset:0; display:flex; align-items:center; justify-content:center",
+        "element_initial": "opacity:0; transform:translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease",
+        "element_active": "opacity:1; transform:translateY(0)"
+      },
+      "js": "const phases = document.querySelectorAll('.reveal-phase');\nconst hero = document.getElementById('hero-wrapper');\nwindow.addEventListener('scroll', () => {\n  const progress = window.scrollY / (hero.offsetHeight - window.innerHeight);\n  phases.forEach((el, i) => {\n    el.classList.toggle('active', progress > i * 0.33);\n  });\n}, { passive: true });",
+      "html_skeleton": "<div id='hero-wrapper' style='height:300vh'>\n  <section id='hero' style='position:sticky; top:0; height:100vh;'>\n    <div class='hero-content'>\n      <p class='reveal-phase hero-pretitle'>[Label]</p>\n      <h1 class='reveal-phase'>[Headline]</h1>\n      <p class='reveal-phase hero-sub'>[Subtitle]</p>\n      <div class='reveal-phase hero-actions'>\n        <a href='#next' class='btn-primary'>[CTA]</a>\n      </div>\n    </div>\n  </section>\n</div>"
+    },
+
+    "video-background": {
+      "name": "Video Background Hero",
+      "description": "Muted autoplay video u pozadini sa overlay-om i centriranim tekstom. Atmosferično.",
+      "mood_default": ["luxury-dark", "earth-organic", "dark-tech"],
+      "layout": "full-height, video kao bg (object-fit:cover), dark overlay, tekst centriran",
+      "content": {
+        "video": "mp4 + webm, autoplay muted loop playsinline, poster slika za fallback",
+        "headline": "kratko, čitljivo na video bg-u",
+        "overlay": "rgba(0,0,0,0.5) ili gradient overlay"
+      },
+      "css": {
+        "hero": "position:relative; height:100vh; overflow:hidden",
+        "video": "position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0",
+        "overlay": "position:absolute; inset:0; background:rgba(0,0,0,0.55); z-index:1",
+        "content": "position:relative; z-index:2; display:flex; align-items:center; justify-content:center; height:100%; text-align:center"
+      },
+      "html_skeleton": "<section id='hero' style='position:relative; height:100vh; overflow:hidden;'>\n  <video autoplay muted loop playsinline poster='images/hero-poster.jpg'\n    style='position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;'\n    aria-hidden='true'>\n    <source src='videos/hero.webm' type='video/webm'>\n    <source src='videos/hero.mp4' type='video/mp4'>\n  </video>\n  <div class='hero-overlay' aria-hidden='true'></div>\n  <div class='hero-content'>\n    <span class='hero-badge'>[Badge]</span>\n    <h1>[Headline]</h1>\n    <p>[Subtitle]</p>\n    <div class='hero-actions'>\n      <a href='#cta' class='btn-primary'>[CTA]</a>\n    </div>\n  </div>\n</section>"
+    },
+
+    "split-vertical": {
+      "name": "Vertical Split",
+      "description": "Ekran podijeljen vertikalno — lijeva polovina je slika koja pokriva, desna je scrollable sadržaj.",
+      "mood_default": ["luxury-dark", "editorial", "dark-tech"],
+      "layout": "grid 50/50, lijeva kolona position:sticky height:100vh, desna scrolls",
+      "content": {
+        "left_image": "full-height slika, position:sticky top:0",
+        "right_content": "headline, opis, stats, CTA — može biti duži od viewport-a"
+      },
+      "css": {
+        "grid": "display:grid; grid-template-columns:1fr 1fr; min-height:100vh",
+        "left_panel": "position:sticky; top:0; height:100vh; overflow:hidden",
+        "left_image": "width:100%; height:100%; object-fit:cover",
+        "right_panel": "padding: 100px 60px 80px 60px; display:flex; flex-direction:column; justify-content:center",
+        "mobile": "grid-template-columns:1fr, left panel height:50vh position:static"
+      },
+      "html_skeleton": "<section id='hero'>\n  <div class='split-layout'>\n    <div class='split-left'>\n      <picture>\n        <source srcset='images/hero.webp' type='image/webp'>\n        <img src='images/hero.jpg' alt='[descriptive alt]' width='800' height='1200'>\n      </picture>\n    </div>\n    <div class='split-right'>\n      <span class='hero-badge'>[Badge]</span>\n      <h1>[Headline]</h1>\n      <p>[Subtitle tekst — može biti duži]</p>\n      <div class='hero-actions'>\n        <a href='#cta' class='btn-primary'>[CTA]</a>\n      </div>\n    </div>\n  </div>\n</section>"
+    }
+
+  },
+
+  "mood_to_hero_mapping": {
+    "brutalist": "big-type",
+    "glassmorphism": "gradient-blob",
+    "neobrutalism": "asymmetric",
+    "editorial": "editorial-grid",
+    "luxury-dark": "parallax-layers",
+    "neon-cyberpunk": "centered-overlay",
+    "earth-organic": "split-text-image",
+    "pastel-soft": "gradient-blob",
+    "swiss-minimal": "big-type",
+    "dark-tech": "stats-hero"
+  },
+
+  "hero_random_pool": [
+    "big-type",
+    "split-text-image",
+    "centered-overlay",
+    "editorial-grid",
+    "stats-hero",
+    "gradient-blob",
+    "asymmetric",
+    "minimal-centered",
+    "parallax-layers",
+    "horizontal-ticker",
+    "sticky-reveal",
+    "video-background",
+    "split-vertical"
+  ]
+}

@@ -1,0 +1,316 @@
+{
+  "_meta": {
+    "description": "Section layout library — layout varijante za About, Services, Gallery, Portfolio, Testimonials, How-it-works sekcije. Koristi umjesto uvijek istog 3-column card grida.",
+    "usage": "Za svaki tip sekcije, odaberi random varijantu iz odgovarajućeg poola. Ovo je KEY za vizualnu raznolikost između projekata.",
+    "version": "1.0"
+  },
+
+  "about": {
+    "description": "Layout varijante za About / O nama sekciju",
+    "variants": {
+
+      "split-50-50": {
+        "name": "50/50 Split",
+        "description": "Tekst lijevo, slika desno (ili obrnuto). Klasično, čitljivo.",
+        "layout": "grid-template-columns: 1fr 1fr; align-items: center; gap: 80px",
+        "image_style": "aspect-ratio: 4/5; object-fit: cover; border-radius: var(--radius)",
+        "html_skeleton": "<section id='about'>\n  <div class='about-split'>\n    <div class='about-text'>\n      <span class='section-label'>[Label]</span>\n      <h2>[Heading]</h2>\n      <p>[Paragraf 1]</p>\n      <p>[Paragraf 2]</p>\n    </div>\n    <div class='about-image'>\n      <picture><source srcset='images/about.webp' type='image/webp'><img src='images/about.jpg' alt='[Alt]' loading='lazy'></picture>\n    </div>\n  </div>\n</section>"
+      },
+
+      "big-quote": {
+        "name": "Big Pull Quote",
+        "description": "Veliki quote/misija tekst zauzima cijelu širinu, ispod njega kolone sa detaljiima. Impactful.",
+        "layout": "quote fullwidth (max-width: 900px), ispod 3-column stats/points",
+        "css": {
+          "quote_size": "clamp(1.8rem, 4vw, 3.5rem)",
+          "quote_font": "var(--font-display) ili serif",
+          "quote_line_height": "1.3",
+          "quote_color": "var(--text)",
+          "quote_max_width": "900px",
+          "bottom_grid": "grid-template-columns: repeat(3, 1fr); margin-top: 60px; border-top: 1px solid var(--border); padding-top: 60px"
+        },
+        "html_skeleton": "<section id='about'>\n  <div class='about-quote-layout'>\n    <blockquote class='about-big-quote'>\n      <p>\"[Misija ili ključna izjava — jedna snažna rečenica]\"</p>\n    </blockquote>\n    <div class='about-points-grid'>\n      <div class='about-point'><h3>[Point 1]</h3><p>[Opis]</p></div>\n      <div class='about-point'><h3>[Point 2]</h3><p>[Opis]</p></div>\n      <div class='about-point'><h3>[Point 3]</h3><p>[Opis]</p></div>\n    </div>\n  </div>\n</section>"
+      },
+
+      "stacked-fullwidth": {
+        "name": "Stacked Fullwidth",
+        "description": "Sekcija sa slikom koja pokriva cijelu širinu (header-style), ispod nje tekst i stats. Kinematski.",
+        "layout": "fullwidth slika (70vh), ispod container sa tekstom i 4 stana",
+        "css": {
+          "image_wrap": "height: 70vh; overflow: hidden; margin-bottom: -60px",
+          "image": "width: 100%; height: 100%; object-fit: cover; object-position: center top",
+          "content_card": "background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 60px; max-width: 800px; margin: 0 auto; position: relative; z-index: 2"
+        },
+        "html_skeleton": "<section id='about'>\n  <div class='about-fullimg'>\n    <picture><source srcset='images/about-wide.webp' type='image/webp'><img src='images/about-wide.jpg' alt='[Alt]' loading='lazy'></picture>\n  </div>\n  <div class='container'>\n    <div class='about-content-card'>\n      <span class='section-label'>[Label]</span>\n      <h2>[Heading]</h2>\n      <p>[Tekst]</p>\n    </div>\n  </div>\n</section>"
+      },
+
+      "persona-cards": {
+        "name": "Persona Cards",
+        "description": "Umjesto texta o firmi — istaknuta kartica osnivača sa fotografijom, bio, i quote. Personalniji pristup.",
+        "layout": "1 velika kartica 2/3 ekrana centrirana, sa foto lijevo i bio desno unutar kartice",
+        "css": {
+          "card": "display: grid; grid-template-columns: 300px 1fr; gap: 48px; align-items: center; max-width: 860px; margin: 0 auto; padding: 48px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius)",
+          "photo": "border-radius: var(--radius); aspect-ratio: 3/4; object-fit: cover",
+          "quote": "font-size: 1.2rem; font-style: italic; margin-bottom: 24px; color: var(--text)",
+          "name": "font-size: 1.3rem; font-weight: 700; letter-spacing: 2px"
+        },
+        "html_skeleton": "<section id='about'>\n  <div class='container'>\n    <div class='persona-card'>\n      <div class='persona-photo'>\n        <picture><source srcset='images/owner.webp' type='image/webp'><img src='images/owner.jpg' alt='[Ime osnivača]' loading='lazy'></picture>\n      </div>\n      <div class='persona-bio'>\n        <span class='section-label'>[Label]</span>\n        <blockquote>\"[Quote osnivača]\"</blockquote>\n        <p>[Bio tekst]</p>\n        <div class='persona-name'>[Ime Prezime]</div>\n        <div class='persona-role'>[Titula/Uloga]</div>\n      </div>\n    </div>\n  </div>\n</section>"
+      }
+    }
+  },
+
+  "services": {
+    "description": "Layout varijante za Services / Usluge sekciju",
+    "variants": {
+
+      "three-columns": {
+        "name": "3 Column Grid",
+        "description": "Standard 3 kartice u redu. Jasno, skenabilno.",
+        "layout": "grid-template-columns: repeat(3, 1fr); gap: 24px",
+        "note": "Koristi cards.json varijantu za stil kartice"
+      },
+
+      "alternating-rows": {
+        "name": "Alternating Rows",
+        "description": "Svaka usluga je cijeli red — slika/vizual naizmjenično lijevo/desno. Detaljniji pristup.",
+        "layout": "svaki .service-item je grid 1fr 1fr, neparni imaju sliku lijevo, parni desno",
+        "css": {
+          "item": "display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; padding: 80px 0; border-bottom: 1px solid var(--border)",
+          "item_reverse": "direction: rtl (ili order: -1 na image)",
+          "image": "aspect-ratio: 16/10; object-fit: cover; border-radius: var(--radius)"
+        },
+        "html_skeleton": "<section id='services'>\n  <div class='container'>\n    <div class='service-item'>\n      <div class='service-text'>\n        <span class='service-num'>01</span>\n        <h3>[Naziv usluge]</h3>\n        <p>[Opis usluge]</p>\n        <a href='#contact' class='btn-outline'>[CTA]</a>\n      </div>\n      <div class='service-image'>\n        <picture><source srcset='images/service-1.webp' type='image/webp'><img src='images/service-1.jpg' alt='[Alt]'></picture>\n      </div>\n    </div>\n    <!-- ponoviti sa reversed klasom -->\n  </div>\n</section>"
+      },
+
+      "tabbed-services": {
+        "name": "Tabbed / Accordion Services",
+        "description": "Tab navigacija za usluge — klik na naziv prikazuje detalje desno. Puno usluga = čisto.",
+        "layout": "lijeva kolona = tab lista (1/3), desna = aktivan sadržaj (2/3)",
+        "css": {
+          "wrapper": "display: grid; grid-template-columns: 1fr 2fr; gap: 60px; align-items: flex-start",
+          "tab_list": "list-style: none",
+          "tab": "padding: 16px 20px; cursor: pointer; border-left: 2px solid transparent; transition: all 0.2s",
+          "tab_active": "border-left-color: var(--primary); color: var(--primary); background: var(--surface)",
+          "panel": "display: none",
+          "panel_active": "display: block"
+        },
+        "js": "const tabs = document.querySelectorAll('.service-tab');\ntabs.forEach(tab => {\n  tab.addEventListener('click', () => {\n    tabs.forEach(t => t.classList.remove('active'));\n    document.querySelectorAll('.service-panel').forEach(p => p.classList.remove('active'));\n    tab.classList.add('active');\n    document.getElementById(tab.dataset.target).classList.add('active');\n  });\n});",
+        "html_skeleton": "<section id='services'>\n  <div class='container'>\n    <div class='services-tabbed'>\n      <ul class='service-tabs' role='tablist'>\n        <li class='service-tab active' role='tab' data-target='svc-1' aria-selected='true' tabindex='0'>[Usluga 1]</li>\n        <li class='service-tab' role='tab' data-target='svc-2' aria-selected='false' tabindex='-1'>[Usluga 2]</li>\n      </ul>\n      <div class='service-panels'>\n        <div class='service-panel active' id='svc-1' role='tabpanel'>\n          <h3>[Naziv]</h3>\n          <p>[Opis]</p>\n        </div>\n        <div class='service-panel' id='svc-2' role='tabpanel'>\n          <h3>[Naziv 2]</h3>\n          <p>[Opis 2]</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>"
+      },
+
+      "numbered-list": {
+        "name": "Numbered List (Big)",
+        "description": "Usluge kao numerisana lista sa velikim brojevima. Jednostavno i dramatično.",
+        "layout": "svaki item = horizontalni red, veliki broj lijevo, naslov i opis desno, tankom linijom odvojen",
+        "css": {
+          "item": "display: grid; grid-template-columns: 80px 1fr; gap: 32px; padding: 40px 0; border-bottom: 1px solid var(--border); align-items: flex-start",
+          "number": "font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 900; font-family: var(--font-display); color: var(--primary); line-height: 1",
+          "title": "font-size: 1.4rem; font-weight: 700; margin-bottom: 8px"
+        },
+        "html_skeleton": "<section id='services'>\n  <div class='container'>\n    <div class='services-numbered'>\n      <div class='svc-item'>\n        <span class='svc-num' aria-hidden='true'>01</span>\n        <div>\n          <h3 class='svc-title'>[Naziv usluge]</h3>\n          <p class='svc-desc'>[Opis]</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>"
+      }
+    }
+  },
+
+  "gallery": {
+    "description": "Layout varijante za Gallery / Portfolio sekciju",
+    "variants": {
+
+      "masonry": {
+        "name": "CSS Masonry / Pinterest Grid",
+        "description": "Kolumne različitih visina. Slike se slažu prirodno bez jednake visine. Dinamično.",
+        "layout": "columns: 3; column-gap: 16px; .item { break-inside: avoid; margin-bottom: 16px; }",
+        "css": {
+          "wrapper": "columns: 3; column-gap: 16px",
+          "item": "break-inside: avoid; margin-bottom: 16px; border-radius: var(--radius); overflow: hidden",
+          "mobile": "columns: 2",
+          "mobile_sm": "columns: 1"
+        },
+        "html_skeleton": "<section id='gallery'>\n  <div class='masonry-grid'>\n    <div class='masonry-item'>\n      <picture><source srcset='images/gallery-1.webp' type='image/webp'><img src='images/gallery-1.jpg' alt='[Alt]' loading='lazy'></picture>\n    </div>\n    <!-- repeat -->\n  </div>\n</section>"
+      },
+
+      "featured-grid": {
+        "name": "Featured + Grid",
+        "description": "Jedan veliki featured item (span 2 kolone), ostali u regularnom gridu. Hijerarhija.",
+        "layout": "grid-template-columns: repeat(3, 1fr); .featured { grid-column: span 2; grid-row: span 2; }",
+        "html_skeleton": "<section id='gallery'>\n  <div class='featured-grid'>\n    <div class='gallery-item featured'>\n      <picture><source srcset='images/gallery-featured.webp' type='image/webp'><img src='images/gallery-featured.jpg' alt='[Alt]' loading='lazy'></picture>\n    </div>\n    <div class='gallery-item'>[...]</div>\n    <div class='gallery-item'>[...]</div>\n    <div class='gallery-item'>[...]</div>\n    <div class='gallery-item'>[...]</div>\n  </div>\n</section>"
+      },
+
+      "horizontal-scroll-gallery": {
+        "name": "Horizontal Scroll Gallery",
+        "description": "Galerija koja se scrolla horizontalno (overflow-x: scroll). Prikazuje više bez vertikalnog prostora.",
+        "layout": "display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 20px 0",
+        "css": {
+          "wrapper": "overflow-x: auto; display: flex; gap: 20px; scroll-snap-type: x mandatory; padding: 0 24px 20px; scrollbar-width: thin; cursor: grab;",
+          "item": "flex-shrink: 0; width: calc(33vw - 32px); aspect-ratio: 3/2; scroll-snap-align: start; overflow: hidden; border-radius: var(--radius); border: 1px solid var(--border);",
+          "mobile_item_width": "calc(80vw - 32px)"
+        },
+        "js": "const gallery = document.querySelector('.h-scroll-gallery');\nlet isDown = false, startX, scrollLeft;\ngallery.addEventListener('mousedown', e => { isDown=true; startX=e.pageX-gallery.offsetLeft; scrollLeft=gallery.scrollLeft; });\ngallery.addEventListener('mouseleave', () => isDown=false);\ngallery.addEventListener('mouseup', () => isDown=false);\ngallery.addEventListener('mousemove', e => { if(!isDown) return; e.preventDefault(); const x=e.pageX-gallery.offsetLeft; gallery.scrollLeft=scrollLeft-(x-startX)*1.5; });",
+        "html_skeleton": "<section id='gallery'>\n  <div class='container'>\n    <div class='section-header'>[...]</div>\n  </div>\n  <div class='h-scroll-gallery' aria-label='Product gallery'>\n    <div class='gallery-item'>\n      <picture><source srcset='images/g1.webp' type='image/webp'><img src='images/g1.jpg' alt='[Alt]' loading='lazy'></picture>\n    </div>\n    <!-- repeat -->\n  </div>\n</section>"
+      },
+
+      "fullscreen-slideshow": {
+        "name": "Fullscreen Slideshow",
+        "description": "Jedna slika punokranana, strelice za navigaciju. Dramatično, fokusirano.",
+        "layout": "position: relative; height: 80vh; .slide je apsolutno pozicioniran, opacity 0/1 tranzicija",
+        "css": {
+          "slideshow": "position: relative; height: 80vh; overflow: hidden; border-radius: var(--radius);",
+          "slide": "position: absolute; inset: 0; opacity: 0; transition: opacity 0.7s ease;",
+          "slide_active": "opacity: 1;",
+          "slide_img": "width: 100%; height: 100%; object-fit: cover;",
+          "nav_btn": "position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.4); border: none; color: #fff; width: 48px; height: 48px; cursor: pointer; z-index: 2;",
+          "prev": "left: 16px;",
+          "next": "right: 16px;"
+        },
+        "js": "let current = 0;\nconst slides = document.querySelectorAll('.slide');\nfunction goTo(n) {\n  slides[current].classList.remove('active');\n  current = (n + slides.length) % slides.length;\n  slides[current].classList.add('active');\n}\ndocument.querySelector('.slide-prev').onclick = () => goTo(current - 1);\ndocument.querySelector('.slide-next').onclick = () => goTo(current + 1);\nsetInterval(() => goTo(current + 1), 5000);",
+        "html_skeleton": "<section id='gallery'>\n  <div class='container'><div class='section-header'>[...]</div></div>\n  <div class='slideshow' aria-roledescription='carousel'>\n    <div class='slide active'>\n      <picture><source srcset='images/s1.webp' type='image/webp'><img src='images/s1.jpg' alt='[Opis slike]' loading='lazy'></picture>\n    </div>\n    <button class='slide-btn slide-prev' aria-label='Previous'>‹</button>\n    <button class='slide-btn slide-next' aria-label='Next'>›</button>\n  </div>\n</section>"
+      }
+    }
+  },
+
+  "pricing": {
+    "description": "Cijene / Preise / Pricing section",
+    "variants": {
+
+      "three-tier": {
+        "name": "Three Tier Cards",
+        "description": "3 paketa horizontalno — Starter/Pro/Premium. Srednji highlighted. Najčešće korišteno.",
+        "layout": "grid 3 col, srednji ima 'featured' klasu sa drugačijom pozadinom",
+        "highlight_note": "srednja kartica: scale(1.05) ili border var(--primary) ili bg var(--text)",
+        "html_skeleton": "<section id='pricing' class='section'>\n  <div class='section-inner'>\n    <span class='section-label'>[Label]</span>\n    <h2 class='section-title'>[PRICING.]</h2>\n    <div class='pricing-grid'>\n      <div class='pricing-card'>\n        <div class='pricing-name'>[Starter]</div>\n        <div class='pricing-price'>€<span>[299]</span></div>\n        <ul class='pricing-features'>\n          <li>✓ [Feature 1]</li>\n          <li>✓ [Feature 2]</li>\n          <li class='dimmed'>✗ [Not included]</li>\n        </ul>\n        <a href='#contact' class='btn-secondary'>Get Started</a>\n      </div>\n      <div class='pricing-card featured'>\n        <span class='pricing-badge'>Most Popular</span>\n        <div class='pricing-name'>[Pro]</div>\n        <div class='pricing-price'>€<span>[599]</span></div>\n        <ul class='pricing-features'>\n          <li>✓ [Feature 1]</li>\n          <li>✓ [Feature 2]</li>\n          <li>✓ [Feature 3]</li>\n        </ul>\n        <a href='#contact' class='btn-primary'>Get Started</a>\n      </div>\n      <div class='pricing-card'>\n        <div class='pricing-name'>[Premium]</div>\n        <div class='pricing-price'>€<span>[999]</span></div>\n        <ul class='pricing-features'>\n          <li>✓ Sve iz Pro</li>\n          <li>✓ [Extra 1]</li>\n          <li>✓ [Extra 2]</li>\n        </ul>\n        <a href='#contact' class='btn-secondary'>Get Started</a>\n      </div>\n    </div>\n  </div>\n</section>"
+      },
+
+      "feature-table": {
+        "name": "Feature Comparison Table",
+        "description": "Tabela: features u redovima, paketi u kolonama. Za 5+ features.",
+        "layout": "responsive table, overflow-x: auto na mobilnom, highlighted kolona",
+        "html_skeleton": "<section id='pricing' class='section'>\n  <div class='section-inner'>\n    <h2 class='section-title'>[COMPARE PLANS]</h2>\n    <div class='pricing-table-wrap'>\n      <table class='pricing-table'>\n        <thead><tr>\n          <th>Feature</th>\n          <th>Starter</th>\n          <th class='col-featured'>Pro</th>\n          <th>Premium</th>\n        </tr></thead>\n        <tbody>\n          <tr><td>[Feature]</td><td>✓</td><td class='col-featured'>✓</td><td>✓</td></tr>\n          <tr><td>[Feature 2]</td><td>—</td><td class='col-featured'>✓</td><td>✓</td></tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n</section>"
+      },
+
+      "single-service": {
+        "name": "Single Service / Menu-style",
+        "description": "Lista usluga sa cijenama — bez paketa. Za frizerski, restoran, majstor.",
+        "layout": "lista redova: naziv lijevo, cijena desno, border-bottom separator",
+        "html_skeleton": "<section id='pricing' class='section'>\n  <div class='section-inner'>\n    <h2 class='section-title'>[LEISTUNGEN.]</h2>\n    <div class='price-list'>\n      <div class='price-row'>\n        <div>\n          <div class='price-service-name'>[Naziv usluge]</div>\n          <div class='price-service-note'>[Kratki opis]</div>\n        </div>\n        <div class='price-amount'>€[XX]</div>\n      </div>\n    </div>\n  </div>\n</section>"
+      }
+    }
+  },
+
+  "testimonials": {
+    "description": "Recenzije / Bewertungen / Testimonials",
+    "variants": {
+
+      "card-grid": {
+        "name": "Card Grid",
+        "description": "3 kartice u redu — zvjezdice + tekst + ime. Standard.",
+        "layout": "grid auto-fit minmax(280px, 1fr), kartice jednake visine",
+        "html_skeleton": "<section id='testimonials' class='section'>\n  <div class='section-inner'>\n    <span class='section-label'>[Label]</span>\n    <h2 class='section-title'>[STIMMEN.]</h2>\n    <div class='testi-grid'>\n      <div class='testi-card'>\n        <div class='testi-stars' aria-label='5 von 5 Sternen'>★★★★★</div>\n        <p class='testi-text'>„[Tekst recenzije]"</p>\n        <div class='testi-author'>— [Ime P.]</div>\n      </div>\n    </div>\n  </div>\n</section>"
+      },
+
+      "featured-quote": {
+        "name": "Featured Big Quote",
+        "description": "Jedna velika recenzija full-width + 2-3 manje ispod.",
+        "layout": "blockquote top (full width, velika tipografija) + grid 3 col ispod",
+        "html_skeleton": "<section id='testimonials' class='section'>\n  <div class='section-inner'>\n    <blockquote class='featured-testi'>\n      <p class='featured-testi-text'>„[Velika recenzija — 2-3 rečenice. Impactful.]"</p>\n      <footer><cite>[Ime Prezime]</cite> — <span>[Firma ili pozicija]</span></footer>\n    </blockquote>\n    <div class='testi-mini-grid'>\n      <div class='testi-mini'><div>★★★★★</div><p>„[Kratka recenzija]"</p><strong>[Ime]</strong></div>\n    </div>\n  </div>\n</section>"
+      },
+
+      "logo-wall": {
+        "name": "Client Logos + Quote",
+        "description": "Logoi klijenata (grayscale) + jedna recenzija. Za B2B.",
+        "layout": "logo grid (flex wrap, grayscale filter) + blockquote ispod",
+        "html_skeleton": "<section id='testimonials' class='section'>\n  <div class='section-inner'>\n    <p class='testi-intro-text'>Trusted by</p>\n    <div class='logo-wall'>\n      <img src='/images/brand-[client].webp' alt='[Client]' loading='lazy' style='filter:grayscale(1);opacity:.6;height:32px;'>\n    </div>\n    <blockquote class='testi-quote-single'>\n      <p>„[Recenzija]"</p>\n      <footer>— [Ime], <a href='[URL]'>[firma.at]</a></footer>\n    </blockquote>\n  </div>\n</section>"
+      }
+    }
+  },
+
+  "faq": {
+    "description": "Česta pitanja / FAQ",
+    "variants": {
+
+      "accordion": {
+        "name": "Accordion (Standard)",
+        "description": "Klik otvara odgovor. Jedino pitanje otvoreno u isto vrijeme.",
+        "layout": "full-width lista, aria-expanded, CSS transition na visinu",
+        "html_skeleton": "<section id='faq' class='section'>\n  <div class='section-inner'>\n    <span class='section-label'>[Label]</span>\n    <h2 class='section-title'>[FAQ.]</h2>\n    <div class='faq-list'>\n      <div class='faq-item'>\n        <button class='faq-q' aria-expanded='false'>\n          [Pitanje?]\n          <span class='faq-icon' aria-hidden='true'>+</span>\n        </button>\n        <div class='faq-a'>[Odgovor na pitanje.]</div>\n      </div>\n    </div>\n  </div>\n</section>",
+        "js": "document.querySelectorAll('.faq-q').forEach(btn => {\n  btn.addEventListener('click', () => {\n    const item = btn.closest('.faq-item');\n    const isOpen = item.classList.contains('open');\n    document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-q').setAttribute('aria-expanded','false'); });\n    if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded','true'); }\n  });\n});"
+      },
+
+      "two-column-static": {
+        "name": "Two Column Static",
+        "description": "FAQ u 2 kolone, uvijek vidljivo. Za kratke odgovore.",
+        "layout": "grid 2 col, svaka ćelija H3 + paragraf",
+        "html_skeleton": "<section id='faq' class='section'>\n  <div class='section-inner'>\n    <h2 class='section-title'>[FAQ]</h2>\n    <div class='faq-two-col'>\n      <div class='faq-static-item'>\n        <h3>[Pitanje?]</h3>\n        <p>[Kratki odgovor.]</p>\n      </div>\n    </div>\n  </div>\n</section>"
+      }
+    }
+  },
+
+  "contact": {
+    "description": "Kontakt / Contact sekcija",
+    "variants": {
+
+      "split-form-info": {
+        "name": "Split: Form + Info",
+        "description": "Web3Forms forma lijevo, kontakt info desno. Standard za majority biznisa.",
+        "layout": "grid 2 col: forma 60%, info 40%",
+        "form_backend": "Web3Forms — besplatno, bez servera, action='https://api.web3forms.com/submit'",
+        "required_fields": "access_key (hidden), name, email, message",
+        "html_skeleton": "<section id='contact' class='section'>\n  <div class='section-inner'>\n    <div class='contact-grid'>\n      <div>\n        <span class='section-label'>[Label]</span>\n        <h2 class='section-title'>[KONTAKT.]</h2>\n        <form id='contactForm' action='https://api.web3forms.com/submit' method='POST' novalidate>\n          <input type='hidden' name='access_key' value='[WEB3FORMS_KEY]'>\n          <input type='hidden' name='subject' value='Kontaktanfrage — [Name]'>\n          <input type='hidden' name='redirect' value='false'>\n          <div class='form-group'><label for='cn'>Name *</label><input type='text' id='cn' name='name' required aria-required='true'></div>\n          <div class='form-group'><label for='ce'>E-Mail *</label><input type='email' id='ce' name='email' required aria-required='true'></div>\n          <div class='form-group'><label for='cm'>Nachricht *</label><textarea id='cm' name='message' required aria-required='true'></textarea></div>\n          <button type='submit' class='btn-primary'>SENDEN →</button>\n        </form>\n        <div id='contactSuccess' role='alert' aria-live='polite' style='display:none'>✓ Nachricht erhalten!</div>\n      </div>\n      <div class='contact-info'>\n        <div class='contact-item'><span class='contact-label'>Adresse</span><span>[Adresa]</span></div>\n        <div class='contact-item'><span class='contact-label'>Telefon</span><a href='tel:[TEL]'>[+43 XXX]</a></div>\n        <div class='contact-item'><span class='contact-label'>E-Mail</span><a href='mailto:[EMAIL]'>[email]</a></div>\n      </div>\n    </div>\n  </div>\n</section>"
+      },
+
+      "centered-minimal": {
+        "name": "Centered Minimal Form",
+        "description": "Forma centrovana, max 600px. Za portfoiolje i studije.",
+        "layout": "section-inner max-width 600px, margin auto",
+        "html_skeleton": "<section id='contact' class='section'>\n  <div class='section-inner' style='max-width:600px;margin:0 auto;text-align:center;'>\n    <h2 class='section-title'>[LET'S TALK.]</h2>\n    <p class='section-sub'>[Kratki poziv]</p>\n    <form id='contactForm' action='https://api.web3forms.com/submit' method='POST' novalidate>\n      <input type='hidden' name='access_key' value='[WEB3FORMS_KEY]'>\n      <input type='hidden' name='redirect' value='false'>\n      <div class='form-group'><input type='text' name='name' placeholder='Your name' required></div>\n      <div class='form-group'><input type='email' name='email' placeholder='your@email.com' required></div>\n      <div class='form-group'><textarea name='message' placeholder='Your message...' required></textarea></div>\n      <button type='submit' class='btn-primary' style='width:100%'>Send →</button>\n    </form>\n    <div id='contactSuccess' role='alert' aria-live='polite' style='display:none'>✓ Message received!</div>\n  </div>\n</section>"
+      },
+
+      "booking-only": {
+        "name": "Booking CTA (No Form)",
+        "description": "Samo booking dugme (Booksy/Calendly). Za sport, salon, wellness.",
+        "layout": "centrovano ili split, samo tekst + dugme",
+        "html_skeleton": "<section id='contact' class='section'>\n  <div class='section-inner'>\n    <div class='booking-block'>\n      <div>\n        <h2 class='section-title'>[TERMIN BUCHEN.]</h2>\n        <p>[Kratki tekst — šta klijent dobija]</p>\n      </div>\n      <a href='[BOOKING_URL]' target='_blank' rel='noopener noreferrer' class='btn-primary btn-large'>Jetzt Buchen →</a>\n    </div>\n  </div>\n</section>"
+      }
+    }
+  },
+
+  "team": {
+    "description": "Tim / Team sekcija",
+    "variants": {
+
+      "photo-cards": {
+        "name": "Photo Cards",
+        "description": "Kartice sa fotografijom, imenom, rolom. Za kad postoje prave fotke.",
+        "layout": "grid auto-fit minmax(240px, 1fr), aspect-ratio 4/5 na slici",
+        "html_skeleton": "<section id='team' class='section'>\n  <div class='section-inner'>\n    <span class='section-label'>[Label]</span>\n    <h2 class='section-title'>[TIM.]</h2>\n    <div class='team-grid'>\n      <div class='team-card'>\n        <div class='team-photo'>\n          <img src='/images/team-[slug].webp' alt='[Ime] — [Rola]' loading='lazy' style='width:100%;height:100%;object-fit:cover;object-position:center top;display:block;'>\n        </div>\n        <div class='team-info'>\n          <div class='team-name'>[Ime Prezime]</div>\n          <div class='team-role'>[Rola / Titula]</div>\n          <p class='team-bio'>[Kratki bio]</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>"
+      },
+
+      "animated-placeholder": {
+        "name": "Animated SVG Placeholder",
+        "description": "Animirani SVG lik umjesto fotografije. Kada klijent nema fotke.",
+        "note": "Zamijeni sa photo-cards variantom čim klijent dostavi fotografije",
+        "layout": "Isti grid kao photo-cards, ali tim-photo sadrži animirani SVG",
+        "css_note": "Dodaj @keyframes za fighter animacije (jab, kick, stance)"
+      },
+
+      "horizontal-bio": {
+        "name": "Horizontal Bio Cards",
+        "description": "Horizontalne kartice — foto lijevo (mali), bio desno. Za manji tim (2-3 osobe).",
+        "layout": "svaka kartica = flex row: slika 120px + tekst",
+        "html_skeleton": "<section id='team' class='section'>\n  <div class='section-inner'>\n    <h2 class='section-title'>[TEAM.]</h2>\n    <div class='team-list'>\n      <div class='team-row'>\n        <img src='/images/team-[slug].webp' alt='[Ime]' loading='lazy' style='width:120px;height:120px;object-fit:cover;border-radius:var(--radius);flex-shrink:0;'>\n        <div>\n          <div class='team-name'>[Ime Prezime]</div>\n          <div class='team-role'>[Rola]</div>\n          <p class='team-bio'>[Bio]</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>"
+      }
+    }
+  },
+
+  "mood_to_sections_mapping": {
+    "brutalist":     { "about": "big-quote",        "services": "numbered-list",   "gallery": "masonry",                 "pricing": "three-tier",     "testimonials": "card-grid",     "faq": "accordion",          "contact": "split-form-info",  "team": "animated-placeholder" },
+    "glassmorphism": { "about": "split-50-50",       "services": "three-columns",   "gallery": "featured-grid",           "pricing": "three-tier",     "testimonials": "featured-quote","faq": "accordion",          "contact": "centered-minimal", "team": "photo-cards" },
+    "neobrutalism":  { "about": "persona-cards",     "services": "three-columns",   "gallery": "masonry",                 "pricing": "three-tier",     "testimonials": "card-grid",     "faq": "accordion",          "contact": "split-form-info",  "team": "photo-cards" },
+    "editorial":     { "about": "big-quote",         "services": "alternating-rows","gallery": "featured-grid",           "pricing": "feature-table",  "testimonials": "featured-quote","faq": "two-column-static",  "contact": "centered-minimal", "team": "horizontal-bio" },
+    "luxury-dark":   { "about": "persona-cards",     "services": "alternating-rows","gallery": "fullscreen-slideshow",    "pricing": "feature-table",  "testimonials": "featured-quote","faq": "two-column-static",  "contact": "centered-minimal", "team": "horizontal-bio" },
+    "neon-cyberpunk": { "about": "split-50-50",      "services": "numbered-list",   "gallery": "featured-grid",           "pricing": "three-tier",     "testimonials": "card-grid",     "faq": "accordion",          "contact": "split-form-info",  "team": "photo-cards" },
+    "earth-organic": { "about": "stacked-fullwidth", "services": "alternating-rows","gallery": "masonry",                 "pricing": "single-service", "testimonials": "logo-wall",     "faq": "accordion",          "contact": "split-form-info",  "team": "photo-cards" },
+    "pastel-soft":   { "about": "persona-cards",     "services": "three-columns",   "gallery": "masonry",                 "pricing": "single-service", "testimonials": "card-grid",     "faq": "two-column-static",  "contact": "split-form-info",  "team": "photo-cards" },
+    "swiss-minimal": { "about": "big-quote",         "services": "numbered-list",   "gallery": "horizontal-scroll-gallery","pricing": "feature-table", "testimonials": "logo-wall",     "faq": "two-column-static",  "contact": "centered-minimal", "team": "horizontal-bio" },
+    "dark-tech":     { "about": "split-50-50",       "services": "tabbed-services", "gallery": "horizontal-scroll-gallery","pricing": "three-tier",    "testimonials": "logo-wall",     "faq": "accordion",          "contact": "split-form-info",  "team": "photo-cards" }
+  }
+}

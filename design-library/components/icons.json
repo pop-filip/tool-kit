@@ -1,0 +1,125 @@
+{
+  "_meta": {
+    "description": "Icon system per mood — CDN library mapping, common icon sets per section, inline SVG snippets for core icons",
+    "usage": "Svaki mood koristi drugu ikonografiju. Koristi CDN link ili inline SVG iz snippets bloka.",
+    "version": "1.0"
+  },
+
+  "mood_to_icon_mapping": {
+    "brutalist":      { "library": "inline-svg-only", "style": "thick-stroke", "stroke_width": "2.5" },
+    "glassmorphism":  { "library": "lucide", "style": "thin-stroke", "stroke_width": "1.5" },
+    "neobrutalism":   { "library": "phosphor-bold", "style": "bold-filled", "stroke_width": "2" },
+    "editorial":      { "library": "inline-svg-only", "style": "thin-stroke", "stroke_width": "1" },
+    "luxury-dark":    { "library": "inline-svg-only", "style": "hairline", "stroke_width": "1" },
+    "neon-cyberpunk": { "library": "lucide", "style": "thin-glow", "stroke_width": "1.5" },
+    "earth-organic":  { "library": "phosphor-regular", "style": "rounded-fill", "stroke_width": "1.5" },
+    "pastel-soft":    { "library": "phosphor-bold", "style": "rounded-filled", "stroke_width": "2" },
+    "swiss-minimal":  { "library": "lucide", "style": "precise-thin", "stroke_width": "1.5" },
+    "dark-tech":      { "library": "lucide", "style": "sharp-thin", "stroke_width": "1.5" }
+  },
+
+  "cdn_links": {
+    "lucide": {
+      "cdn": "https://unpkg.com/lucide@latest",
+      "usage": "<script src='https://unpkg.com/lucide@latest/dist/umd/lucide.min.js'></script>",
+      "render": "<i data-lucide='[ICON_NAME]' width='24' height='24' aria-hidden='true'></i>",
+      "init": "<script>document.addEventListener('DOMContentLoaded', () => lucide.createIcons());</script>",
+      "note": "Dobra za dark-tech, glassmorphism, swiss, cyberpunk. Thin stroke, clean."
+    },
+    "phosphor": {
+      "cdn": "https://unpkg.com/@phosphor-icons/web",
+      "usage": "<link rel='stylesheet' href='https://unpkg.com/@phosphor-icons/web/src/bold/style.css'>",
+      "render": "<i class='ph-bold ph-[ICON_NAME]' aria-hidden='true'></i>",
+      "note": "Bold weight za neobrutalism i pastel. Regular za organic."
+    },
+    "heroicons": {
+      "cdn": "Nema CDN — inline SVG only",
+      "source": "https://heroicons.com",
+      "note": "Kopirati inline SVG. Solid za filled, outline za stroke."
+    }
+  },
+
+  "common_icons": {
+    "note": "Inline SVG snippets za najčešće korišćene ikone. viewBox='0 0 24 24', stroke='currentColor'",
+
+    "arrow-right": "<svg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='[SW]' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><line x1='5' y1='12' x2='19' y2='12'/><polyline points='12 5 19 12 12 19'/></svg>",
+
+    "arrow-up-right": "<svg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='[SW]' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><line x1='7' y1='17' x2='17' y2='7'/><polyline points='7 7 17 7 17 17'/></svg>",
+
+    "check": "<svg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='[SW]' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><polyline points='20 6 9 17 4 12'/></svg>",
+
+    "phone": "<svg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='[SW]' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.58 4.22 2 2 0 0 1 3.55 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.08 6.08l1.08-.9a2 2 0 0 1 2.1-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z'/></svg>",
+
+    "mail": "<svg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='[SW]' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><rect x='2' y='4' width='20' height='16' rx='2'/><path d='m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7'/></svg>",
+
+    "location": "<svg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='[SW]' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z'/><circle cx='12' cy='10' r='3'/></svg>",
+
+    "clock": "<svg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='[SW]' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><circle cx='12' cy='12' r='10'/><polyline points='12 6 12 12 16 14'/></svg>",
+
+    "star": "<svg width='20' height='20' viewBox='0 0 24 24' fill='currentColor' stroke='currentColor' stroke-width='[SW]' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'/></svg>",
+
+    "menu": "<svg width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='[SW]' stroke-linecap='round' aria-hidden='true'><line x1='3' y1='6' x2='21' y2='6'/><line x1='3' y1='12' x2='21' y2='12'/><line x1='3' y1='18' x2='21' y2='18'/></svg>",
+
+    "close": "<svg width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='[SW]' stroke-linecap='round' aria-hidden='true'><line x1='18' y1='6' x2='6' y2='18'/><line x1='6' y1='6' x2='18' y2='18'/></svg>",
+
+    "instagram": "<svg width='22' height='22' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='[SW]' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><rect x='2' y='2' width='20' height='20' rx='5' ry='5'/><path d='M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z'/><line x1='17.5' y1='6.5' x2='17.51' y2='6.5'/></svg>",
+
+    "facebook": "<svg width='22' height='22' viewBox='0 0 24 24' fill='currentColor' aria-hidden='true'><path d='M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z'/></svg>",
+
+    "external-link": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='[SW]' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/><polyline points='15 3 21 3 21 9'/><line x1='10' y1='14' x2='21' y2='3'/></svg>",
+
+    "chevron-down": "<svg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='[SW]' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><polyline points='6 9 12 15 18 9'/></svg>"
+  },
+
+  "icon_per_section": {
+    "note": "Standardni ikoni po tipu sekcije i biznisa",
+
+    "sport_fitness": {
+      "mma": "dumbbell / shield / target",
+      "bjj": "shield / users / award",
+      "kickboxing": "zap / target / flame",
+      "schedule": "calendar / clock / map-pin",
+      "trainers": "user / award / star"
+    },
+
+    "restaurant": {
+      "menu": "utensils / book-open",
+      "reservation": "calendar / clock",
+      "delivery": "truck / package",
+      "location": "map-pin / navigation"
+    },
+
+    "beauty_salon": {
+      "hair": "scissors",
+      "nails": "sparkles",
+      "booking": "calendar-check",
+      "location": "map-pin"
+    },
+
+    "web_agency": {
+      "design": "palette / pen-tool",
+      "code": "code / terminal",
+      "seo": "search / trending-up",
+      "speed": "zap / gauge",
+      "support": "headphones / life-buoy"
+    },
+
+    "generic_services": {
+      "quality": "award / shield-check",
+      "speed": "zap / clock",
+      "price": "tag / dollar-sign",
+      "support": "headphones / message-circle",
+      "location": "map-pin",
+      "phone": "phone",
+      "email": "mail"
+    }
+  },
+
+  "usage_rules": [
+    "Zamijeni [SW] sa stroke_width iz mood_to_icon_mapping (npr. 1.5 za lucide, 2.5 za brutalist)",
+    "Uvijek dodaj aria-hidden='true' na dekorativne ikone",
+    "Za ikone sa značenjem (bez teksta): dodaj aria-label na parent element",
+    "Ikone u buttonima: aria-hidden='true' na svg, vidljiv tekst na buttonu",
+    "NIKAD ne koristiti emoji umjesto ikone u produkciji"
+  ]
+}

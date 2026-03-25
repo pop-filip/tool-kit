@@ -1,0 +1,196 @@
+{
+  "_meta": {
+    "description": "Card component library — stilovi za service/feature/portfolio kartice",
+    "usage": "Koristi za service kartice, feature boxes, portfolio grid, team kartice.",
+    "version": "2.0"
+  },
+
+  "variants": {
+
+    "bordered-shadow": {
+      "name": "Bordered with Shadow",
+      "description": "Klasična kartica — border, mali shadow, hover lift. Universalna.",
+      "mood_default": ["dark-tech", "earth-organic", "pastel-soft"],
+      "css": {
+        "background": "var(--surface)",
+        "border": "1px solid var(--border)",
+        "border_radius": "var(--radius, 12px)",
+        "padding": "28px 24px",
+        "transition": "border-color 0.3s, transform 0.3s, box-shadow 0.3s",
+        "hover_border": "border-color: var(--primary)",
+        "hover_transform": "translateY(-6px)",
+        "hover_shadow": "0 20px 60px rgba(0,0,0,0.15)"
+      },
+      "html_skeleton": "<div class='card'>\n  <div class='card-icon' aria-hidden='true'>[Icon/Emoji]</div>\n  <h3 class='card-title'>[Naslov]</h3>\n  <p class='card-desc'>[Opis]</p>\n  <span class='card-tag'>[Tag]</span>\n</div>"
+    },
+
+    "brutalist-offset": {
+      "name": "Brutalist Offset Shadow",
+      "description": "Debela crna sjena offsetana, hover mijenja offset. Karakteristično.",
+      "mood_default": ["brutalist", "neobrutalism"],
+      "css": {
+        "background": "var(--surface)",
+        "border": "2px solid var(--text)",
+        "border_radius": "0px",
+        "padding": "28px 24px",
+        "box_shadow": "4px 4px 0 var(--text)",
+        "transition": "transform 0.15s, box-shadow 0.15s",
+        "hover_transform": "translate(-2px, -2px)",
+        "hover_shadow": "6px 6px 0 var(--text)"
+      },
+      "html_skeleton": "<div class='card card-brutal'>\n  <div class='card-number' aria-hidden='true'>01</div>\n  <h3 class='card-title'>[Naslov]</h3>\n  <p class='card-desc'>[Opis]</p>\n  <a href='#' class='card-link'>[Link] →</a>\n</div>"
+    },
+
+    "glass-card": {
+      "name": "Glass Card",
+      "description": "Prozirna glass kartica sa blur efektom. Za tamne ili gradijent pozadine.",
+      "mood_default": ["glassmorphism", "neon-cyberpunk", "luxury-dark"],
+      "css": {
+        "background": "rgba(255,255,255,0.06)",
+        "backdrop_filter": "blur(16px)",
+        "border": "1px solid rgba(255,255,255,0.12)",
+        "border_radius": "16px",
+        "padding": "28px 24px",
+        "transition": "background 0.3s, border-color 0.3s, transform 0.3s",
+        "hover_bg": "rgba(255,255,255,0.1)",
+        "hover_border": "rgba(var(--primary-rgb), 0.4)",
+        "hover_transform": "translateY(-4px)"
+      },
+      "html_skeleton": "<div class='card card-glass'>\n  <div class='card-icon' aria-hidden='true'>[Icon]</div>\n  <h3 class='card-title'>[Naslov]</h3>\n  <p class='card-desc'>[Opis]</p>\n</div>"
+    },
+
+    "editorial-list": {
+      "name": "Editorial List Item",
+      "description": "Horizontalna linija razdvaja stavke. Nije box — više lista.",
+      "mood_default": ["editorial", "swiss-minimal"],
+      "css": {
+        "background": "transparent",
+        "border": "none",
+        "border_bottom": "1px solid var(--border)",
+        "padding": "28px 0",
+        "display": "grid",
+        "grid_template": "auto / 60px 1fr auto",
+        "gap": "24px",
+        "align_items": "center",
+        "transition": "color 0.2s",
+        "hover_color": "var(--primary)",
+        "number_style": "font-size: 11px; color: var(--text-muted); font-weight: 700"
+      },
+      "html_skeleton": "<div class='card card-list'>\n  <span class='card-num' aria-hidden='true'>01</span>\n  <div>\n    <h3 class='card-title'>[Naslov]</h3>\n    <p class='card-desc'>[Opis]</p>\n  </div>\n  <span class='card-arrow' aria-hidden='true'>→</span>\n</div>"
+    },
+
+    "tilt-3d": {
+      "name": "3D Tilt Card",
+      "description": "JS tilt efekat na mousemove. Dubina i interaktivnost.",
+      "mood_default": ["dark-tech", "neon-cyberpunk", "neobrutalism"],
+      "css": {
+        "background": "var(--surface)",
+        "border": "1px solid var(--border)",
+        "border_radius": "var(--radius, 12px)",
+        "padding": "28px 24px",
+        "transform_style": "preserve-3d",
+        "perspective": "1000px",
+        "transition": "border-color 0.3s"
+      },
+      "js": "card.addEventListener('mousemove', e => { const r=card.getBoundingClientRect(); const x=(e.clientX-r.left)/r.width-0.5; const y=(e.clientY-r.top)/r.height-0.5; card.style.transform=`translateY(-6px) rotateX(${-y*8}deg) rotateY(${x*8}deg)`; }); card.addEventListener('mouseleave', () => { card.style.transform=''; });",
+      "html_skeleton": "<div class='card card-tilt'>\n  <div class='card-icon' aria-hidden='true'>[Icon]</div>\n  <h3 class='card-title'>[Naslov]</h3>\n  <p class='card-desc'>[Opis]</p>\n  <div class='card-footer'>[Tag ili CTA]</div>\n</div>"
+    },
+
+    "image-top": {
+      "name": "Image Top Card",
+      "description": "Slika zauzima gornji dio kartice (aspect-ratio 16/9 ili 4/3), tekst ispod. Za portfolio i blog.",
+      "mood_default": ["earth-organic", "pastel-soft", "editorial", "dark-tech"],
+      "css": {
+        "card": "background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: transform 0.3s, box-shadow 0.3s;",
+        "image_wrapper": "aspect-ratio: 16/9; overflow: hidden; background: var(--surface-alt);",
+        "image": "width:100%; height:100%; object-fit:cover; transition: transform 0.5s ease;",
+        "hover_card": "transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.15)",
+        "hover_image": "transform: scale(1.05)",
+        "content": "padding: 24px;"
+      },
+      "html_skeleton": "<div class='card card-img'>\n  <div class='card-img-wrap'>\n    <picture>\n      <source srcset='images/[img].webp' type='image/webp'>\n      <img src='images/[img].jpg' alt='[Alt tekst]' loading='lazy' width='400' height='225'>\n    </picture>\n  </div>\n  <div class='card-body'>\n    <span class='card-tag'>[Kategorija]</span>\n    <h3 class='card-title'>[Naslov]</h3>\n    <p class='card-desc'>[Kratki opis]</p>\n    <a href='#' class='card-link'>[Više →]</a>\n  </div>\n</div>"
+    },
+
+    "horizontal-card": {
+      "name": "Horizontal Card",
+      "description": "Ikona/slika lijevo, tekst desno u redu. Kompaktan, za liste usluga ili features.",
+      "mood_default": ["dark-tech", "swiss-minimal", "earth-organic"],
+      "css": {
+        "card": "display:grid; grid-template-columns: 64px 1fr; gap:20px; align-items:flex-start; padding:24px; border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); transition: border-color 0.3s, transform 0.3s;",
+        "icon_wrap": "width:48px; height:48px; border-radius:var(--radius); background:var(--primary-dim, rgba(var(--primary-rgb),0.1)); display:flex; align-items:center; justify-content:center; flex-shrink:0;",
+        "hover": "border-color: var(--primary); transform: translateX(4px);"
+      },
+      "html_skeleton": "<div class='card card-horizontal'>\n  <div class='card-icon-wrap' aria-hidden='true'>[Icon SVG]</div>\n  <div>\n    <h3 class='card-title'>[Naslov]</h3>\n    <p class='card-desc'>[Opis usluge ili featuca]</p>\n  </div>\n</div>"
+    },
+
+    "stat-card": {
+      "name": "Stat / Metric Card",
+      "description": "Veliki broj/metrika u centru, label ispod. Za trust sekcije i about sekciju.",
+      "mood_default": ["dark-tech", "brutalist", "neon-cyberpunk", "glassmorphism"],
+      "css": {
+        "card": "text-align:center; padding:32px 24px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);",
+        "num": "display:block; font-size: clamp(2.5rem, 5vw, 4rem); font-weight:700; color:var(--primary); line-height:1; margin-bottom:8px; font-family:var(--font-display);",
+        "num_glow": "text-shadow: 0 0 20px rgba(var(--primary-rgb), 0.4);  /* samo za dark/neon mood */",
+        "label": "font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted);"
+      },
+      "html_skeleton": "<div class='card card-stat'>\n  <span class='stat-num'>[N]+</span>\n  <span class='stat-label'>[Label tekst]</span>\n  <p class='stat-desc'>[Kratki kontekst opciono]</p>\n</div>"
+    },
+
+    "timeline-step": {
+      "name": "Timeline Step Card",
+      "description": "Numerisani koraci sa vertikalnom linijom koja ih spaja. Za 'Kako funkcionira' sekciju.",
+      "mood_default": ["dark-tech", "earth-organic", "pastel-soft", "swiss-minimal"],
+      "css": {
+        "wrapper": "position:relative; padding-left:60px;",
+        "connector_line": "position:absolute; left:20px; top:32px; bottom:-32px; width:2px; background:var(--border);",
+        "number_circle": "position:absolute; left:0; top:0; width:40px; height:40px; border-radius:50%; background:var(--primary); color:var(--bg); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px; z-index:1;",
+        "content_padding": "padding:0 0 48px 0;",
+        "last_item_line": "display:none  /* .timeline-step:last-child .connector-line */"
+      },
+      "html_skeleton": "<div class='timeline'>\n  <div class='timeline-step'>\n    <div class='step-line' aria-hidden='true'></div>\n    <div class='step-num' aria-hidden='true'>01</div>\n    <div class='step-content'>\n      <h3>[Korak naslov]</h3>\n      <p>[Opis koraka]</p>\n    </div>\n  </div>\n  <div class='timeline-step'>\n    <!-- ponoviti... -->\n  </div>\n</div>"
+    },
+
+    "hover-reveal": {
+      "name": "Hover Reveal Card",
+      "description": "Kartica sa slikom; na hover slika se darkens i pojavljuje se tekst overlay. Za portfolio/galeriju.",
+      "mood_default": ["luxury-dark", "editorial", "neon-cyberpunk", "dark-tech"],
+      "css": {
+        "card": "position:relative; overflow:hidden; border-radius:var(--radius); aspect-ratio:4/3; cursor:pointer;",
+        "image": "width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease, filter 0.5s ease;",
+        "overlay": "position:absolute; inset:0; background:rgba(0,0,0,0); display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-end; padding:24px; transition:background 0.4s ease;",
+        "overlay_content": "opacity:0; transform:translateY(12px); transition:opacity 0.4s ease, transform 0.4s ease;",
+        "hover_image": "transform:scale(1.06); filter:brightness(0.6);",
+        "hover_overlay": "background:rgba(0,0,0,0.5);",
+        "hover_content": "opacity:1; transform:translateY(0);"
+      },
+      "html_skeleton": "<div class='card card-hover-reveal'>\n  <picture>\n    <source srcset='images/[img].webp' type='image/webp'>\n    <img src='images/[img].jpg' alt='[Alt tekst]' loading='lazy'>\n  </picture>\n  <div class='card-overlay'>\n    <div class='card-overlay-content'>\n      <span class='card-tag'>[Kategorija]</span>\n      <h3 class='card-title'>[Naslov]</h3>\n      <a href='#' class='card-link'>Pogledaj →</a>\n    </div>\n  </div>\n</div>"
+    }
+
+  },
+
+  "mood_to_card_mapping": {
+    "brutalist": "brutalist-offset",
+    "glassmorphism": "glass-card",
+    "neobrutalism": "brutalist-offset",
+    "editorial": "editorial-list",
+    "luxury-dark": "hover-reveal",
+    "neon-cyberpunk": "glass-card",
+    "earth-organic": "image-top",
+    "pastel-soft": "bordered-shadow",
+    "swiss-minimal": "horizontal-card",
+    "dark-tech": "tilt-3d"
+  },
+
+  "card_random_pool": [
+    "bordered-shadow",
+    "brutalist-offset",
+    "glass-card",
+    "editorial-list",
+    "tilt-3d",
+    "image-top",
+    "horizontal-card",
+    "stat-card",
+    "timeline-step",
+    "hover-reveal"
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "_meta": {
+    "type": "salon",
+    "description": "Frizerski salon, kozmetički salon, nail studio, spa, masaža, beauty centar, tattoo studio",
+    "keywords": ["šišanje", "frizura", "manikura", "pedikura", "tretman", "spa", "masaža", "beauty", "koža", "njega"],
+    "examples": ["frizerski salon", "nail studio", "kozmetičar", "spa centar", "tattoo studio", "brow bar"]
+  },
+
+  "palettes": [
+    {
+      "name": "Rose Gold Luxe",
+      "mood": "luksuzno, feminino, premium beauty",
+      "bg":        "#0f0b0d",
+      "bg2":       "#171215",
+      "bg3":       "#1f191d",
+      "border":    "rgba(197,155,109,0.15)",
+      "primary":   "#c59b6d",
+      "text":      "#f8f0ec",
+      "text2":     "rgba(248,240,236,0.65)",
+      "text3":     "rgba(248,240,236,0.35)",
+      "cta":       "#c59b6d",
+      "cta_hover": "#d4ae82",
+      "success":   "#22c55e",
+      "warning":   "#f59e0b",
+      "error":     "#ef4444"
+    },
+    {
+      "name": "Soft Blush",
+      "mood": "nježno, girly, soft-luxe",
+      "bg":        "#fdf8f6",
+      "bg2":       "#f8f0ec",
+      "bg3":       "#f0e6e0",
+      "border":    "rgba(0,0,0,0.06)",
+      "primary":   "#c0788a",
+      "text":      "#2d1b1b",
+      "text2":     "#6b4a4a",
+      "text3":     "#a88888",
+      "cta":       "#c0788a",
+      "cta_hover": "#d08898",
+      "success":   "#16a34a",
+      "warning":   "#d97706",
+      "error":     "#dc2626"
+    },
+    {
+      "name": "Noir Chic",
+      "mood": "edgy, moderno, high-fashion salon",
+      "bg":        "#080808",
+      "bg2":       "#101010",
+      "bg3":       "#181818",
+      "border":    "rgba(255,255,255,0.08)",
+      "primary":   "#e8e0d0",
+      "text":      "#f5f5f5",
+      "text2":     "rgba(245,245,245,0.6)",
+      "text3":     "rgba(245,245,245,0.3)",
+      "cta":       "#e8e0d0",
+      "cta_hover": "#ffffff",
+      "success":   "#4ade80",
+      "warning":   "#facc15",
+      "error":     "#f87171"
+    },
+    {
+      "name": "Spa Zen",
+      "mood": "mirno, prirodno, wellness, holistic",
+      "bg":        "#f5f2ee",
+      "bg2":       "#ede8e0",
+      "bg3":       "#e4ddd3",
+      "border":    "rgba(0,0,0,0.06)",
+      "primary":   "#7a6a5a",
+      "text":      "#2a2018",
+      "text2":     "#5a5048",
+      "text3":     "#9a908a",
+      "cta":       "#7a6a5a",
+      "cta_hover": "#8a7a6a",
+      "success":   "#16a34a",
+      "warning":   "#d97706",
+      "error":     "#dc2626"
+    }
+  ],
+
+  "fonts": [
+    {
+      "name": "Luxury Serif",
+      "heading": "Cormorant Garamond",
+      "body": "DM Sans",
+      "mono": null,
+      "google_url": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap",
+      "note": "Luksuzno i elegantno — za premium salone"
+    },
+    {
+      "name": "Modern Beauty",
+      "heading": "Josefin Sans",
+      "body": "Nunito",
+      "mono": null,
+      "google_url": "https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Nunito:wght@300;400;600&display=swap",
+      "note": "Čisto i moderno — za nail studie, brow barove"
+    },
+    {
+      "name": "Editorial Chic",
+      "heading": "Bodoni Moda",
+      "body": "Jost",
+      "mono": null,
+      "google_url": "https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500&display=swap",
+      "note": "Visoka moda — za ekskluzivne salone i tattoo studio"
+    }
+  ],
+
+  "animations": {
+    "scroll": "fade-up",
+    "hero_text": false,
+    "particles": false,
+    "parallax_images": true,
+    "tilt_cards": false,
+    "preloader": false,
+    "dark_mode_toggle": false,
+    "image_hover_zoom": true,
+    "note": "Fokus na fotografije radova — galerija je najvažniji element"
+  },
+
+  "hero": {
+    "style": "centered-text-over-image",
+    "note": "Fotografija ambijenta ili model u fullscreen — kratki luksuzni tekst u centru",
+    "headline_formula": "[Naziv salona] — [Specijalnost]",
+    "headline_example": "Studio Elena — Frizerski salon Banja Luka",
+    "cta_primary": "Rezerviši termin",
+    "cta_secondary": "Naše usluge",
+    "trust_elements": ["Godine iskustva", "Zadovoljnih klijentica", "Brendovi koji se koriste"]
+  },
+
+  "sections_recommended": [
+    "hero",
+    "about",
+    "services-with-prices",
+    "gallery",
+    "booking-cta",
+    "team",
+    "testimonials",
+    "contact",
+    "footer"
+  ],
+
+  "sections_optional": [
+    "products-used",
+    "faq",
+    "gift-cards",
+    "instagram-feed",
+    "price-list",
+    "loyalty-program"
+  ],
+
+  "special_features": {
+    "booking": {
+      "note": "Booking dugme prominentno — Booksy, Treatwell, Calendly ili telefon",
+      "placement": "hero + sticky header + floating button"
+    },
+    "gallery": {
+      "note": "Grid galerija before/after ili samo gotovi radovi — minimum 9 fotografija",
+      "layout": "masonry ili 3-col grid"
+    },
+    "price_list": {
+      "note": "Klijenti žele vidjeti cijene — cjenovnik u sekciji ili PDF download"
+    }
+  },
+
+  "schema_type": "LocalBusiness",
+  "schema_subtypes": ["HairSalon", "NailSalon", "BeautySalon", "DaySpa", "TattooParlor"],
+
+  "og_image": {
+    "tags_example": ["Rezervacije", "Profesionalno", "Banja Luka", "Ljepota"],
+    "tagline_example": "Gdje se ljepota susreće s umiješnošću"
+  }
+}

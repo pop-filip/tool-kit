@@ -1,0 +1,109 @@
+{
+  "_meta": {
+    "description": "Color system — tints/shades per mood primary, background textures, overlay options, gradient definitions",
+    "usage": "Koristiti za hover states, disabled, tinted backgrounds, gradient implementacije i CSS texture patterns.",
+    "version": "1.0"
+  },
+
+  "tint_shade_system": {
+    "note": "Za svaki mood, primary boja ima 9 nijansa (50-900). Koristiti u CSS varijablama.",
+    "generation_rule": "50=najsvjetlija tinta (5% saturacije), 900=najtamnija nijansa (15% lightness). 500=default primary.",
+
+    "brutalist_red": {
+      "50":  "#fff0ed", "100": "#ffd9d0", "200": "#ffb3a1",
+      "300": "#ff8a6f", "400": "#ff6040", "500": "#FF3B00",
+      "600": "#d63100", "700": "#b32800", "800": "#8f2000", "900": "#6b1800"
+    },
+    "brutalist_blue": {
+      "50":  "#e6e6ff", "100": "#b3b3ff", "200": "#8080ff",
+      "300": "#4d4dff", "400": "#2626ff", "500": "#0000FF",
+      "600": "#0000d6", "700": "#0000b3", "800": "#000090", "900": "#000070"
+    },
+    "neobrutalism_yellow": {
+      "50":  "#fffde6", "100": "#fff9b3", "200": "#fff480",
+      "300": "#ffee4d", "400": "#ffe91a", "500": "#FFDE00",
+      "600": "#d6bb00", "700": "#b39900", "800": "#907a00", "900": "#6b5c00"
+    },
+    "glassmorphism_purple": {
+      "50":  "#f3f0ff", "100": "#ddd6fe", "200": "#c4b5fd",
+      "300": "#a78bfa", "400": "#8b5cf6", "500": "#A78BFA",
+      "600": "#7c3aed", "700": "#6d28d9", "800": "#5b21b6", "900": "#4c1d95"
+    },
+    "luxury_gold": {
+      "50":  "#fdf8ee", "100": "#f9edce", "200": "#f3d99e",
+      "300": "#e9c06e", "400": "#dba847", "500": "#C9A96E",
+      "600": "#b8912e", "700": "#9a7626", "800": "#7d5e1e", "900": "#614918"
+    },
+    "darktech_blue": {
+      "50":  "#eff6ff", "100": "#dbeafe", "200": "#bfdbfe",
+      "300": "#93c5fd", "400": "#60a5fa", "500": "#3B82F6",
+      "600": "#2563eb", "700": "#1d4ed8", "800": "#1e40af", "900": "#1e3a8a"
+    }
+  },
+
+  "background_textures": {
+    "note": "CSS-only teksture. Bez eksternih slika. Dodati na :root ili specifičnu sekciju.",
+
+    "noise": {
+      "moods": ["editorial", "luxury-dark"],
+      "css": "background-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E\"); background-blend-mode: overlay;",
+      "note": "Suptilno — opacity 0.03-0.06. Daje papirast/filmski osjećaj."
+    },
+
+    "dot-grid": {
+      "moods": ["dark-tech", "swiss-minimal"],
+      "css_dark": "background-image: radial-gradient(rgba(148,163,184,0.15) 1px, transparent 1px); background-size: 24px 24px;",
+      "css_light": "background-image: radial-gradient(rgba(0,0,0,0.08) 1px, transparent 1px); background-size: 24px 24px;",
+      "note": "Za full-page pozadinu ili hero sekciju"
+    },
+
+    "line-grid": {
+      "moods": ["dark-tech", "neon-cyberpunk", "brutalist"],
+      "css_dark": "background-image: linear-gradient(rgba(148,163,184,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.05) 1px, transparent 1px); background-size: 40px 40px;",
+      "css_neon": "background-image: linear-gradient(rgba(0,245,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,245,255,0.05) 1px, transparent 1px); background-size: 40px 40px;",
+      "css_brutal": "background-image: linear-gradient(rgba(10,10,10,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.06) 1px, transparent 1px); background-size: 40px 40px;"
+    },
+
+    "diagonal-lines": {
+      "moods": ["brutalist", "neobrutalism"],
+      "css": "background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(10,10,10,0.04) 10px, rgba(10,10,10,0.04) 11px);",
+      "note": "Za surface/card pozadinu, ne za cijelu stranicu"
+    },
+
+    "organic-blobs": {
+      "moods": ["earth-organic", "pastel-soft", "glassmorphism"],
+      "implementation": "SVG blobs kao position: absolute, pointer-events: none, z-index: -1",
+      "css_wrapper": "position: relative; overflow: hidden;",
+      "blob1_html": "<div class='blob blob-1' aria-hidden='true'></div>",
+      "blob1_css_organic": ".blob-1 { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(74,124,89,0.12) 0%, transparent 70%); border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; top: -200px; right: -100px; animation: blob-float 20s ease-in-out infinite; } @keyframes blob-float { 0%,100% { transform: translate(0,0) rotate(0deg); } 33% { transform: translate(30px,-30px) rotate(60deg); } 66% { transform: translate(-20px,20px) rotate(-30deg); } }",
+      "blob1_css_pastel": ".blob-1 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(192,132,252,0.15) 0%, transparent 70%); border-radius: 40% 60% 30% 70% / 60% 40% 70% 30%; top: -150px; right: -150px; animation: blob-float 25s ease-in-out infinite; }"
+    },
+
+    "scanlines": {
+      "moods": ["neon-cyberpunk"],
+      "css": "background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.07) 2px, rgba(0,0,0,0.07) 4px);",
+      "note": "Dodati kao ::after overlay na hero sekciju, pointer-events: none"
+    }
+  },
+
+  "gradients": {
+    "glassmorphism_bg": "linear-gradient(135deg, #0F0C29 0%, #302B63 50%, #24243E 100%)",
+    "darktech_hero": "radial-gradient(ellipse at top, rgba(59,130,246,0.15) 0%, transparent 60%), linear-gradient(to bottom, #0F172A, #1E293B)",
+    "cyberpunk_glow": "radial-gradient(ellipse at 50% 0%, rgba(0,245,255,0.2) 0%, transparent 50%)",
+    "organic_warm": "linear-gradient(135deg, #FAF7F2 0%, #F0E8D8 100%)",
+    "pastel_soft": "linear-gradient(135deg, #FEF9FF 0%, #F8F0FF 50%, #FDF4FF 100%)",
+    "luxury_dark": "linear-gradient(180deg, #0A0804 0%, #12100A 100%)",
+    "brutalist_accent": "none — brutalist nikad gradient",
+    "editorial_warm": "linear-gradient(to bottom, #FAFAF8 0%, #F4F4F0 100%)"
+  },
+
+  "semantic_colors": {
+    "note": "Standardni semantički tokeni — dodati u :root za svaki sajt",
+    "success": "#22c55e",
+    "warning": "#f59e0b",
+    "error": "#ef4444",
+    "info": "#3b82f6",
+    "success_bg": "rgba(34,197,94,0.1)",
+    "error_bg": "rgba(239,68,68,0.1)"
+  }
+}

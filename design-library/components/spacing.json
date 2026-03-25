@@ -1,0 +1,117 @@
+{
+  "_meta": {
+    "description": "Spacing system — 8px base grid, CSS custom properties, section padding per mood, container widths, column gaps",
+    "usage": "Kopiraj CSS vars blok u :root. Koristi --space-N varijable za margin/padding. Nikad hardcoded px vrijednosti.",
+    "version": "1.0"
+  },
+
+  "base_scale": {
+    "note": "8px base grid. Sve je višekratnik od 4px ili 8px.",
+    "css_vars": {
+      "--space-1":  "4px",
+      "--space-2":  "8px",
+      "--space-3":  "12px",
+      "--space-4":  "16px",
+      "--space-5":  "20px",
+      "--space-6":  "24px",
+      "--space-8":  "32px",
+      "--space-10": "40px",
+      "--space-12": "48px",
+      "--space-16": "64px",
+      "--space-20": "80px",
+      "--space-24": "96px",
+      "--space-32": "128px",
+      "--space-40": "160px",
+      "--space-48": "192px"
+    }
+  },
+
+  "section_padding": {
+    "note": "Vertikalni padding za svaku sekciju. Razlikuje se po mood-u — ovo je ključno za 'gustoću' dizajna.",
+
+    "brutalist":      { "py": "clamp(48px, 8vw, 80px)",  "px": "clamp(16px, 5vw, 48px)",  "note": "Kompaktno — sadržaj je kralj, ne whitespace" },
+    "glassmorphism":  { "py": "clamp(64px, 10vw, 120px)", "px": "clamp(20px, 5vw, 60px)",  "note": "Srednje — dovoljno prostora za glass efekte" },
+    "neobrutalism":   { "py": "clamp(48px, 8vw, 96px)",  "px": "clamp(16px, 5vw, 48px)",  "note": "Kompaktno ali ne tijesno" },
+    "editorial":      { "py": "clamp(80px, 12vw, 160px)", "px": "clamp(20px, 6vw, 80px)",  "note": "Mnogo whitespace — editorial stil zahtijeva disanje" },
+    "luxury-dark":    { "py": "clamp(96px, 14vw, 200px)", "px": "clamp(24px, 6vw, 80px)",  "note": "Maksimalni whitespace — luksuz se prepoznaje po prostoru" },
+    "neon-cyberpunk": { "py": "clamp(48px, 8vw, 80px)",  "px": "clamp(16px, 5vw, 48px)",  "note": "Kompaktno — energičan, gust layout" },
+    "earth-organic":  { "py": "clamp(64px, 10vw, 120px)", "px": "clamp(20px, 5vw, 64px)",  "note": "Srednje — opušteno ali ne prostrano" },
+    "pastel-soft":    { "py": "clamp(56px, 9vw, 104px)", "px": "clamp(16px, 5vw, 56px)",  "note": "Srednje — friendly i approachable" },
+    "swiss-minimal":  { "py": "clamp(64px, 10vw, 128px)", "px": "clamp(16px, 5vw, 64px)",  "note": "Puno prostora — whitespace JE dizajn" },
+    "dark-tech":      { "py": "clamp(56px, 9vw, 112px)", "px": "clamp(20px, 5vw, 56px)",  "note": "Srednje — profesionalno, ne prenatrpano" }
+  },
+
+  "container_widths": {
+    "xs":   "480px",
+    "sm":   "640px",
+    "md":   "768px",
+    "lg":   "1024px",
+    "xl":   "1280px",
+    "2xl":  "1440px",
+    "full": "100%",
+
+    "mood_max_widths": {
+      "brutalist":      "1280px — full grid, nema centering margina",
+      "glassmorphism":  "1200px",
+      "neobrutalism":   "1200px",
+      "editorial":      "1100px — uži za bolji readability",
+      "luxury-dark":    "1200px sa puno horizontal paddinga",
+      "neon-cyberpunk": "1440px — full width osjećaj",
+      "earth-organic":  "1200px",
+      "pastel-soft":    "1100px",
+      "swiss-minimal":  "1280px — strogi grid",
+      "dark-tech":      "1280px"
+    },
+
+    "css": ".container { width: 100%; max-width: var(--container-max, 1200px); margin-inline: auto; padding-inline: clamp(16px, 5vw, 48px); }"
+  },
+
+  "grid_systems": {
+    "standard_12col": "display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--gap, 24px);",
+    "auto_3col":  "display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--gap);",
+    "auto_4col":  "display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--gap);",
+    "split_50_50": "display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); align-items: center;",
+    "split_60_40": "display: grid; grid-template-columns: 3fr 2fr; gap: var(--gap); align-items: center;",
+    "split_40_60": "display: grid; grid-template-columns: 2fr 3fr; gap: var(--gap); align-items: center;",
+    "editorial_wide": "display: grid; grid-template-columns: 1fr 2fr; gap: var(--gap);",
+
+    "gap_per_mood": {
+      "brutalist":     "--gap: 2px; /* granica sekcija je border, ne gap */",
+      "glassmorphism": "--gap: 24px;",
+      "neobrutalism":  "--gap: 20px;",
+      "editorial":     "--gap: 48px; /* puno prostora između elemenata */",
+      "luxury-dark":   "--gap: 40px;",
+      "neon-cyberpunk":"--gap: 16px;",
+      "earth-organic": "--gap: 24px;",
+      "pastel-soft":   "--gap: 20px;",
+      "swiss-minimal": "--gap: 32px; /* precizni grid razmaci */",
+      "dark-tech":     "--gap: 24px;"
+    }
+  },
+
+  "hero_heights": {
+    "note": "Hero visine — razlikuju mood i tip biznisa",
+    "full_viewport": "min-height: 100svh;",
+    "large": "min-height: 85vh;",
+    "medium": "min-height: 70vh;",
+    "compact": "min-height: 60vh;",
+
+    "mood_defaults": {
+      "brutalist":     "large — 85vh",
+      "glassmorphism": "full_viewport — 100svh",
+      "neobrutalism":  "large — 85vh",
+      "editorial":     "large — 85vh ili compact za text-heavy",
+      "luxury-dark":   "full_viewport — 100svh",
+      "neon-cyberpunk":"full_viewport — 100svh",
+      "earth-organic": "large — 85vh",
+      "pastel-soft":   "medium — 70vh",
+      "swiss-minimal": "medium — 70vh",
+      "dark-tech":     "full_viewport — 100svh"
+    }
+  },
+
+  "css_template": {
+    "note": "Kopirati u :root za svaki novi sajt",
+    "root_vars": ":root {\n  /* Spacing */\n  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;\n  --space-6: 24px; --space-8: 32px; --space-10: 40px; --space-12: 48px;\n  --space-16: 64px; --space-20: 80px; --space-24: 96px; --space-32: 128px;\n  \n  /* Layout */\n  --container-max: 1200px;\n  --gap: 24px;\n  --section-py: clamp(64px, 10vw, 120px);\n  --section-px: clamp(20px, 5vw, 60px);\n}"
+  }
+}

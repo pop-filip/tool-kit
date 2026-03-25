@@ -204,6 +204,9 @@
       </div>
       <div class="category">
         <div class="cat-title">Optimizacija Slika</div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">NIKAD base64 inline slike u HTML-u</div><div class="item-note">base64 u HTML-u = enorman fajl koji blokira cijelo učitavanje. Uvijek snimiti sliku kao vanjski fajl (WebP/PNG) i referencirati je sa &lt;img src="images/..."&gt;</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">HTML fajl manji od 200KB (bez base64)</div><div class="item-note">Ako je HTML veći od 200KB — vjerovatno ima inline base64. Provjeri: grep -c "data:image" index.html</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Sve slike konvertovane u WebP + pokrenut optimize-images.sh</div><div class="item-note">bash /Users/filip/tool-kit/utils/optimize-images.sh ./html/images — automatski konvertuje PNG/JPG u WebP</div></div><span class="badge req">OBAVEZNO</span></div>
         <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">WebP format za sve slike + PNG fallback za stari iOS</div><div class="item-note">Koristiti &lt;picture&gt; element sa &lt;source type="image/webp"&gt;</div></div><span class="badge req">OBAVEZNO</span></div>
         <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Lazy loading za slike ispod folda (loading="lazy")</div></div><span class="badge req">OBAVEZNO</span></div>
         <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Eksplicitne width i height dimenzije na svim slikama</div><div class="item-note">Sprečava CLS</div></div><span class="badge req">OBAVEZNO</span></div>
@@ -263,9 +266,11 @@
       </div>
       <div class="category">
         <div class="cat-title">Open Graph & Social</div>
-        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">og:title, og:description, og:image, og:url tagovi</div></div><span class="badge req">OBAVEZNO</span></div>
-        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">OG slika dimenzija 1200×630px (optimizovana)</div></div><span class="badge req">OBAVEZNO</span></div>
-        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Twitter Card tagovi (twitter:card, twitter:image)</div></div><span class="badge rec">PREPORUČENO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">og-image.jpg kreirana (1200×630px, &lt; 300KB)</div><div class="item-note">python3 /Users/filip/tool-kit/utils/create-og-image.py --name "..." --tagline "..." --domain "..." --logo ./html/images/logo.png --output ./html/images/og-image.jpg</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">og:title, og:description, og:image, og:url tagovi</div><div class="item-note">og:image mora biti apsolutna URL (https://domain.com/images/og-image.jpg)</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">og:url = ista domena kao &lt;link rel="canonical"&gt;</div><div class="item-note">Najčešća greška: canonical kaže .com ali og:url kaže .ba — mora biti identično</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Twitter Card tagovi (twitter:card, twitter:image)</div><div class="item-note">twitter:card="summary_large_image" — koristi isti og-image.jpg</div></div><span class="badge req">OBAVEZNO</span></div>
+        <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Testirano na opengraph.xyz ili Facebook debug alatu</div><div class="item-note">https://www.opengraph.xyz — provjeri naslov, opis i sliku prije go-live</div></div><span class="badge req">OBAVEZNO</span></div>
         <div class="item" onclick="toggle(this)"><div class="item-check"></div><div class="item-content"><div class="item-text">Testiran preview na Facebook i WhatsApp</div></div><span class="badge rec">PREPORUČENO</span></div>
       </div>
       <div class="category">

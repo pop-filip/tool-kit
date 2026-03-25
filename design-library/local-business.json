@@ -1,0 +1,153 @@
+{
+  "_meta": {
+    "type": "local-business",
+    "description": "Lokalni servis, majstor, automehaničar, klimatizacija, elektro, vodoinstalater",
+    "keywords": ["servis", "popravak", "majstor", "tehnika", "instalacija", "hitna pomoć", "24h"],
+    "examples": ["frigo-djukic.com", "servis bijele tehnike", "auto servis", "vodoinstalater"]
+  },
+
+  "palettes": [
+    {
+      "name": "Ice Tech",
+      "mood": "dark-premium, tehničko, pouzdano",
+      "bg":        "#0b0f14",
+      "bg2":       "#0d1520",
+      "bg3":       "#111c2a",
+      "border":    "rgba(90,171,204,0.12)",
+      "primary":   "#5aabcc",
+      "text":      "#ffffff",
+      "text2":     "rgba(255,255,255,0.65)",
+      "text3":     "rgba(255,255,255,0.35)",
+      "cta":       "#5aabcc",
+      "cta_hover": "#7dc3db",
+      "success":   "#22c55e",
+      "warning":   "#f59e0b",
+      "error":     "#ef4444"
+    },
+    {
+      "name": "Steel Industrial",
+      "mood": "industrijski, snažno, maskulino",
+      "bg":        "#0f1117",
+      "bg2":       "#161b22",
+      "bg3":       "#1c2230",
+      "border":    "rgba(255,140,0,0.15)",
+      "primary":   "#ff8c00",
+      "text":      "#f0f0f0",
+      "text2":     "rgba(240,240,240,0.65)",
+      "text3":     "rgba(240,240,240,0.35)",
+      "cta":       "#ff8c00",
+      "cta_hover": "#ffa733",
+      "success":   "#22c55e",
+      "warning":   "#f59e0b",
+      "error":     "#ef4444"
+    },
+    {
+      "name": "Clean White",
+      "mood": "čisto, moderno, pristupačno",
+      "bg":        "#ffffff",
+      "bg2":       "#f8fafc",
+      "bg3":       "#f1f5f9",
+      "border":    "rgba(0,0,0,0.08)",
+      "primary":   "#1e40af",
+      "text":      "#0f172a",
+      "text2":     "#475569",
+      "text3":     "#94a3b8",
+      "cta":       "#1e40af",
+      "cta_hover": "#1d4ed8",
+      "success":   "#16a34a",
+      "warning":   "#d97706",
+      "error":     "#dc2626"
+    }
+  ],
+
+  "fonts": [
+    {
+      "name": "Tech Mono",
+      "heading": "Rajdhani",
+      "body": "DM Sans",
+      "mono": "Share Tech Mono",
+      "google_url": "https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&family=Share+Tech+Mono&display=swap",
+      "note": "Koristi se na frigo-djukic — idealno za tehničke servise"
+    },
+    {
+      "name": "Modern Bold",
+      "heading": "Barlow Condensed",
+      "body": "Inter",
+      "mono": null,
+      "google_url": "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;900&family=Inter:wght@300;400;500&display=swap",
+      "note": "Snažno i direktno — za auto servise, industrijske biznise"
+    },
+    {
+      "name": "Clean Sans",
+      "heading": "Montserrat",
+      "body": "Open Sans",
+      "mono": null,
+      "google_url": "https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap",
+      "note": "Universalno čitljivo — za širu publiku, pristupačan dizajn"
+    }
+  ],
+
+  "animations": {
+    "scroll": "fade-up",
+    "hero_text": "typing",
+    "particles": false,
+    "tilt_cards": false,
+    "preloader": true,
+    "dark_mode_toggle": false,
+    "counter_numbers": true,
+    "note": "Lagane animacije — tehničke firme ne trebaju efekte koji odvlače pažnju"
+  },
+
+  "hero": {
+    "style": "split",
+    "note": "Tekst lijevo, slika/ikona desno — jasna ponuda odmah vidljiva",
+    "headline_formula": "[Usluga] za [Grad] — [Benefit]",
+    "headline_example": "Servis klima uređaja u Banja Luci — Dolazimo za 24h",
+    "cta_primary": "Nazovite odmah",
+    "cta_secondary": "Naše usluge",
+    "trust_elements": ["Godina iskustva", "Broj klijenata", "Garancija na rad", "24h dostupnost"]
+  },
+
+  "sections_recommended": [
+    "hero",
+    "trust-bar",
+    "services",
+    "how-it-works",
+    "stats",
+    "testimonials",
+    "faq",
+    "contact",
+    "footer"
+  ],
+
+  "sections_optional": [
+    "gallery",
+    "team",
+    "certifications",
+    "brands-served",
+    "service-area-map"
+  ],
+
+  "trust_elements": {
+    "stats_examples": [
+      { "number": "25+", "label": "Godina iskustva" },
+      { "number": "2000+", "label": "Zadovoljnih klijenata" },
+      { "number": "24h", "label": "Hitna intervencija" },
+      { "number": "98%", "label": "Riješenih kvarova" }
+    ],
+    "badges": ["Ovlašćeni servis", "Certificirano osoblje", "Garancija na rad", "Besplatan dolazak"]
+  },
+
+  "css_variables": {
+    "comment": "Kopiraj u :root {} — zamijeni sa odabranom paletom",
+    "template": "--bg: {bg}; --bg2: {bg2}; --bg3: {bg3}; --bd: {border}; --ice: {primary}; --t: {text}; --t2: {text2}; --t3: {text3}; --font-head: '{heading}', sans-serif; --font-body: '{body}', sans-serif;"
+  },
+
+  "schema_type": "LocalBusiness",
+  "schema_subtypes": ["ProfessionalService", "HomeAndConstructionBusiness", "AutoRepair"],
+
+  "og_image": {
+    "tags_example": ["Servis", "Hitna intervencija", "Garancija", "Certificirano"],
+    "tagline_example": "Brzi i pouzdani servis u vašem gradu"
+  }
+}

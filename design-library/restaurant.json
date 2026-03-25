@@ -1,0 +1,171 @@
+{
+  "_meta": {
+    "type": "restaurant",
+    "description": "Restoran, kafić, bar, catering, picerija, food truck, vinoteka",
+    "keywords": ["hrana", "piće", "meni", "rezervacija", "dostava", "ručak", "večera", "kafa"],
+    "examples": ["kafić", "restoran porodični", "catering firma", "pizzeria", "bar lounge"]
+  },
+
+  "palettes": [
+    {
+      "name": "Dark Bistro",
+      "mood": "premium, večernji, luxe dining",
+      "bg":        "#0c0907",
+      "bg2":       "#13100c",
+      "bg3":       "#1a1510",
+      "border":    "rgba(201,169,110,0.15)",
+      "primary":   "#c9a96e",
+      "text":      "#f5f0e8",
+      "text2":     "rgba(245,240,232,0.65)",
+      "text3":     "rgba(245,240,232,0.35)",
+      "cta":       "#c9a96e",
+      "cta_hover": "#dbbe89",
+      "success":   "#22c55e",
+      "warning":   "#f59e0b",
+      "error":     "#ef4444"
+    },
+    {
+      "name": "Mediterranean",
+      "mood": "mediteransko, svježe, ljetno, toplo",
+      "bg":        "#fdfaf5",
+      "bg2":       "#f7f2e8",
+      "bg3":       "#ede9dc",
+      "border":    "rgba(0,0,0,0.08)",
+      "primary":   "#2d6a4f",
+      "text":      "#1a1208",
+      "text2":     "#4a3f2f",
+      "text3":     "#8a7a6a",
+      "cta":       "#2d6a4f",
+      "cta_hover": "#40916c",
+      "success":   "#16a34a",
+      "warning":   "#d97706",
+      "error":     "#dc2626"
+    },
+    {
+      "name": "Urban Cafe",
+      "mood": "moderno, minimalistično, hipster kafić",
+      "bg":        "#f8f5f0",
+      "bg2":       "#f0ebe3",
+      "bg3":       "#e8e0d5",
+      "border":    "rgba(0,0,0,0.06)",
+      "primary":   "#1a1a1a",
+      "text":      "#1a1a1a",
+      "text2":     "#555555",
+      "text3":     "#999999",
+      "cta":       "#1a1a1a",
+      "cta_hover": "#333333",
+      "success":   "#16a34a",
+      "warning":   "#d97706",
+      "error":     "#dc2626"
+    },
+    {
+      "name": "Vibrant Street",
+      "mood": "živahno, food truck, brzo i fun",
+      "bg":        "#1a0a00",
+      "bg2":       "#2d1500",
+      "bg3":       "#3d1f00",
+      "border":    "rgba(255,107,0,0.2)",
+      "primary":   "#ff6b00",
+      "text":      "#fff8f0",
+      "text2":     "rgba(255,248,240,0.7)",
+      "text3":     "rgba(255,248,240,0.4)",
+      "cta":       "#ff6b00",
+      "cta_hover": "#ff8533",
+      "success":   "#22c55e",
+      "warning":   "#f59e0b",
+      "error":     "#ef4444"
+    }
+  ],
+
+  "fonts": [
+    {
+      "name": "Bistro Classic",
+      "heading": "Playfair Display",
+      "body": "Lato",
+      "mono": null,
+      "google_url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap",
+      "note": "Klasičan restoranski feel — elegantno i toplo"
+    },
+    {
+      "name": "Modern Food",
+      "heading": "Oswald",
+      "body": "Source Sans 3",
+      "mono": null,
+      "google_url": "https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600&display=swap",
+      "note": "Moderno i čitljivo — za kafić ili brzi restoran"
+    },
+    {
+      "name": "Artisan",
+      "heading": "Libre Baskerville",
+      "body": "Nunito",
+      "mono": null,
+      "google_url": "https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Nunito:wght@300;400;600&display=swap",
+      "note": "Domaće, artisan, lokalno — za porodične restorane"
+    }
+  ],
+
+  "animations": {
+    "scroll": "fade-up",
+    "hero_text": false,
+    "particles": false,
+    "parallax_images": true,
+    "tilt_cards": false,
+    "preloader": false,
+    "dark_mode_toggle": false,
+    "note": "Hrana se prodaje slikom — fokus na fotografije, ne na efekte"
+  },
+
+  "hero": {
+    "style": "fullscreen-image",
+    "note": "Velika fotografija hrane ili ambijenta — kratki tekst iznad + CTA rezervacija",
+    "headline_formula": "[Naziv] — [Tip kuhinje/piće]",
+    "headline_example": "Kafić Stari Grad — Domaća kafa i doručak",
+    "cta_primary": "Rezerviraj stol",
+    "cta_secondary": "Pogledaj meni",
+    "trust_elements": ["Godine rada", "Specijaliteti", "Radno vrijeme"]
+  },
+
+  "sections_recommended": [
+    "hero",
+    "about",
+    "menu-highlights",
+    "gallery",
+    "reservations",
+    "working-hours",
+    "location-map",
+    "contact",
+    "footer"
+  ],
+
+  "sections_optional": [
+    "testimonials",
+    "delivery",
+    "catering",
+    "events",
+    "daily-specials",
+    "instagram-feed",
+    "team-chefs"
+  ],
+
+  "special_features": {
+    "menu_section": {
+      "note": "Prikaži 3-6 featured jela sa fotografijom, nazivom i cijenom",
+      "layout": "grid-3-col ili tabs po kategoriji"
+    },
+    "reservation_cta": {
+      "note": "Prominentno CTA dugme — telefon ili booking link (Booksy/Calendly)",
+      "placement": "hero + sticky header"
+    },
+    "working_hours": {
+      "note": "Obavezno u footeru i na kontakt stranici"
+    }
+  },
+
+  "schema_type": "FoodEstablishment",
+  "schema_subtypes": ["Restaurant", "CafeOrCoffeeShop", "Bakery", "BarOrPub", "FastFoodRestaurant"],
+
+  "og_image": {
+    "tags_example": ["Domaća kuhinja", "Rezervacije", "Dostava", "Catering"],
+    "tagline_example": "Okusi koji pamte — svaki dan svježe"
+  }
+}

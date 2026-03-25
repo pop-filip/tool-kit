@@ -1,0 +1,301 @@
+{
+  "_meta": {
+    "description": "Button component library — varijante po svrsi i mood-u",
+    "usage": "Svaki button tip ima mood_default, CSS i HTML skeleton. Koristi za CTA, nav, forme.",
+    "version": "1.0"
+  },
+
+  "mood_to_button_mapping": {
+    "brutalist":      ["solid-bordered", "ghost-bordered", "icon-arrow"],
+    "glassmorphism":  ["glass-glow", "gradient-fill", "pill-ghost"],
+    "neobrutalism":   ["offset-shadow", "solid-bordered", "badge-btn"],
+    "editorial":      ["text-arrow", "minimal-underline", "ghost-bordered"],
+    "luxury-dark":    ["minimal-underline", "text-arrow", "outlined-thin"],
+    "neon-cyberpunk": ["neon-glow", "glass-glow", "icon-arrow"],
+    "earth-organic":  ["pill-solid", "pill-ghost", "text-arrow"],
+    "pastel-soft":    ["pill-solid", "pill-ghost", "badge-btn"],
+    "swiss-minimal":  ["solid-bordered", "ghost-bordered", "text-arrow"],
+    "dark-tech":      ["gradient-fill", "glass-glow", "icon-arrow"]
+  },
+
+  "variants": {
+
+    "solid-bordered": {
+      "name": "Solid + Bordered",
+      "description": "Puna pozadina sa vidljivim borderom. Brutalist klasik.",
+      "mood_default": ["brutalist", "neobrutalism", "swiss-minimal"],
+      "primary_css": {
+        "background": "var(--primary)",
+        "color": "var(--bg)",
+        "border": "2px solid var(--text)",
+        "border_radius": "var(--radius)",
+        "padding": "14px 28px",
+        "font_weight": "700",
+        "font_size": "13px",
+        "text_transform": "uppercase",
+        "letter_spacing": "1px",
+        "box_shadow": "var(--shadow)",
+        "transition": "transform 0.1s, box-shadow 0.1s",
+        "hover_transform": "translate(-2px, -2px)",
+        "hover_shadow": "var(--shadow-lg)"
+      },
+      "secondary_css": {
+        "background": "transparent",
+        "color": "var(--text)",
+        "border": "2px solid var(--text)"
+      },
+      "html": "<a href='#' class='btn-primary'>Button Text →</a>\n<a href='#' class='btn-secondary'>Secondary</a>"
+    },
+
+    "ghost-bordered": {
+      "name": "Ghost + Border",
+      "description": "Transparentna pozadina, vidljiv border. Za sekundarne akcije.",
+      "mood_default": ["brutalist", "swiss-minimal", "dark-tech"],
+      "primary_css": {
+        "background": "transparent",
+        "color": "var(--text)",
+        "border": "2px solid var(--text)",
+        "border_radius": "var(--radius)",
+        "padding": "13px 28px",
+        "font_weight": "700",
+        "hover_background": "var(--text)",
+        "hover_color": "var(--bg)",
+        "transition": "background 0.15s, color 0.15s"
+      },
+      "html": "<a href='#' class='btn-ghost'>Button Text</a>"
+    },
+
+    "gradient-fill": {
+      "name": "Gradient Fill",
+      "description": "Gradijent pozadina, zaobljeni. Za dark-tech i glassmorphism.",
+      "mood_default": ["dark-tech", "glassmorphism", "neon-cyberpunk"],
+      "primary_css": {
+        "background": "linear-gradient(135deg, var(--primary), var(--accent))",
+        "color": "#ffffff",
+        "border": "none",
+        "border_radius": "var(--radius)",
+        "padding": "14px 32px",
+        "font_weight": "700",
+        "box_shadow": "0 4px 20px var(--primary-glow)",
+        "hover_box_shadow": "0 6px 30px var(--primary-glow)",
+        "hover_transform": "translateY(-2px)",
+        "transition": "transform 0.2s, box-shadow 0.2s"
+      },
+      "html": "<a href='#' class='btn-gradient'>Get Started →</a>"
+    },
+
+    "glass-glow": {
+      "name": "Glass + Glow",
+      "description": "Glass morphism dugme sa glow efektom. Za tamne teme.",
+      "mood_default": ["glassmorphism", "neon-cyberpunk", "dark-tech"],
+      "primary_css": {
+        "background": "rgba(255,255,255,0.08)",
+        "backdrop_filter": "blur(10px)",
+        "color": "var(--text)",
+        "border": "1px solid rgba(255,255,255,0.15)",
+        "border_radius": "var(--radius)",
+        "padding": "13px 28px",
+        "font_weight": "600",
+        "hover_background": "rgba(255,255,255,0.14)",
+        "hover_border": "1px solid var(--primary)",
+        "hover_box_shadow": "0 0 20px var(--primary-glow)"
+      },
+      "html": "<a href='#' class='btn-glass'>Explore →</a>"
+    },
+
+    "neon-glow": {
+      "name": "Neon Glow",
+      "description": "Neon border i text-shadow glow. Samo za cyberpunk.",
+      "mood_default": ["neon-cyberpunk"],
+      "primary_css": {
+        "background": "transparent",
+        "color": "var(--primary)",
+        "border": "1px solid var(--primary)",
+        "border_radius": "var(--radius)",
+        "padding": "13px 28px",
+        "font_weight": "700",
+        "text_transform": "uppercase",
+        "letter_spacing": "2px",
+        "text_shadow": "0 0 10px var(--primary)",
+        "box_shadow": "0 0 15px var(--primary-glow), inset 0 0 15px var(--primary-glow)",
+        "hover_background": "var(--primary)",
+        "hover_color": "var(--bg)",
+        "hover_text_shadow": "none"
+      },
+      "html": "<a href='#' class='btn-neon'>ENTER →</a>"
+    },
+
+    "offset-shadow": {
+      "name": "Offset Shadow",
+      "description": "Neobrutalism signature — solid sjena koja se pomjera na hover.",
+      "mood_default": ["neobrutalism"],
+      "primary_css": {
+        "background": "var(--primary)",
+        "color": "var(--text)",
+        "border": "2px solid var(--text)",
+        "border_radius": "8px",
+        "padding": "14px 28px",
+        "font_weight": "700",
+        "box_shadow": "4px 4px 0 var(--text)",
+        "hover_transform": "translate(-2px, -2px)",
+        "hover_box_shadow": "6px 6px 0 var(--text)",
+        "transition": "transform 0.1s, box-shadow 0.1s"
+      },
+      "secondary_css": {
+        "background": "white",
+        "box_shadow": "4px 4px 0 var(--text)"
+      },
+      "html": "<a href='#' class='btn-neo'>Book Now</a>"
+    },
+
+    "pill-solid": {
+      "name": "Pill Solid",
+      "description": "Zaobljeni pill shape. Za earth-organic i pastel-soft.",
+      "mood_default": ["earth-organic", "pastel-soft"],
+      "primary_css": {
+        "background": "var(--primary)",
+        "color": "#ffffff",
+        "border": "none",
+        "border_radius": "999px",
+        "padding": "14px 32px",
+        "font_weight": "700",
+        "hover_background": "var(--primary-dark)",
+        "hover_transform": "scale(1.03)",
+        "transition": "background 0.2s, transform 0.2s"
+      },
+      "secondary_css": {
+        "background": "transparent",
+        "color": "var(--primary)",
+        "border": "2px solid var(--primary)",
+        "border_radius": "999px"
+      },
+      "html": "<a href='#' class='btn-pill'>Start Now →</a>\n<a href='#' class='btn-pill-ghost'>Learn More</a>"
+    },
+
+    "pill-ghost": {
+      "name": "Pill Ghost",
+      "description": "Transparentni pill — za sekundarne akcije na zaobljenim sajtovima.",
+      "mood_default": ["pastel-soft", "earth-organic"],
+      "primary_css": {
+        "background": "transparent",
+        "color": "var(--primary)",
+        "border": "2px solid var(--primary)",
+        "border_radius": "999px",
+        "padding": "12px 28px",
+        "font_weight": "600",
+        "hover_background": "var(--primary)",
+        "hover_color": "#ffffff"
+      },
+      "html": "<a href='#' class='btn-pill-ghost'>Learn More</a>"
+    },
+
+    "text-arrow": {
+      "name": "Text + Arrow",
+      "description": "Samo tekst sa strelicom. Za editorial i luxury — nema border.",
+      "mood_default": ["editorial", "luxury-dark", "earth-organic"],
+      "primary_css": {
+        "background": "none",
+        "border": "none",
+        "color": "var(--text)",
+        "padding": "0",
+        "font_weight": "600",
+        "font_size": "14px",
+        "display": "inline-flex",
+        "align_items": "center",
+        "gap": "8px",
+        "border_bottom": "1px solid transparent",
+        "hover_border_bottom": "1px solid var(--accent)",
+        "hover_gap": "14px",
+        "transition": "gap 0.2s, border-color 0.2s"
+      },
+      "html": "<a href='#' class='btn-text'>View Work <span aria-hidden='true'>→</span></a>"
+    },
+
+    "minimal-underline": {
+      "name": "Minimal Underline",
+      "description": "Underline animacija na hover. Za editorial i luxury.",
+      "mood_default": ["editorial", "luxury-dark"],
+      "primary_css": {
+        "background": "none",
+        "border": "none",
+        "color": "var(--text)",
+        "padding": "4px 0",
+        "font_weight": "500",
+        "letter_spacing": "2px",
+        "text_transform": "uppercase",
+        "font_size": "12px",
+        "position": "relative",
+        "after_content": "''",
+        "after_position": "absolute, bottom: 0, left: 0",
+        "after_width_default": "0",
+        "after_width_hover": "100%",
+        "after_height": "1px",
+        "after_background": "var(--accent)",
+        "after_transition": "width 0.3s ease"
+      },
+      "html": "<a href='#' class='btn-underline'>Read More</a>"
+    },
+
+    "outlined-thin": {
+      "name": "Outlined Thin",
+      "description": "Tanak border, puno letter-spacing. Za luxury dark.",
+      "mood_default": ["luxury-dark"],
+      "primary_css": {
+        "background": "transparent",
+        "color": "var(--primary)",
+        "border": "1px solid var(--primary)",
+        "border_radius": "0",
+        "padding": "14px 40px",
+        "font_weight": "300",
+        "letter_spacing": "4px",
+        "text_transform": "uppercase",
+        "font_size": "11px",
+        "hover_background": "var(--primary)",
+        "hover_color": "var(--bg)",
+        "transition": "background 0.3s, color 0.3s"
+      },
+      "html": "<a href='#' class='btn-outlined'>Discover →</a>"
+    },
+
+    "icon-arrow": {
+      "name": "Icon + Arrow",
+      "description": "Dugme sa inline SVG ikonom/strelicom. Univerzalan.",
+      "mood_default": ["dark-tech", "brutalist", "neon-cyberpunk"],
+      "primary_css": {
+        "display": "inline-flex",
+        "align_items": "center",
+        "gap": "10px",
+        "background": "var(--primary)",
+        "color": "var(--bg)",
+        "border": "2px solid var(--text)",
+        "padding": "13px 24px",
+        "font_weight": "700",
+        "svg_transition": "transform 0.2s",
+        "hover_svg_transform": "translateX(4px)"
+      },
+      "html": "<a href='#' class='btn-icon'>Get Started\n  <svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5'><line x1='5' y1='12' x2='19' y2='12'/><polyline points='12 5 19 12 12 19'/></svg>\n</a>"
+    },
+
+    "badge-btn": {
+      "name": "Badge Button",
+      "description": "Mali badge-style dugme — za tagove, filtre, kategorije.",
+      "mood_default": ["neobrutalism", "pastel-soft", "dark-tech"],
+      "primary_css": {
+        "background": "var(--surface)",
+        "color": "var(--text)",
+        "border": "var(--border)",
+        "border_radius": "var(--radius)",
+        "padding": "6px 14px",
+        "font_size": "11px",
+        "font_weight": "700",
+        "text_transform": "uppercase",
+        "letter_spacing": "1px"
+      },
+      "active_css": {
+        "background": "var(--primary)",
+        "color": "var(--bg)"
+      },
+      "html": "<span class='badge'>Tag Name</span>\n<span class='badge active'>Active Tag</span>"
+    }
+  }
+}

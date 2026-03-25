@@ -1,0 +1,116 @@
+{
+  "_meta": {
+    "description": "Footer component library — 6 layout varijante",
+    "version": "2.0"
+  },
+
+  "variants": {
+
+    "minimal-bar": {
+      "name": "Minimal Bar",
+      "description": "Jedan red — logo lijevo, linkovi desno, copyright. Jednostavan.",
+      "mood_default": ["swiss-minimal", "brutalist", "editorial"],
+      "css": {
+        "padding": "32px 24px",
+        "border_top": "1px solid var(--border)",
+        "layout": "flex, justify-content: space-between, align-items: center, flex-wrap: wrap, gap: 16px",
+        "background": "var(--bg)"
+      },
+      "html_skeleton": "<footer role='contentinfo'>\n  <div class='footer-bar'>\n    <a href='/' class='footer-logo'>[Logo]</a>\n    <ul class='footer-links'>\n      <li><a href='/impressum.html'>Impressum</a></li>\n      <li><a href='/datenschutz.html'>Datenschutz</a></li>\n    </ul>\n    <p class='footer-copy'>© [Jahr] [Name]</p>\n  </div>\n</footer>"
+    },
+
+    "three-column": {
+      "name": "Three Column",
+      "description": "Logo + opis | Navigacija | Kontakt info. Informativniji footer.",
+      "mood_default": ["dark-tech", "earth-organic", "luxury-dark", "pastel-soft"],
+      "css": {
+        "padding": "64px 24px 32px",
+        "border_top": "1px solid var(--border)",
+        "grid": "grid-template-columns: 2fr 1fr 1fr, gap: 48px",
+        "divider": "1px solid var(--border) između gornjeg dijela i copyright bara",
+        "background": "var(--bg2, var(--bg))"
+      },
+      "html_skeleton": "<footer role='contentinfo'>\n  <div class='footer-grid'>\n    <div class='footer-brand'>\n      <a href='/' class='footer-logo'>[Logo]</a>\n      <p class='footer-tagline'>[Kratki opis biznisa, 1-2 rečenice]</p>\n      <div class='footer-social'>[Social ikone]</div>\n    </div>\n    <div class='footer-nav'>\n      <h4 class='footer-heading'>Navigation</h4>\n      <ul>\n        <li><a href='#section'>[Link]</a></li>\n      </ul>\n    </div>\n    <div class='footer-contact'>\n      <h4 class='footer-heading'>Kontakt</h4>\n      <p>[Telefon]</p>\n      <p>[Email]</p>\n      <p>[Adresa]</p>\n    </div>\n  </div>\n  <div class='footer-bottom'>\n    <p>© [Jahr] [Name] · <a href='/impressum.html'>Impressum</a> · <a href='/datenschutz.html'>Datenschutz</a></p>\n  </div>\n</footer>"
+    },
+
+    "cta-footer": {
+      "name": "CTA Footer",
+      "description": "Veliki CTA poziv na vrhu footera, onda minimal bar. Konverzija fokus.",
+      "mood_default": ["neobrutalism", "neon-cyberpunk", "dark-tech"],
+      "css": {
+        "cta_section_padding": "80px 24px",
+        "cta_bg": "var(--primary)",
+        "cta_text": "var(--dark)",
+        "cta_headline_size": "clamp(2rem, 5vw, 4rem)",
+        "cta_layout": "flex ili grid, tekst lijevo CTA desno",
+        "bar_padding": "24px",
+        "bar_bg": "var(--bg2)"
+      },
+      "html_skeleton": "<footer role='contentinfo'>\n  <div class='footer-cta'>\n    <div>\n      <h2>[Big CTA Headline]</h2>\n      <p>[Kratki poziv]</p>\n    </div>\n    <a href='#kontakt' class='footer-cta-btn'>[Dugme]</a>\n  </div>\n  <div class='footer-bar'>\n    <a href='/' class='footer-logo'>[Logo]</a>\n    <p class='footer-copy'>© [Jahr] · <a href='/impressum.html'>Impressum</a> · <a href='/datenschutz.html'>Datenschutz</a></p>\n  </div>\n</footer>"
+    },
+
+    "bold-statement": {
+      "name": "Bold Statement",
+      "description": "Ogromna tipografija kao footer element. Logo=vizual. Memorabilno.",
+      "mood_default": ["brutalist", "editorial", "luxury-dark"],
+      "css": {
+        "padding": "60px 24px 40px",
+        "border_top": "2px solid var(--text) (brutalist) ili 1px solid var(--border) (luxury)",
+        "big_text_size": "clamp(4rem, 15vw, 16rem)",
+        "big_text_weight": "900",
+        "big_text_opacity": "0.06",
+        "big_text_position": "absolute, bottom: 0, overflow: hidden",
+        "layout": "relative, normal sadržaj iznad big text"
+      },
+      "html_skeleton": "<footer role='contentinfo' style='position:relative; overflow:hidden;'>\n  <div class='footer-content'>\n    <div class='footer-top'>\n      <a href='/' class='footer-logo'>[Logo]</a>\n      <ul class='footer-links'>\n        <li><a href='/impressum.html'>Impressum</a></li>\n        <li><a href='/datenschutz.html'>Datenschutz</a></li>\n      </ul>\n    </div>\n    <p class='footer-copy'>© [Jahr] [Name]</p>\n  </div>\n  <div class='footer-big-text' aria-hidden='true'>[NAZIV]</div>\n</footer>"
+    },
+
+    "mega-footer": {
+      "name": "Mega Footer",
+      "description": "Kompletan footer sa 4+ kolona, newsletter sign-up, social ikone, adresa. Za veće sajtove.",
+      "mood_default": ["dark-tech", "earth-organic", "glassmorphism"],
+      "css": {
+        "padding": "80px 24px 40px",
+        "border_top": "1px solid var(--border)",
+        "background": "var(--bg2, var(--bg))",
+        "grid": "grid-template-columns: 2fr 1fr 1fr 1fr, gap: 40px",
+        "newsletter_input": "background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:12px 16px; width:100%;",
+        "newsletter_btn": "background:var(--primary); color:var(--bg); border:none; padding:12px 20px; border-radius:var(--radius); cursor:pointer; font-weight:700;",
+        "social_row": "display:flex; gap:12px; margin-top:16px;",
+        "social_icon": "width:36px; height:36px; border-radius:50%; background:var(--surface); border:1px solid var(--border); display:flex; align-items:center; justify-content:center;",
+        "bottom_bar": "border-top:1px solid var(--border); margin-top:48px; padding-top:24px; display:flex; justify-content:space-between;"
+      },
+      "html_skeleton": "<footer role='contentinfo'>\n  <div class='footer-mega'>\n    <div class='footer-brand'>\n      <a href='/' class='footer-logo'>[Logo]</a>\n      <p>[Opis brenda 1-2 rečenice]</p>\n      <div class='footer-social'>\n        <a href='[url]' aria-label='[Platform]' class='social-icon'>[SVG Icon]</a>\n      </div>\n    </div>\n    <div>\n      <h4 class='footer-heading'>Services</h4>\n      <ul class='footer-links'>\n        <li><a href='#'>[Link]</a></li>\n      </ul>\n    </div>\n    <div>\n      <h4 class='footer-heading'>Company</h4>\n      <ul class='footer-links'>\n        <li><a href='#'>[Link]</a></li>\n        <li><a href='/impressum.html'>Impressum</a></li>\n        <li><a href='/datenschutz.html'>Datenschutz</a></li>\n      </ul>\n    </div>\n    <div>\n      <h4 class='footer-heading'>Newsletter</h4>\n      <p>[Newsletter opis]</p>\n      <form class='newsletter-form' novalidate>\n        <input type='email' placeholder='your@email.com' aria-label='Email for newsletter'>\n        <button type='submit'>[Subscribe]</button>\n      </form>\n    </div>\n  </div>\n  <div class='footer-bottom'>\n    <p>© [Jahr] [Name]</p>\n    <p>[Privacy] · [Terms]</p>\n  </div>\n</footer>"
+    },
+
+    "local-business-footer": {
+      "name": "Local Business Footer",
+      "description": "Footer dizajniran za lokalne biznise — istaknuta adresa, radno vrijeme, Google Maps embed. Praktičan.",
+      "mood_default": ["earth-organic", "pastel-soft", "swiss-minimal"],
+      "css": {
+        "padding": "64px 24px 32px",
+        "border_top": "1px solid var(--border)",
+        "grid": "grid-template-columns: 1.5fr 1fr 1fr, gap: 48px",
+        "map_embed": "width:100%; height:200px; border:none; border-radius:var(--radius); filter:grayscale(0.3);",
+        "hours_grid": "display:grid; grid-template-columns:auto 1fr; gap:4px 16px;",
+        "hours_day": "font-weight:600; color:var(--text);",
+        "hours_time": "color:var(--text-muted);"
+      },
+      "html_skeleton": "<footer role='contentinfo'>\n  <div class='footer-local'>\n    <div class='footer-brand'>\n      <a href='/' class='footer-logo'>[Logo]</a>\n      <p>[Kratki tagline biznisa]</p>\n      <address class='footer-address'>\n        <p>[Ulica i broj]</p>\n        <p>[PLZ Grad]</p>\n        <p><a href='tel:[tel]'>[Telefon]</a></p>\n        <p><a href='mailto:[email]'>[Email]</a></p>\n      </address>\n    </div>\n    <div class='footer-hours'>\n      <h4 class='footer-heading'>Radno Vrijeme</h4>\n      <div class='hours-grid'>\n        <span>Pon–Pet</span><span>[09:00–18:00]</span>\n        <span>Subota</span><span>[10:00–14:00]</span>\n        <span>Nedjelja</span><span>Zatvoreno</span>\n      </div>\n    </div>\n    <div class='footer-map'>\n      <h4 class='footer-heading'>Lokacija</h4>\n      <iframe src='[Google Maps embed URL]' title='[Naziv na mapi]' loading='lazy'></iframe>\n    </div>\n  </div>\n  <div class='footer-bottom'>\n    <p>© [Jahr] [Name] · <a href='/impressum.html'>Impressum</a> · <a href='/datenschutz.html'>Datenschutz</a></p>\n  </div>\n</footer>"
+    }
+
+  },
+
+  "mood_to_footer_mapping": {
+    "brutalist": "bold-statement",
+    "glassmorphism": "mega-footer",
+    "neobrutalism": "cta-footer",
+    "editorial": "bold-statement",
+    "luxury-dark": "minimal-bar",
+    "neon-cyberpunk": "cta-footer",
+    "earth-organic": "local-business-footer",
+    "pastel-soft": "three-column",
+    "swiss-minimal": "minimal-bar",
+    "dark-tech": "mega-footer"
+  }
+}

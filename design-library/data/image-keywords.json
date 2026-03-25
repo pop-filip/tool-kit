@@ -1,0 +1,59 @@
+{
+  "_doc": "Unsplash search keywords per business type. Svaki entry ima: hero (landscape, moody), gallery (square-friendly, lifestyle), team (portrait), about (workspace/context). Keyword je direktno query za Unsplash /search/photos?query=",
+
+  "web-agency": {
+    "hero":    ["creative studio workspace dark", "design agency office minimal", "tech studio neon lights"],
+    "gallery": ["branding mockup", "ui design screen", "creative process desk", "website design laptop"],
+    "team":    ["creative professional portrait", "designer working"],
+    "about":   ["agency team meeting", "collaborative workspace", "design process whiteboard"]
+  },
+
+  "sport-fitness": {
+    "hero":    ["gym dark moody lighting", "fitness training performance", "athlete workout dramatic"],
+    "gallery": ["weightlifting gym", "cardio training", "fitness class", "personal trainer"],
+    "team":    ["fitness coach portrait", "personal trainer professional"],
+    "about":   ["gym interior equipment", "fitness facility modern"]
+  },
+
+  "restaurant-food": {
+    "hero":    ["restaurant interior moody lighting", "fine dining atmosphere", "chef kitchen dramatic"],
+    "gallery": ["food photography plated", "restaurant dish gourmet", "cocktail bar drinks", "dessert plating"],
+    "team":    ["chef portrait professional", "restaurant staff"],
+    "about":   ["restaurant kitchen chef", "dining room interior warm"]
+  },
+
+  "portfolio-freelancer": {
+    "hero":    ["photography studio minimal", "creative portfolio dark", "artist workspace moody"],
+    "gallery": ["portrait photography", "product photography", "landscape photography dramatic", "editorial photography"],
+    "team":    ["photographer portrait", "creative professional"],
+    "about":   ["camera equipment studio", "photography workspace natural light"]
+  },
+
+  "salon-beauty": {
+    "hero":    ["beauty salon modern interior", "hair salon minimal white", "spa luxury calm"],
+    "gallery": ["hair styling salon", "beauty treatment", "makeup artist work", "spa interior"],
+    "team":    ["hairstylist professional portrait", "beauty professional"],
+    "about":   ["salon interior bright modern", "beauty workspace clean"]
+  },
+
+  "local-business": {
+    "hero":    ["small business storefront", "local shop interior warm", "professional service office"],
+    "gallery": ["business interior", "service professional work", "office workspace", "team working"],
+    "team":    ["professional portrait business", "small business owner"],
+    "about":   ["local business interior", "professional workspace"]
+  },
+
+  "real-estate": {
+    "hero":    ["luxury apartment interior", "modern architecture exterior", "real estate property light"],
+    "gallery": ["living room modern", "kitchen interior luxury", "bedroom design minimal", "bathroom luxury"],
+    "team":    ["real estate agent professional", "property consultant"],
+    "about":   ["architecture modern building", "property interior premium"]
+  },
+
+  "medical-health": {
+    "hero":    ["medical clinic modern interior", "healthcare professional calm", "wellness center minimal"],
+    "gallery": ["medical professional consultation", "clinic interior clean", "health wellness", "doctor patient"],
+    "team":    ["doctor professional portrait", "medical staff"],
+    "about":   ["clinic interior modern", "medical equipment professional"]
+  }
+}
